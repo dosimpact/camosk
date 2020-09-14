@@ -10,10 +10,9 @@
   "scripts": {
     "build": "babel server -d build",
     "start": "node dist/index.js",
-    "backend": "nodemon server/index.js",
-    "frontend": "npm run front --prefix client",
+    "frontend": "npm start --prefix client/",
     "dev": "nodemon --exec babel-node server/index.js",
-    "codev": "concurrently \"npm run backend\" \"npm run start --prefix client\"",
+    "codev": "concurrently \"npm run dev\" \"npm run start --prefix client\"",
     "costart": "concurrently \"npm run start\" \"npm run start --prefix client\""
   },
   "author": "John ahn",
