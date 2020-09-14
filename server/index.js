@@ -1,8 +1,11 @@
 import express from "express";
-import { urlencoded, json } from "body-parser";
+import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { mongoURI } from "./config/key";
-import { connect as _connect } from "mongoose";
+import mongoose from "mongoose";
+import helmet from "helmet";
+import morgan from "morgan";
+import cors from "cors";
 
 // const mongoose = require("mongoose");
 // mongoose
@@ -13,10 +16,11 @@ import { connect as _connect } from "mongoose";
 //==================================
 //    MongoDB
 //==================================
-const connect = _connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+const connect = mongoose
+  .connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("✔ MongoDB Connected..."))
   .catch((err) => console.log(err));
 
@@ -25,15 +29,20 @@ const app = express();
 //==================================
 //    Middle Wares
 //==================================
-app.use(urlencoded({ extended: true }));
-app.use(json());
 app.use(cookieParser());
-
+app.use(morgan("dev"));
+app.use(helmet());
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.static("public"));
 //==================================
 //   API
 //==================================
 app.use("/api/users", require("./routes/users"));
 app.use("/api/blog", require("./routes/blog"));
+app.use("/api/test", require("./routes/test"));
 
 //use this to show the image you have in node js server to client (react js)
 //https://stackoverflow.com/questions/48914987/send-image-path-from-node-js-express-server-to-react-client
@@ -50,7 +59,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 
 app.listen(port, () => {
   console.log(`✔ Server Running at ${port}`);
