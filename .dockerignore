@@ -1,0 +1,7 @@
+build
+node_modules
+.dockerignore
+Dockerfile
+Dockerfile.prod
+User Data
+img

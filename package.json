@@ -1,0 +1,53 @@
+{
+  "name": "react-chat-app",
+  "version": "1.0.0",
+  "description": "react blog",
+  "main": "index.js",
+  "engine": {
+    "node": "10.16.0",
+    "npm": "6.9.0"
+  },
+  "scripts": {
+    "build": "babel server -d build",
+    "start": "node dist/index.js",
+    "backend": "nodemon server/index.js",
+    "frontend": "npm run front --prefix client",
+    "dev": "nodemon --exec babel-node server/index.js",
+    "codev": "concurrently \"npm run backend\" \"npm run start --prefix client\"",
+    "costart": "concurrently \"npm run start\" \"npm run start --prefix client\""
+  },
+  "author": "John ahn",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.28.0",
+    "mongoose": "^5.4.20",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "passport": "^0.4.1",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.5",
+    "saslprep": "^1.0.3",
+    "socket.io": "^2.2.0",
+    "supports-color": "^7.2.0",
+    "xlsx": "^0.16.7"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/runtime": "^7.11.2",
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.19.1"
+  }
+}
