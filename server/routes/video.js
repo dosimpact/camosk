@@ -37,14 +37,18 @@ router.post("/downloadHV", async (req, res) => {
   const url = "https://www.youtube.com/watch?v=MvcWSoG0lYI";
 
   const info = await ytdl.getInfo(url);
-  console.log(info.title);
-  // const audioOutput = `videos/${info.title.replace("/\u20A9/g", "")}_audio.mp4`;
-  // const videoOutput = `videos/${info.title.replace("/\u20A9/g", "")}_video.mp4`;
-  // const mainOutput = `videos/${info.title.replace("/\u20A9/g", "")}.mp4`;
+  const title = info.videoDetails.title.replace(
+    /\:*\**\/*\?*\"*\<*\>*\|*\s*/g,
+    ""
+  );
+  console.log(title);
+  const audioOutput = `videos/${title}_audio.mp4`;
+  const videoOutput = `videos/${title}_video.mp4`;
+  const mainOutput = `videos/${title}.mp4`;
 
-  const audioOutput = path.resolve(__dirname, "sound.mp4");
-  const videoOutput = path.resolve(__dirname, "video.mp4");
-  const mainOutput = `videos/${info.title}`; //path.resolve(__dirname, "output.mp4");
+  // const audioOutput = path.resolve(__dirname, "sound.mp4");
+  // const videoOutput = path.resolve(__dirname, "video.mp4");
+  // const mainOutput = path.resolve(__dirname, "output.mp4");
 
   ytdl(url, {
     filter: (format) => format.container === "mp4" && !format.qualityLabel,
@@ -65,8 +69,10 @@ router.post("/downloadHV", async (req, res) => {
         .videoCodec("copy")
         .input(audioOutput)
         .audioCodec("copy")
-        .save(`video/${info.title}`)
-        .on("error", console.error)
+        .save(mainOutput)
+        .on("error", () => {
+          res.status(200).json({ success: false, title });
+        })
         .on("end", () => {
           fs.unlink(audioOutput, (err) => {
             if (err) console.error(err);
@@ -79,10 +85,9 @@ router.post("/downloadHV", async (req, res) => {
             else
               console.log(`\nfinished downloading, delete to ${videoOutput}`);
           });
+          res.status(200).json({ success: true, title });
         });
     });
-
-  res.status(200).json({ success: true });
 });
 
 router.get("/", (req, res) => {
