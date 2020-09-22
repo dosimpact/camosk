@@ -1,3 +1,4 @@
+import "./env";
 import express from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
@@ -18,8 +19,11 @@ import cors from "cors";
 //==================================
 const connect = mongoose
   .connect(mongoURI, {
+    dbName: "camosk",
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
   })
   .then(() => console.log("✔ MongoDB Connected..."))
   .catch((err) => console.log(err));
@@ -42,11 +46,14 @@ app.use(express.static("public"));
 //==================================
 app.use("/api/users", require("./routes/users"));
 app.use("/api/blog", require("./routes/blog"));
+app.use("/api/video", require("./routes/video"));
+app.use("/api/recommand", require("./routes/recommand"));
 app.use("/api/test", require("./routes/test"));
 
 //use this to show the image you have in node js server to client (react js)
 //https://stackoverflow.com/questions/48914987/send-image-path-from-node-js-express-server-to-react-client
 app.use("/uploads", express.static("uploads"));
+app.use("/videos", express.static("videos"));
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
@@ -62,5 +69,5 @@ if (process.env.NODE_ENV === "production") {
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
-  console.log(`✔ Server Running at ${port}`);
+  console.log(`✔ Server Running at http://127.0.0.1:${port}`);
 });
