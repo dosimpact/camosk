@@ -1,11 +1,32 @@
 import express from "express";
 import fs from "fs";
+import ytdl from "ytdl-core";
 
 const router = express.Router();
 
 //=================================
 //             video
 //=================================
+
+router.post("/download", async (req, res) => {
+  const { DOWN_URL } = req.body;
+  const info = await ytdl.getInfo(DOWN_URL);
+
+  ytdl(DOWN_URL).pipe(
+    fs.createWriteStream(`videos/${info.title.replace("/\u20A9/g", "")}.mp4`)
+  );
+  res.status(200).json({ success: true, title: info.title });
+});
+
+router.post("/downloadHV", async (req, res) => {
+  const { DOWN_URL } = req.body;
+  const info = await ytdl.getInfo(DOWN_URL);
+
+  ytdl(DOWN_URL).pipe(
+    fs.createWriteStream(`videos/${info.title.replace("/\u20A9/g", "")}.mp4`)
+  );
+  res.status(200).json({ success: true, title: info.title });
+});
 
 router.get("/", (req, res) => {
   const stream = fs.createReadStream("videos/01.mp4");
