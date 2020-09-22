@@ -1,31 +1,88 @@
 import express from "express";
 import fs from "fs";
 import ytdl from "ytdl-core";
+import readline from "readline";
+import path from "path";
+import ffmpeg from "fluent-ffmpeg";
 
 const router = express.Router();
 
+const onProgress = (chunkLength, downloaded, total) => {
+  const percent = downloaded / total;
+  readline.cursorTo(process.stdout, 0);
+  process.stdout.write(`${(percent * 100).toFixed(2)}% downloaded `);
+  process.stdout.write(
+    `(${(downloaded / 1024 / 1024).toFixed(2)}MB of ${(
+      total /
+      1024 /
+      1024
+    ).toFixed(2)}MB)`
+  );
+};
 //=================================
 //             video
 //=================================
 
 router.post("/download", async (req, res) => {
-  const { DOWN_URL } = req.body;
-  const info = await ytdl.getInfo(DOWN_URL);
+  const { url } = req.body;
+  const info = await ytdl.getInfo(url);
 
-  ytdl(DOWN_URL).pipe(
+  ytdl(url).pipe(
     fs.createWriteStream(`videos/${info.title.replace("/\u20A9/g", "")}.mp4`)
   );
   res.status(200).json({ success: true, title: info.title });
 });
 
 router.post("/downloadHV", async (req, res) => {
-  const { DOWN_URL } = req.body;
-  const info = await ytdl.getInfo(DOWN_URL);
+  const url = "https://www.youtube.com/watch?v=MvcWSoG0lYI";
 
-  ytdl(DOWN_URL).pipe(
-    fs.createWriteStream(`videos/${info.title.replace("/\u20A9/g", "")}.mp4`)
-  );
-  res.status(200).json({ success: true, title: info.title });
+  const info = await ytdl.getInfo(url);
+  console.log(info.title);
+  // const audioOutput = `videos/${info.title.replace("/\u20A9/g", "")}_audio.mp4`;
+  // const videoOutput = `videos/${info.title.replace("/\u20A9/g", "")}_video.mp4`;
+  // const mainOutput = `videos/${info.title.replace("/\u20A9/g", "")}.mp4`;
+
+  const audioOutput = path.resolve(__dirname, "sound.mp4");
+  const videoOutput = path.resolve(__dirname, "video.mp4");
+  const mainOutput = `videos/${info.title}`; //path.resolve(__dirname, "output.mp4");
+
+  ytdl(url, {
+    filter: (format) => format.container === "mp4" && !format.qualityLabel,
+    quality: "highest",
+  })
+    .on("progress", onProgress)
+    .pipe(fs.createWriteStream(`${audioOutput}`));
+
+  ytdl(url, {
+    filter: (format) => format.container === "mp4" && !format.audioEncoding,
+    quality: 137,
+  })
+    .on("progress", onProgress)
+    .pipe(fs.createWriteStream(`${videoOutput}`))
+    .on("finish", () => {
+      ffmpeg()
+        .input(videoOutput)
+        .videoCodec("copy")
+        .input(audioOutput)
+        .audioCodec("copy")
+        .save(`video/${info.title}`)
+        .on("error", console.error)
+        .on("end", () => {
+          fs.unlink(audioOutput, (err) => {
+            if (err) console.error(err);
+            else
+              console.log(`\nfinished downloading, delete to ${audioOutput}`);
+          });
+
+          fs.unlink(videoOutput, (err) => {
+            if (err) console.error(err);
+            else
+              console.log(`\nfinished downloading, delete to ${videoOutput}`);
+          });
+        });
+    });
+
+  res.status(200).json({ success: true });
 });
 
 router.get("/", (req, res) => {
