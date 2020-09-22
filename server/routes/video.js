@@ -121,7 +121,8 @@ router.get("/", (req, res) => {
 });
 
 router.get("/range/:fileName", (req, res) => {
-  const { fileName } = req.params;
+  const fileName = decodeURIComponent(req.params.fileName);
+  console.log("fileName", fileName);
   const fullPath = `videos/${fileName}.mp4`;
   const fileState = fs.statSync(fullPath);
   const { size } = fileState;
