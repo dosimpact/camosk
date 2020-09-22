@@ -34,7 +34,10 @@ router.post("/download", async (req, res) => {
 });
 
 router.post("/downloadHV", async (req, res) => {
-  const url = "https://www.youtube.com/watch?v=MvcWSoG0lYI";
+  const { url } = req.body;
+  if (url === undefined) {
+    res.status(200).json({ success: false });
+  }
 
   const info = await ytdl.getInfo(url);
   const title = info.videoDetails.title.replace(
@@ -85,7 +88,9 @@ router.post("/downloadHV", async (req, res) => {
             else
               console.log(`\nfinished downloading, delete to ${videoOutput}`);
           });
-          res.status(200).json({ success: true, title });
+          res
+            .status(200)
+            .json({ success: true, title, url: `vidoes/${title}` });
         });
     });
 });
