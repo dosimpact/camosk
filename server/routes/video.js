@@ -23,6 +23,43 @@ const onProgress = (chunkLength, downloaded, total) => {
 //             video
 //=================================
 
+router.get("/", (req, res) => {
+  const stream = fs.createReadStream("videos/01.mp4");
+  let count = 0;
+  stream.on("data", function (data) {
+    count = count + 1;
+    console.log("data count=" + count);
+    // 3.1. data 이벤트가 발생되면 해당 data를 클라이언트로 전송
+    res.write(data);
+  });
+
+  // 4. 데이터 전송이 완료되면 end 이벤트 발생
+  stream.on("end", function () {
+    console.log("end streaming");
+    // 4.1. 클라이언트에 전송완료를 알림
+    res.end();
+  });
+
+  // 5. 스트림도중 에러 발생시 error 이벤트 발생
+  stream.on("error", function (err) {
+    console.log("stream error", err);
+    // 5.2. 클라이언트로 에러메시지를 전달하고 전송완료
+    res.end("500 Internal Server " + err);
+  });
+});
+
+router.post("/info", async (req, res) => {
+  const { url } = req.body;
+  const info = await ytdl.getInfo(url);
+  console.log(info.videoDetails.keywords);
+  console.log(info.videoDetails.title);
+  console.log(info.videoDetails.shortDescription);
+  console.log(info.videoDetails.thumbnail.thumbnails[3]);
+  console.log(info.videoDetails.author);
+  console.log(info.related_videos);
+  res.status(200).json({ success: true, info });
+});
+
 router.post("/download", async (req, res) => {
   const { url } = req.body;
   const info = await ytdl.getInfo(url);
@@ -45,8 +82,8 @@ router.post("/downloadHV", async (req, res) => {
     ""
   );
   console.log(title);
-  const audioOutput = `videos/${title}_audio.mp4`;
-  const videoOutput = `videos/${title}_video.mp4`;
+  const audioOutput = `videos/tmp_audio.mp4`;
+  const videoOutput = `videos/tmp_video.mp4`;
   const mainOutput = `videos/${title}.mp4`;
 
   // const audioOutput = path.resolve(__dirname, "sound.mp4");
@@ -93,31 +130,6 @@ router.post("/downloadHV", async (req, res) => {
             .json({ success: true, title, url: `vidoes/${title}` });
         });
     });
-});
-
-router.get("/", (req, res) => {
-  const stream = fs.createReadStream("videos/01.mp4");
-  let count = 0;
-  stream.on("data", function (data) {
-    count = count + 1;
-    console.log("data count=" + count);
-    // 3.1. data 이벤트가 발생되면 해당 data를 클라이언트로 전송
-    res.write(data);
-  });
-
-  // 4. 데이터 전송이 완료되면 end 이벤트 발생
-  stream.on("end", function () {
-    console.log("end streaming");
-    // 4.1. 클라이언트에 전송완료를 알림
-    res.end();
-  });
-
-  // 5. 스트림도중 에러 발생시 error 이벤트 발생
-  stream.on("error", function (err) {
-    console.log("stream error", err);
-    // 5.2. 클라이언트로 에러메시지를 전달하고 전송완료
-    res.end("500 Internal Server " + err);
-  });
 });
 
 router.get("/range/:fileName", (req, res) => {
