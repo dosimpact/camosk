@@ -37,7 +37,92 @@ const AdeoSchema = mongoose.Schema(
       subscriber_count: types.Number,
     },
     keywords: [{ type: types.String, default: "", trim: true }],
-    related_videos: [{ id: String }],
+    related_videos: [
+      {
+        id: String,
+        title: String,
+        author: String,
+        ucid: String,
+        author_thumbnail: String,
+        short_view_count_text: String,
+        view_count: String,
+        length_seconds: types.Number,
+        video_thumbnail: String,
+      },
+    ],
+    AgeRange10: {
+      type: types.Number,
+      default: 0,
+    },
+    AgeRange20: {
+      type: types.Number,
+      default: 0,
+    },
+    AgeRange30: {
+      type: types.Number,
+      default: 0,
+    },
+    AgeRange40: {
+      type: types.Number,
+      default: 0,
+    },
+    AgeRange50: {
+      type: types.Number,
+      default: 0,
+    },
+    AgeRange60: {
+      type: types.Number,
+      default: 0,
+    },
+    AgeRange70: {
+      type: types.Number,
+      default: 0,
+    },
+    AgeRange80: {
+      type: types.Number,
+      default: 0,
+    },
+
+    Male: {
+      type: types.Number,
+      default: 0,
+    },
+    Female: {
+      type: types.Number,
+      default: 0,
+    },
+    Eyeglasses: {
+      type: types.Number,
+      default: 0,
+    },
+    Mustache: {
+      type: types.Number,
+      default: 0,
+    },
+    Smile: {
+      type: types.Number,
+      default: 0,
+    },
+    Sunglasses: {
+      type: types.Number,
+      default: 0,
+    },
+    ANGRY: {
+      type: types.Number,
+      default: 0,
+    },
+    HAPPY: {
+      type: types.Number,
+      default: 0,
+    },
+    SAD: {
+      type: types.Number,
+      default: 0,
+    },
+    CALM: {
+      type: types.Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

@@ -5,6 +5,8 @@ import readline from "readline";
 import path from "path";
 import ffmpeg from "fluent-ffmpeg";
 
+import { createAdeoDB } from "../controller/Adeos/saveInfo";
+
 import { Adeo } from "../models/Adeo";
 
 const router = express.Router();
@@ -75,22 +77,34 @@ router.post("/info", async (req, res) => {
 router.post("/addInfoDB", async (req, res) => {
   const { url } = req.body;
   const info = await ytdl.getInfo(url);
-  console.log(info.videoDetails.keywords);
-  console.log(info.videoDetails.title);
-  console.log(info.videoDetails.shortDescription);
-  console.log(info.videoDetails.thumbnail.thumbnails[3]);
-  console.log(info.videoDetails.author);
-  console.log(info.related_videos);
+  // console.log(info.videoDetails.keywords);
+  // console.log(info.videoDetails.title);
+  // console.log(info.videoDetails.shortDescription);
+  // console.log(info.videoDetails.thumbnail.thumbnails[3]);
+  // console.log(info.videoDetails.author);
+  // console.log(info.related_videos);
+  const info_es = {
+    url,
+    keywords: info.videoDetails.keywords,
+    title: info.videoDetails.title,
+    shortDescription: info.videoDetails.shortDescription,
+    thumbnail: info.videoDetails.thumbnail.thumbnails[3].url,
+    author: info.videoDetails.author,
+    related_videos: info.related_videos,
+  };
+  await createAdeoDB(info_es);
+  // try {
+  //   const result = await new Adeo({
+  //     ...info_es,
+  //   }).save();
+  //   console.log("addInfoDB result", result);
+  // } catch (error) {
+  //   console.error(error);
+  // }
+
   res.status(200).json({
     success: true,
-    info: {
-      keywords: info.videoDetails.keywords,
-      title: info.videoDetails.title,
-      shortDescription: info.videoDetails.shortDescription,
-      thumbnail: info.videoDetails.thumbnail.thumbnails[3],
-      author: info.videoDetails.author,
-      related_videos: info.related_videos,
-    },
+    info: info_es,
   });
 });
 
