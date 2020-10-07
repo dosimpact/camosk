@@ -5,6 +5,8 @@ import readline from "readline";
 import path from "path";
 import ffmpeg from "fluent-ffmpeg";
 
+import { Adeo } from "../models/Adeo";
+
 const router = express.Router();
 
 const onProgress = (chunkLength, downloaded, total) => {
@@ -57,7 +59,39 @@ router.post("/info", async (req, res) => {
   console.log(info.videoDetails.thumbnail.thumbnails[3]);
   console.log(info.videoDetails.author);
   console.log(info.related_videos);
-  res.status(200).json({ success: true, info });
+  res.status(200).json({
+    success: true,
+    info: {
+      keywords: info.videoDetails.keywords,
+      title: info.videoDetails.title,
+      shortDescription: info.videoDetails.shortDescription,
+      thumbnail: info.videoDetails.thumbnail.thumbnails[3],
+      author: info.videoDetails.author,
+      related_videos: info.related_videos,
+    },
+  });
+});
+
+router.post("/addInfoDB", async (req, res) => {
+  const { url } = req.body;
+  const info = await ytdl.getInfo(url);
+  console.log(info.videoDetails.keywords);
+  console.log(info.videoDetails.title);
+  console.log(info.videoDetails.shortDescription);
+  console.log(info.videoDetails.thumbnail.thumbnails[3]);
+  console.log(info.videoDetails.author);
+  console.log(info.related_videos);
+  res.status(200).json({
+    success: true,
+    info: {
+      keywords: info.videoDetails.keywords,
+      title: info.videoDetails.title,
+      shortDescription: info.videoDetails.shortDescription,
+      thumbnail: info.videoDetails.thumbnail.thumbnails[3],
+      author: info.videoDetails.author,
+      related_videos: info.related_videos,
+    },
+  });
 });
 
 router.post("/download", async (req, res) => {
