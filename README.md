@@ -5,7 +5,7 @@
 # 초기 셋팅
 
 - dev.js 추가
-- env 설정
+- env 설정 ( gitignore )
 
 ```
 MONGO_URI = "mongodb://dosimpact:589742@localhost:27017/admin"
