@@ -8,7 +8,14 @@ const movieSchema = mongoose.Schema(
       type: types.String,
       default: "nonamed",
       trim: true,
+      unique: true,
     },
+    comments: [
+      {
+        type: types.ObjectId,
+        ref: "MovieComment",
+      },
+    ],
   },
   { timestamps: true }
 );

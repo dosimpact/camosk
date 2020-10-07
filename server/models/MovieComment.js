@@ -14,6 +14,10 @@ const movieCommentSchema = mongoose.Schema(
       required: true,
       ref: "Movie",
     },
+    isDeleted: {
+      type: types.Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

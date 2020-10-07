@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import config from "../../config/key";
 
 const router = express.Router();
 
@@ -7,8 +8,8 @@ const router = express.Router();
 //             py hello
 //=================================
 
-const BASE_PYTHON_PATH =
-  "C:/Users/Dos/AppData/Local/Continuum/anaconda3/envs/alldeep/python.exe";
+const BASE_PYTHON_PATH = config.BASE_PYTHON_PATH;
+//   "C:/Users/Dos/AppData/Local/Continuum/anaconda3/envs/alldeep/python.exe";
 const BASE_URL = path.join(__dirname, "../../python/");
 
 router.get("/", (req, res) => {
