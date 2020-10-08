@@ -50,6 +50,10 @@ const AdeoSchema = mongoose.Schema(
         video_thumbnail: String,
       },
     ],
+    AgeRange00: {
+      type: types.Number,
+      default: 0,
+    },
     AgeRange10: {
       type: types.Number,
       default: 0,
