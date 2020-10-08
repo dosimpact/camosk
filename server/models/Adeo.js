@@ -50,80 +50,80 @@ const AdeoSchema = mongoose.Schema(
         video_thumbnail: String,
       },
     ],
-    AgeRange00: {
+    AgeRange00: { //https://www.youtube.com/watch?v=hc9CPpfQzWQ
       type: types.Number,
       default: 0,
     },
-    AgeRange10: {
+    AgeRange10: { //https://www.youtube.com/watch?v=q7w7H3UMrwQ
       type: types.Number,
       default: 0,
     },
-    AgeRange20: {
+    AgeRange20: { //https://www.youtube.com/watch?v=yj9Nkpm61UM
       type: types.Number,
       default: 0,
     },
-    AgeRange30: {
+    AgeRange30: { //https://www.youtube.com/watch?v=ao5HHZg3QMk
       type: types.Number,
       default: 0,
     },
-    AgeRange40: {
+    AgeRange40: { //https://www.youtube.com/watch?v=Py-BAqWV144
       type: types.Number,
       default: 0,
     },
-    AgeRange50: {
+    AgeRange50: { //https://www.youtube.com/watch?v=9F_f6n-btEw
       type: types.Number,
       default: 0,
     },
-    AgeRange60: {
+    AgeRange60: { //https://www.youtube.com/watch?v=Yvr46lJcIeU
       type: types.Number,
       default: 0,
     },
-    AgeRange70: {
+    AgeRange70: { //https://www.youtube.com/watch?v=KFiXvoOVbfQ
       type: types.Number,
       default: 0,
     },
-    AgeRange80: {
+    AgeRange80: { //https://www.youtube.com/watch?v=BRPC-nvf8T4
       type: types.Number,
       default: 0,
     },
 
-    Male: {
+    Male: { //https://www.youtube.com/watch?v=6nxz-x4VsAU
       type: types.Number,
       default: 0,
     },
-    Female: {
+    Female: { //https://www.youtube.com/watch?v=nfNb29zEvbI
       type: types.Number,
       default: 0,
     },
-    Eyeglasses: {
+    Eyeglasses: { //https://www.youtube.com/watch?v=tEZNK8zBAEk
       type: types.Number,
       default: 0,
     },
-    Mustache: {
+    Mustache: {//https://www.youtube.com/watch?v=HYozI_eLAV4
       type: types.Number,
       default: 0,
     },
-    Smile: {
+    Smile: { //https://www.youtube.com/watch?v=%E3%85%81
       type: types.Number,
       default: 0,
     },
-    Sunglasses: {
+    Sunglasses: {//https://www.youtube.com/watch?v=kgyqdC_nHMQ 
       type: types.Number,
       default: 0,
     },
-    ANGRY: {
+    ANGRY: { //https://www.youtube.com/watch?v=9NQyBg6nqbk
       type: types.Number,
       default: 0,
     },
-    HAPPY: {
+    HAPPY: { //https://www.youtube.com/watch?v=7_HYO6IaiEY
       type: types.Number,
       default: 0,
     },
-    SAD: {
+    SAD: { //https://www.youtube.com/watch?v=RE1q3-mRLoA
       type: types.Number,
       default: 0,
     },
-    CALM: {
+    CALM: { //https://www.youtube.com/watch?v=1H7vnXa-Fog
       type: types.Number,
       default: 0,
     },
