@@ -112,10 +112,11 @@ router.post("/addInfoDB", async (req, res) => {
 router.post("/download", async (req, res) => {
   const { url } = req.body;
   const info = await ytdl.getInfo(url);
-
-  ytdl(url).pipe(
-    fs.createWriteStream(`videos/${info.title.replace("/\u20A9/g", "")}.mp4`)
+  const title = info.videoDetails.title.replace(
+    /\u20A9\:*\**\/*\?*\"*\<*\>*\|*\s*/g,
+    ""
   );
+  ytdl(url).pipe(fs.createWriteStream(`videos/${title}.mp4`));
   res.status(200).json({ success: true, title: info.title });
 });
 
@@ -145,14 +146,14 @@ router.post("/downloadHV", async (req, res) => {
 
   ytdl(url, {
     filter: (format) => format.container === "mp4" && !format.qualityLabel,
-    quality: "highest",
+    quality: "highestaudio",
   })
     .on("progress", onProgress)
     .pipe(fs.createWriteStream(`${audioOutput}`));
 
   ytdl(url, {
     filter: (format) => format.container === "mp4" && !format.audioEncoding,
-    quality: 137,
+    quality: "highestvideo",
   })
     .on("progress", onProgress)
     .pipe(fs.createWriteStream(`${videoOutput}`))
