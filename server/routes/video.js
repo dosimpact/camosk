@@ -34,6 +34,9 @@ router.get("/:fileName", (req, res) => {
   const fullPath = `videos/${fileName}.mp4`;
   const stream = fs.createReadStream(fullPath);
   let count = 0;
+  res.writeHead(200, {
+    "Content-Type": "video/mp4",
+  });
   stream.on("data", function (data) {
     count = count + 1;
     console.log("data count=" + count);
