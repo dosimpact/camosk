@@ -28,8 +28,11 @@ const onProgress = (chunkLength, downloaded, total) => {
 //             video
 //=================================
 
-router.get("/", (req, res) => {
-  const stream = fs.createReadStream("videos/01.mp4");
+router.get("/:fileName", (req, res) => {
+  const fileName = decodeURIComponent(req.params.fileName);
+  console.log("fileName", fileName);
+  const fullPath = `videos/${fileName}.mp4`;
+  const stream = fs.createReadStream(fullPath);
   let count = 0;
   stream.on("data", function (data) {
     count = count + 1;
@@ -37,7 +40,6 @@ router.get("/", (req, res) => {
     // 3.1. data 이벤트가 발생되면 해당 data를 클라이언트로 전송
     res.write(data);
   });
-
   // 4. 데이터 전송이 완료되면 end 이벤트 발생
   stream.on("end", function () {
     console.log("end streaming");

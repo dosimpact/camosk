@@ -10,7 +10,7 @@ function LandingPage() {
 
         <video width="1280" height="720" controls autoplay>
           <source
-            src="http://localhost:5000/api/video/range/Cr-l_lfbBrc"
+            src="http://133.186.221.101:5000/api/video/range/1H7vnXa-Fog"
             type="video/mp4"
           />
           Your browser does not support the video tag.
