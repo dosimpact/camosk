@@ -8,6 +8,7 @@ import ffmpeg from "fluent-ffmpeg";
 import { createAdeoDB } from "../controller/Adeos/saveInfo";
 
 import { Adeo } from "../models/Adeo";
+import bodyParser from "body-parser";
 
 const router = express.Router();
 
@@ -119,17 +120,21 @@ router.post("/download", async (req, res) => {
 });
 
 router.post("/downloadHV", async (req, res) => {
-  const { url } = req.body;
-  if (url === undefined) {
+  let { url, v } = req.body;
+  if (url === undefined && v === undefined) {
     res.status(200).json({ success: false });
   }
+  const YOUTUBE_URL = `https://www.youtube.com/watch?v=${v}`;
+  if (!url) {
+    url = YOUTUBE_URL;
+  }
 
-  const info = await ytdl.getInfo(url);
-  const title = info.videoDetails.title.replace(
-    /\:*\**\/*\?*\"*\<*\>*\|*\s*/g,
-    ""
-  );
-  console.log(title);
+  let title = v;
+  if (!title) {
+    const info = await ytdl.getInfo(url);
+    title = info.videoDetails.title.replace(/\:*\**\/*\?*\"*\<*\>*\|*\s*/g, "");
+  }
+  console.log("title", title, "url", url);
   const audioOutput = `videos/tmp_audio.mp4`;
   const videoOutput = `videos/tmp_video.mp4`;
   const mainOutput = `videos/${title}.mp4`;
