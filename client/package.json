@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.24.1",
     "axios": "^0.18.0",
+    "face-api.js": "^0.22.2",
     "formik": "^1.5.8",
     "highlight.js": "^9.16.2",
     "moment": "^2.24.0",
