@@ -7,6 +7,7 @@ const LandingPage = () => {
   // useScript(`${process.env.PUBLIC_URL}/face-api.min.js`);
   useEffect(() => {
     const video = document.getElementById("video");
+
     const startVideo = () => {
       navigator.getUserMedia(
         { video: {} },
