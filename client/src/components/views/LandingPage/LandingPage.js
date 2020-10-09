@@ -28,6 +28,7 @@ const LandingPage = () => {
 
     video.addEventListener("play", () => {
       const canvas = faceapi.createCanvasFromMedia(video);
+      canvas.classList.add("faceCanvas");
       document.body.append(canvas);
       const displaySize = { width: video.width, height: video.height };
       faceapi.matchDimensions(canvas, displaySize);
@@ -71,18 +72,4 @@ const LandingPage = () => {
 
 export default LandingPage;
 
-const Wrapper = styled.div`
-  & .webcam {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 250;
-    height: 200;
-  }
-
-  & .faceCanvas {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-  }
-`;
+const Wrapper = styled.div``;
