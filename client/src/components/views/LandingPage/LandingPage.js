@@ -3,6 +3,9 @@ import React, { useEffect } from "react";
 import { FaCode } from "react-icons/fa";
 import * as faceapi from "face-api.js";
 
+import Menu from "./Section/Menu";
+import styled from "styled-components";
+
 const LandingPage = () => {
   // useScript(`${process.env.PUBLIC_URL}/face-api.min.js`);
   useEffect(() => {
@@ -49,14 +52,30 @@ const LandingPage = () => {
     };
   }, []);
   return (
-    <>
+    <Wrapper>
       <div className="app">
         <FaCode style={{ fontSize: "4rem" }} />
-        <span style={{ fontSize: "2rem" }}>Movie Player</span>
-        <video id="video" width="250" height="200" autoPlay muted></video>
+        <span style={{ fontSize: "2rem" }}>홈페이지 광고 Player</span>
+        <video className="webcam" id="video" autoPlay muted></video>
       </div>
-    </>
+    </Wrapper>
   );
 };
 
 export default LandingPage;
+
+const Wrapper = styled.div`
+  & .webcam {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 250;
+    height: 200;
+  }
+
+  & .faceCanvas {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+`;

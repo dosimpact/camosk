@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
 import Theme from "./Styles/Theme";
+import "./index.css";
 
 import Reducer from "./_reducers";
 import { Provider } from "react-redux";
