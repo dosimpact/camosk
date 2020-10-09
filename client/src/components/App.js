@@ -19,19 +19,39 @@ function App() {
       <NavBar />
       <div>
         <Switch>
-          <Route exact path="/" component={Auth(LandingPage, null)} />
-          <Route exact path="/adpage" component={Auth(AdPage, null)} />
-          <Route exact path="/login" component={Auth(LoginPage, false)} />
-          <Route exact path="/register" component={Auth(RegisterPage, false)} />
-          <Route exact path="/blog" component={Auth(BlogPage, null)} />
           <Route
             exact
-            path="/blog/create"
+            path={process.env.PUBLIC_URL + "/"}
+            component={Auth(LandingPage, null)}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/adpage"}
+            component={Auth(AdPage, null)}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/login"}
+            component={Auth(LoginPage, false)}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/register"}
+            component={Auth(RegisterPage, false)}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/blog"}
+            component={Auth(BlogPage, null)}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/blog/create"}
             component={Auth(CreateBlogPage, null)}
           />
           <Route
             exact
-            path="/blog/post/:postId"
+            path={process.env.PUBLIC_URL + "/blog/post/:postId"}
             component={Auth(PostPage, null)}
           />
         </Switch>

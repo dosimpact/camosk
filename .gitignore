@@ -8,5 +8,7 @@ yarn-error.log*
 package-lock.json
 .env
 videos
+yarn.lock
 
 ffmpeg
+build
