@@ -56,7 +56,14 @@ const LandingPage = () => {
       <div className="app">
         <FaCode style={{ fontSize: "4rem" }} />
         <span style={{ fontSize: "2rem" }}>홈페이지 광고 Player</span>
-        <video className="webcam" id="video" autoPlay muted></video>
+        <video
+          className="webcam"
+          id="video"
+          width="250"
+          height="200"
+          autoPlay
+          muted
+        ></video>
       </div>
     </Wrapper>
   );
