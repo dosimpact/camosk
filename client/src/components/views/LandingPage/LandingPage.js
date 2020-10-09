@@ -11,12 +11,19 @@ const LandingPage = () => {
   useEffect(() => {
     const video = document.getElementById("video");
 
-    const startVideo = () => {
-      navigator.getUserMedia(
-        { video: {} },
-        (stream) => (video.srcObject = stream),
-        (err) => console.error(err)
-      );
+    const startVideo = async () => {
+      let stream = null;
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+      } catch (err) {
+        console.error(err);
+      }
+      // navigator.mediaDevices.getUserMedia(
+      // { video: {} },
+      // (stream) => (video.srcObject = stream),
+      // (err) => console.error(err)
+      // );
     };
     const MODELS_URL = `${process.env.PUBLIC_URL}/models`;
     Promise.all([
