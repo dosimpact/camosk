@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import useScript from "../../../hoc/useScript";
 import { FaCode } from "react-icons/fa";
 import * as faceapi from "face-api.js";
@@ -7,6 +7,7 @@ import Menu from "./Section/Menu";
 import styled from "styled-components";
 
 const LandingPage = () => {
+  const [error, setError] = useState(false);
   // useScript(`${process.env.PUBLIC_URL}/face-api.min.js`);
   useEffect(() => {
     const video = document.getElementById("video");
@@ -17,6 +18,7 @@ const LandingPage = () => {
         stream = await navigator.mediaDevices.getUserMedia({ video: true });
         video.srcObject = stream;
       } catch (err) {
+        setError(true);
         console.error(err);
       }
       // navigator.mediaDevices.getUserMedia(
@@ -64,6 +66,7 @@ const LandingPage = () => {
       <div className="app">
         <FaCode style={{ fontSize: "4rem" }} />
         <span style={{ fontSize: "2rem" }}>홈페이지 광고 Player</span>
+        {error ? "Cam Device is not founded" : "loading..."}
         <video
           className="webcam"
           id="video"
