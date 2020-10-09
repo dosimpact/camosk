@@ -1,8 +1,8 @@
 module.exports = {
   apps: [
     {
-      script: "./build/index.js",
-      name: "camosk_back",
+      script: "yarn start",
+      name: "camosk_front",
       exec_mode: "cluster",
       instances: 2,
     },
