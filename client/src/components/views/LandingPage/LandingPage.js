@@ -78,7 +78,7 @@ const LandingPage = () => {
 
     setLoading(false);
 
-    video.addEventListener("play", () => {
+    const handlePlay =  video.addEventListener("play", () => {
       const canvas = faceapi.createCanvasFromMedia(video);
       canvas.classList.add("faceCanvas");
       document.body.append(canvas);
@@ -101,7 +101,7 @@ const LandingPage = () => {
     });
 
     return () => {
-      video.removeEventListener("play");
+      video.removeEventListener("play",handlePlay);
     };
   }, []);
   return (
@@ -119,9 +119,6 @@ const LandingPage = () => {
           muted
         ></video>
 
-        <div style={{ display: "none" }}>
-          <Webcam audio={false} screenshotFormat="image/jpeg" ref={webcam} />
-        </div>
         {!ads ?
           <>
             <button onClick={() => { doCapture() }} className="action">Action</button>
@@ -130,10 +127,13 @@ const LandingPage = () => {
             <h1>Target Advertisement Launching...</h1>
             <p>{content}</p>
             {/* content에 동영상 주소가 들어감 */}
-            <ReactPlayer url={content} onEnded={() => { setAds(false) }} onPause={() => { setAds(false) }} width="720px" height="480px" muted={true} playing={true} />
+            <ReactPlayer  url={content} onEnded={() => { setAds(false) }} onPause={() => { setAds(false) }} width="720px" height="480px" muted={true} playing={true} />
             <button onClick={() => { setAds(false) }} className="action">Reset</button>
           </>
         }
+      </div>
+      <div>
+        <Webcam style={{visibility:"hidden"}} audio={false} screenshotFormat="image/jpeg" ref={webcam} />
       </div>
     </Wrapper>
   );
