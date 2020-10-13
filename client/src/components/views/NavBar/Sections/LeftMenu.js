@@ -1,20 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom"
+
 import { Menu } from "antd";
 
 function LeftMenu(props) {
   return (
     <Menu mode={props.mode}>
       <Menu.Item key="mail">
-        <a href="/">홈페이지</a>
+        <Link to="/">홈페이지</Link>
       </Menu.Item>
       <Menu.Item key="adpage">
-        <a href="/adpage">광고페이지</a>
+        <Link to="/adpage">광고페이지</Link>
       </Menu.Item>
       <Menu.Item key="blog">
-        <a href="/blog">Blog</a>
+        <Link to="/blog">Blog</Link>
       </Menu.Item>
       <Menu.Item key="create">
-        <a href="/blog/create">Create</a>
+        <Link to="/blog/create">Create</Link>
       </Menu.Item>
     </Menu>
   );
