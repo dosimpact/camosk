@@ -6,7 +6,7 @@ yarn-debug.kog*
 yarn-error.log*
 .vscode
 package-lock.json
-.env
+
 videos
 yarn.lock
 
