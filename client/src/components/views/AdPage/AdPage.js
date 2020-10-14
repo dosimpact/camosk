@@ -9,9 +9,9 @@ import {
   CloseOutlined,
 } from "@ant-design/icons";
 
-function AdPage() {
+function AdPage({setIsShoping,PurchasePageRef}) {
   return (
-    <Container>
+    <Container ref={PurchasePageRef}>
       <Wrapper>
         <div className="row header">
           <div className="headerItem">
@@ -121,7 +121,7 @@ function AdPage() {
               })}
             </div>
           </div>
-          <div className="column">
+          <div className="column" onClick={()=>{setIsShoping(false)}}>
             <div className="center confirm">
               <CheckOutlined />
               <span>주문확인</span>
