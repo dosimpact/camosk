@@ -3,6 +3,10 @@ import ReactQuill, { Quill } from 'react-quill';
 import "react-quill/dist/quill.snow.css";
 
 import axios from 'axios';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+window.katex = katex;
+
 const __ISMSIE__ = navigator.userAgent.match(/Trident/i) ? true : false;
 
 // Quill.register('modules/clipboard', PlainClipboard, true);
@@ -221,7 +225,7 @@ class QuillEditor extends React.Component {
     }
 
     handleChange = (html) => {
-        console.log('html', html)
+        // console.log('html', html)
         // https://youtu.be/BbR-QCoKngE
         // https://www.youtube.com/embed/ZwKhufmMxko
         // https://tv.naver.com/v/9176888
@@ -246,7 +250,16 @@ class QuillEditor extends React.Component {
     fileHandler = () => {
         this.inputOpenFileRef.current.click();
     };
-
+    HeartHandler = () => {
+        console.log("HeartHandler", "❤");
+        this.insertHeart();
+    }
+    insertHeart = () => {
+        const quill = this.reactQuillRef.getEditor();
+        const cursorPosition = quill.getSelection().index;
+        quill.insertText(cursorPosition, "❤");
+        quill.setSelection(cursorPosition + 1);
+    }
 
     insertImage = (e) => {
         e.stopPropagation();
@@ -370,6 +383,7 @@ class QuillEditor extends React.Component {
                         <option value="2" />
                         <option value="" />
                     </select>
+                    <button className="ql-formula" />
                     <button className="ql-bold" />
                     <button className="ql-italic" />
                     <button className="ql-underline" />
@@ -383,23 +397,26 @@ class QuillEditor extends React.Component {
                     <button className="ql-insertFile">
                         F
                     </button>
+                    <button className="ql-insertHeart">
+                        ❤
+                    </button>
                     <button className="ql-link" />
                     <button className="ql-code-block" />
                     <button className="ql-video" />
                     <button className="ql-blockquote" />
                     <button className="ql-clean" />
 
-                    
+
 
                 </div>
                 <ReactQuill
                     ref={(el) => { this.reactQuillRef = el }}
                     theme={'snow'}
                     onChange={this.handleChange}
-                    modules={this.modules}
-                    formats={this.formats}
                     value={this.state.editorHtml}
                     placeholder={this.props.placeholder}
+                    modules={QuillEditor.modules}
+                    formats={QuillEditor.formats}
                 />
                 <input type="file" accept="image/*" ref={this.inputOpenImageRef} style={{ display: "none" }} onChange={this.insertImage} />
                 <input type="file" accept="video/*" ref={this.inputOpenVideoRef} style={{ display: "none" }} onChange={this.insertVideo} />
@@ -408,7 +425,7 @@ class QuillEditor extends React.Component {
         )
     }
 
-    modules = {
+    static modules = {
         syntax: true,
         toolbar: {
             container: "#toolbar",
@@ -418,15 +435,16 @@ class QuillEditor extends React.Component {
                 insertVideo: this.videoHandler,
                 insertFile: this.fileHandler,
                 insertPoll: this.pollHandler,
+                insertHeart: this.HeartHandler,
             }
         },
 
     };
 
-    formats = [
-        'header',
+    static formats = [
+        'header', 'formula',
         'bold', 'italic', 'underline', 'strike',
-        'image', 'video', 'file', 'link',"code-block", "video", "blockquote", "clean"
+        'image', 'video', 'file', 'link', "code-block", "video", "blockquote", "clean"
     ];
 }
 

@@ -78,7 +78,7 @@ const LandingPage = () => {
 
     setLoading(false);
 
-    video.addEventListener("play", () => {
+    const playEvent = video.addEventListener("play", () => {
       const canvas = faceapi.createCanvasFromMedia(video);
       canvas.classList.add("faceCanvas");
       document.body.append(canvas);
@@ -101,7 +101,7 @@ const LandingPage = () => {
     });
 
     return () => {
-      video.removeEventListener("play");
+      video.removeEventListener("play", playEvent);
     };
   }, []);
   return (

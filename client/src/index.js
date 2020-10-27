@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import App from "./components/App";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
 import Theme from "./Styles/Theme";
@@ -13,6 +13,10 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import promiseMiddleware from "redux-promise";
 import ReduxThunk from "redux-thunk";
+
+// import * as katex from "katex";
+// window.katex = katex;
+// console.log(window.katex);
 
 const createStoreWithMiddleware = applyMiddleware(
   promiseMiddleware,
@@ -27,11 +31,11 @@ ReactDOM.render(
       window.__REDUX_DEVTOOLS_EXTENSION__()
     )}
   >
-    <HashRouter>
+    <BrowserRouter>
       <ThemeProvider theme={Theme}>
         <App />
       </ThemeProvider>
-    </HashRouter>
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
