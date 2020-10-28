@@ -4,6 +4,7 @@ import Auth from "../hoc/auth";
 // pages for this product
 import AdPage from "./views/AdPage/AdPage";
 import LandingPage from "./views/LandingPage/LandingPage.js";
+import Test from "./views/Test/Test";
 import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import NavBar from "./views/NavBar/NavBar";
@@ -23,6 +24,11 @@ function App() {
             exact
             path={process.env.PUBLIC_URL + "/"}
             component={Auth(LandingPage, null)}
+          />
+               <Route
+            exact
+            path={process.env.PUBLIC_URL + "/test"}
+            component={Auth(Test, null)}
           />
           <Route
             exact
