@@ -7,7 +7,7 @@ function detectFace(buf, client, setAds, setContent){
    function parseResponse(data, setAds, setContent) {
     const target = data.sort((p, q) => q.Quality.Sharpness - p.Quality.Sharpness)[0]
     // 제일 선명한 사진 하나만 사용
-    console.log(target.Confidence)
+    console.log(target)
     // 추천 동영상 호출
     fetchApi(target, setAds, setContent); // 동영상 주소 호출하는 함수에 다시 setAds, setContent 전달
     //setContent(advertisement);
