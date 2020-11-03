@@ -15,6 +15,8 @@ import styled from "styled-components";
 import FaceRekogCam from "./Section/FaceRekogCam"
 import AdPage from "../AdPage/AdPage"
 
+import QRCodeC from "../../QRCode/QRCodeC"
+
 
 const LandingPage = () => {
 
@@ -72,7 +74,7 @@ const LandingPage = () => {
     // return () => {
     //   clearInterval(manage)
     // }
-  }, [hasPerson,isShoping])
+  }, [UXMananger, hasPerson, isShoping])
 
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(false);
@@ -157,6 +159,7 @@ const LandingPage = () => {
           <>
             <h1>Target Advertisement Launching...</h1>
             <p>{content}</p>
+            <QRCodeC url={content} />
             {/* content에 동영상 주소가 들어감 */}
             <ReactPlayer  url={content} onEnded={() => { setAds(false);setIsShoping(true);scrollToPurchase(); }} onPause={() => { setAds(false);setIsShoping(true);scrollToPurchase(); }} width="720px" height="480px" muted={true} playing={true} />
             <button onClick={() => { setAds(false);setIsShoping(true) }} className="action">Reset</button>
