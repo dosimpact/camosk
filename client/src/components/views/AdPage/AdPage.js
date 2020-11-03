@@ -1,4 +1,7 @@
 import React from "react";
+import WeatherC from "../../Weather/WeatherC"
+import ClockC from "../../Clock/ClockC";
+import NewsC from '../../News/NewsC';
 
 import styled from "styled-components";
 import {
@@ -46,6 +49,11 @@ function AdPage({setIsShoping,PurchasePageRef}) {
               </div>
             );
           })}
+        </div>
+        <div className="temp" style={{display:"flex", justifyContent:"space-around"}}>
+          <WeatherC />
+          <ClockC />
+          <NewsC />
         </div>
         <div className="row SelectMenu">
           {[
