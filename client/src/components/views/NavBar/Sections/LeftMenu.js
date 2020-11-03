@@ -6,7 +6,7 @@ import { Menu } from "antd";
 function LeftMenu(props) {
   return (
     <Menu mode={props.mode}>
-      <Menu.Item key="mail">
+      <Menu.Item key="home">
         <Link to="/">홈페이지</Link>
       </Menu.Item>
       <Menu.Item key="adpage">
@@ -17,6 +17,9 @@ function LeftMenu(props) {
       </Menu.Item>
       <Menu.Item key="create">
         <Link to="/blog/create">Create</Link>
+      </Menu.Item>
+      <Menu.Item key="test">
+        <Link to="/test">Test</Link>
       </Menu.Item>
     </Menu>
   );

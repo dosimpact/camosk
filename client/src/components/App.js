@@ -3,7 +3,9 @@ import { Route, Switch } from "react-router-dom";
 import Auth from "../hoc/auth";
 // pages for this product
 import AdPage from "./views/AdPage/AdPage";
+import BusStop from "./views/CamoskView/BusStop"
 import LandingPage from "./views/LandingPage/LandingPage.js";
+import Test from "./views/Test/Test";
 import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import NavBar from "./views/NavBar/NavBar";
@@ -19,10 +21,23 @@ function App() {
       <NavBar />
       <div>
         <Switch>
+          {/* Default Page */}
           <Route
             exact
             path={process.env.PUBLIC_URL + "/"}
             component={Auth(LandingPage, null)}
+          />
+          {/* Test Page */}
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/test"}
+            component={Auth(Test, null)}
+          />
+          {/* 4Route Page 1. 승강기 2. 매장 광고 및 주문 3. 길거리(지하철/도로)  4. BUS STOP */}
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/camosk01"}
+            component={Auth(BusStop, null)}
           />
           <Route
             exact
