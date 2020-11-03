@@ -3,12 +3,12 @@ import React from 'react'
 /*
     매장 안의 키오스크를 구성한다.
 */
-const ElevatorP = () => {
+const RoadP = () => {
     return (
         <div>
-            ElevatorP
+            RoadP
         </div>
     )
 }
 
-export default ElevatorP
+export default RoadP

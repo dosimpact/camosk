@@ -1,3 +1,3 @@
-import BusStopC from "./BusStopC"
+import RoadC from "./RoadC"
 
-export default BusStopC;
+export default RoadC;

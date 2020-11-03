@@ -1,14 +1,14 @@
 import React from 'react'
-import BusStopP from "./BusStopP"
+import RoadP from "./RoadP"
 /*
     매장 안의 키오스크를 구성한다.
 */
-const BusStopC = () => {
+const RoadC = () => {
     return (
         <>
-            <BusStopP />
+            <RoadP />
         </>
     )
 }
 
-export default BusStopC
+export default RoadC

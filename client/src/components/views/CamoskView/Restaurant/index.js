@@ -1,3 +1,3 @@
-import BusStopC from "./BusStopC"
+import RestaurantC from "./RestaurantC"
 
-export default BusStopC;
+export default RestaurantC;
