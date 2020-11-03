@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Auth from "../hoc/auth";
 // pages for this product
 import AdPage from "./views/AdPage/AdPage";
-import BusStop from "./views/CamoskView/BusStop"
+
 import LandingPage from "./views/LandingPage/LandingPage.js";
 import Test from "./views/Test/Test";
 import LoginPage from "./views/LoginPage/LoginPage.js";
@@ -14,6 +14,12 @@ import Footer from "./views/Footer/Footer";
 import PostPage from "./views/PostPage/PostPage";
 import BlogPage from "./views/BlogPage/BlogPage";
 import CreateBlogPage from "./views/BlogPage/Section.js/CreatePage";
+
+// CAMOSK View
+import BusStop from "./views/CamoskView/BusStop"
+import Elevator from "./views/CamoskView/Elevator"
+import Restaurant from "./views/CamoskView/Restaurant"
+import Road from "./views/CamoskView/Road"
 
 function App() {
   return (
@@ -38,6 +44,21 @@ function App() {
             exact
             path={process.env.PUBLIC_URL + "/camosk01"}
             component={Auth(BusStop, null)}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/camosk02"}
+            component={Auth(Elevator, null)}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/camosk03"}
+            component={Auth(Restaurant, null)}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/camosk04"}
+            component={Auth(Road, null)}
           />
           <Route
             exact
