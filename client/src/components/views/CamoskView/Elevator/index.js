@@ -1,3 +1,3 @@
-import BusStopC from "./BusStopC"
+import ElevatorC from "./ElevatorC"
 
-export default BusStopC;
+export default ElevatorC;
