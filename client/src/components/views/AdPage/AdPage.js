@@ -1,4 +1,7 @@
 import React from "react";
+import WeatherC from "../../Weather/WeatherC"
+import ClockC from "../../Clock/ClockC";
+import NewsC from '../../News/NewsC';
 
 import styled from "styled-components";
 import {
@@ -9,9 +12,9 @@ import {
   CloseOutlined,
 } from "@ant-design/icons";
 
-function AdPage() {
+function AdPage({setIsShoping,PurchasePageRef}) {
   return (
-    <Container>
+    <Container ref={PurchasePageRef}>
       <Wrapper>
         <div className="row header">
           <div className="headerItem">
@@ -46,6 +49,11 @@ function AdPage() {
               </div>
             );
           })}
+        </div>
+        <div className="temp" style={{display:"flex", justifyContent:"space-around"}}>
+          <WeatherC />
+          <ClockC />
+          <NewsC />
         </div>
         <div className="row SelectMenu">
           {[
@@ -121,7 +129,7 @@ function AdPage() {
               })}
             </div>
           </div>
-          <div className="column">
+          <div className="column" onClick={()=>{setIsShoping(false)}}>
             <div className="center confirm">
               <CheckOutlined />
               <span>주문확인</span>
