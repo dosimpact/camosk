@@ -6,10 +6,10 @@ import QRCodeP from "./QRCodeP"
 // 마우스를 hover시 크기를 키워준다 . ( optional )
 // 광고에 대한 메타정보 출력  - 광고에 대한 이름, 
 const QRCodeC = (props) => {
-    const {url} = props;
+    const { url, sizeable, className } = props;
     return (
         <>
-            <QRCodeP url={url}/>
+            <QRCodeP url={url} sizeable={sizeable} className={className} />
         </>
     )
 }

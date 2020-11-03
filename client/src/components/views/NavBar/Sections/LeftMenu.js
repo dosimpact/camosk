@@ -23,16 +23,16 @@ function LeftMenu(props) {
       </Menu.Item> */}
 
       <Menu.Item key="camosk01">
-        <Link to="/camosk01">[CAMOSK]승강기 패널</Link>
+        <Link to="/camosk01">승강기 패널</Link>
       </Menu.Item>
       <Menu.Item key="camosk02">
-        <Link to="/camosk02">[CAMOSK]매장 패널</Link>
+        <Link to="/camosk02">매장 패널</Link>
       </Menu.Item>
       <Menu.Item key="camosk03">
-        <Link to="/camosk03">[CAMOSK]로드 패널</Link>
+        <Link to="/camosk03">로드 패널</Link>
       </Menu.Item>
       <Menu.Item key="camosk04">
-        <Link to="/camosk04">[CAMOSK]정류장 패널</Link>
+        <Link to="/camosk04">정류장 패널</Link>
       </Menu.Item>
 
     </Menu>

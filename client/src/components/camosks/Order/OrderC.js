@@ -59,15 +59,18 @@ const coffeesSelected = [
   },
 ];
 
-function OrderC({ className }) {
+function OrderC({ className, ...props }) {
 
   return (
     <>
       <OrderP
         icons={icons}
         coffees={coffees}
-        coffeesSelected={coffeesSelected} />
+        coffeesSelected={coffeesSelected}
         className={className}
+        {...props}
+      />
+
     </>
   );
 }
