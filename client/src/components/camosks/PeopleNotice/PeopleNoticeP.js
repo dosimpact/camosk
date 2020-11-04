@@ -10,8 +10,8 @@ function PeopleNoticeP({ className, ...props }) {
     return (
         <Wrapper className={className}>
             <div className="container">
-                <div className="Date">{clock.toLocaleDateString().substr(0, 11)}</div>
-                <div className="TikTok">{clock.toLocaleTimeString()}</div>
+                PeopleNoticeP
+
             </div>
         </Wrapper>
     )
@@ -30,14 +30,7 @@ const Wrapper = styled.div`
         padding:10px;
         font-weight: 300;
         text-align:center;
-        .Date{
-            font-size:48px;
-            margin-bottom:10px;
-        }
-        .TikTok{
-            font-size:50px;
-       
-        }
+
     
     }
    
