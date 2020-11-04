@@ -15,4 +15,16 @@ export default createGlobalStyle`
         justify-content: center;
         align-items: center;
     }
+    .centerR {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .centerC {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+    }
 `;
