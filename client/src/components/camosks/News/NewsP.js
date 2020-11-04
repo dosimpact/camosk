@@ -16,7 +16,7 @@ function NewsP({ className, data, metaData, ...props }) {
     } else {
         return (
             <Wrapper className={className}>
-                <div className="title">오늘의 주요 뉴스</div>
+                {/* <div className="title">오늘의 주요 뉴스</div> */}
                 <Carousel autoplay  >
                     {
                         metaData &&
@@ -55,8 +55,8 @@ const Wrapper = styled.div`
         text-align:center;
         font-size:40px;
         margin:10px 0px;
-        font-weight:400;
-        color: #7d7d7d;
+        font-weight:300;
+        /* color: #7d7d7d; */
     }
     .ItemContent{
         font-size:20px;
