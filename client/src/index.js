@@ -13,7 +13,7 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import promiseMiddleware from "redux-promise";
 import ReduxThunk from "redux-thunk";
-// import GlobalStyles from "Styles/GlobalStyles";
+import GlobalStyles from "Styles/GlobalStyles";
 
 // import * as katex from "katex";
 // window.katex = katex;
@@ -35,7 +35,7 @@ ReactDOM.render(
     <BrowserRouter>
       <ThemeProvider theme={Theme}>
         <App />
-        {/* <GlobalStyles /> */}
+        <GlobalStyles />
       </ThemeProvider>
     </BrowserRouter>
   </Provider>,
