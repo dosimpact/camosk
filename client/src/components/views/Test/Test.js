@@ -6,6 +6,7 @@ import ClockC from "components/camosks/Clock/ClockC"
 import NewsC from "components/camosks/News/NewsC"
 import WeatherC from "components/camosks/Weather/WeatherC"
 import QRCodeC from "components/camosks/QRCode/QRCodeC"
+import SampleAds from "components/camosks/SampleAds/SampleAds";
 
 function Test() {
   return (
@@ -27,8 +28,11 @@ function Test() {
       <Container>
         <Order />
       </Container>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/3MSPHzlRXQQ?start=10&autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/3MSPHzlRXQQ?start=600&autoplay=1" frameborder="0" allow="accelerometer;  autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+      <Container>
+        <SampleAds />
+      </Container>
+
     </Wrapper>
   );
 }
