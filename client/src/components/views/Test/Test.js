@@ -9,6 +9,7 @@ import WeatherC from "components/camosks/Weather/WeatherC"
 import QRCodeC from "components/camosks/QRCode/QRCodeC"
 import SampleAds from "components/camosks/SampleAds/SampleAds";
 import RedBellC from "components/camosks/RedBell/RedBellC";
+import PeopleNoticeC from "components/camosks/PeopleNotice/PeopleNoticeC";
 
 function Test() {
   return (
@@ -16,6 +17,9 @@ function Test() {
 
       <Container>
         <RedBellC />
+      </Container>
+      <Container>
+        <PeopleNoticeC />
       </Container>
 
       <div className="first">
