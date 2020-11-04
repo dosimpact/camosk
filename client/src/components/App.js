@@ -43,22 +43,22 @@ function App() {
           <Route
             exact
             path={process.env.PUBLIC_URL + "/camosk01"}
-            component={Auth(BusStop, null)}
-          />
-          <Route
-            exact
-            path={process.env.PUBLIC_URL + "/camosk02"}
             component={Auth(Elevator, null)}
           />
           <Route
             exact
-            path={process.env.PUBLIC_URL + "/camosk03"}
+            path={process.env.PUBLIC_URL + "/camosk02"}
             component={Auth(Restaurant, null)}
           />
           <Route
             exact
-            path={process.env.PUBLIC_URL + "/camosk04"}
+            path={process.env.PUBLIC_URL + "/camosk03"}
             component={Auth(Road, null)}
+          />
+          <Route
+            exact
+            path={process.env.PUBLIC_URL + "/camosk04"}
+            component={Auth(BusStop, null)}
           />
           <Route
             exact
