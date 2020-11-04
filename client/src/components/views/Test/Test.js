@@ -16,11 +16,9 @@ function Test() {
         <WeatherC />
       </div>
 
-      <Container>
+      <Container className="second">
         <NewsC />
       </Container>
-
-
 
       <Container>
         <QRCodeC url="https://ithub.tistory.com/320" />
@@ -29,6 +27,8 @@ function Test() {
       <Container>
         <Order />
       </Container>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/3MSPHzlRXQQ?start=10&autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/3MSPHzlRXQQ?start=600&autoplay=1" frameborder="0" allow="accelerometer;  autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </Wrapper>
   );
 }
@@ -37,9 +37,15 @@ export default Test;
 
 const Wrapper = styled.div`
   width:100%;
-  & .first{
+
+  & .first{    
     display:grid;
+    padding: 20px;
     grid-template-columns:1fr 1fr;
+  }
+
+  & .second{
+    margin-top: 50px;
   }
 `;
 
