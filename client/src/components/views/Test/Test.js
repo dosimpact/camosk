@@ -10,17 +10,17 @@ import QRCodeC from "components/camosks/QRCode/QRCodeC"
 function Test() {
   return (
     <Wrapper>
-      <Container>
+
+      <div className="first">
         <ClockC />
-      </Container>
+        <WeatherC />
+      </div>
 
       <Container>
         <NewsC />
       </Container>
 
-      <Container>
-        <WeatherC />
-      </Container>
+
 
       <Container>
         <QRCodeC url="https://ithub.tistory.com/320" />
@@ -37,7 +37,10 @@ export default Test;
 
 const Wrapper = styled.div`
   width:100%;
-
+  & .first{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
 `;
 
 const Container = styled.div`

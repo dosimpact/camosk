@@ -58,7 +58,7 @@ const NewsC = (props) => {
 
     return (
         <>
-            <NewsP data={data} {...props} />
+            <NewsP data={data} metaData={metaData} {...props} />
         </>
     )
 }

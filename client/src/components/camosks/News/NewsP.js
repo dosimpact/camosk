@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from "styled-components";
 import { Carousel } from 'antd';
 
 const contentStyle = {
@@ -9,14 +10,25 @@ const contentStyle = {
     background: '#364d79',
 };
 
-function NewsP({ className, data, ...props }) {
+function NewsP({ className, data, metaData, ...props }) {
     if (data === null) {
         return <p>Loading...</p>
     } else {
         return (
-            <div className={className}>
-                <Carousel autoplay>
-                    <div style={{ display: "flex" }} >
+            <Wrapper className={className}>
+                <div className="title">오늘의 주요 뉴스</div>
+                <Carousel autoplay  >
+                    {
+                        metaData &&
+                        metaData.length > 0 &&
+                        metaData?.map((e, idx) => {
+                            return (
+                                <div className="Item" key={idx} >
+                                    <h3 className="ItemContent" style={contentStyle}>{e.title}</h3>
+                                </div>)
+                        })
+                    }
+                    {/* <div style={{ display: "flex" }} >
                         <div>
                             <h4 style={{ width: 300 }}>{data.title}</h4>
                             <h5 style={{ width: 300 }}>{data.description}</h5>
@@ -25,11 +37,29 @@ function NewsP({ className, data, ...props }) {
                         <div style={{ width: 48, marginLeft: 8 }}>
                             <img src={data.urlToImage} alt='poster' style={{ width: "100%" }} />
                         </div>
-                    </div>
+                    </div> */}
                 </Carousel>
-            </div>
+            </Wrapper>
         )
     }
 }
 
 export default NewsP
+
+const Wrapper = styled.div`
+    /* min-width:100px; */
+    /* max-width:50%; */
+    font-weight:300;
+    margin:10px 0px;
+    .title{
+        text-align:center;
+        font-size:40px;
+        margin:10px 0px;
+        font-weight:400;
+        color: #7d7d7d;
+    }
+    .ItemContent{
+        font-size:20px;
+    }
+   
+`;
