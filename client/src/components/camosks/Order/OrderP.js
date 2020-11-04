@@ -171,7 +171,7 @@ const Wrapper = styled.div`
       height: 200px;
     }
     & .content {
-      font-weight: 600;
+      font-weight: 500;
     }
   }
 
