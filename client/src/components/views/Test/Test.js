@@ -8,10 +8,15 @@ import NewsC from "components/camosks/News/NewsC"
 import WeatherC from "components/camosks/Weather/WeatherC"
 import QRCodeC from "components/camosks/QRCode/QRCodeC"
 import SampleAds from "components/camosks/SampleAds/SampleAds";
+import RedBellC from "components/camosks/RedBell/RedBellC";
 
 function Test() {
   return (
     <Wrapper>
+
+      <Container>
+        <RedBellC />
+      </Container>
 
       <div className="first">
         <ClockC />
