@@ -29,12 +29,13 @@ const Wrapper = styled.div`
         justify-content:center;
         padding:10px;
         font-weight: 300;
+        text-align:center;
         .Date{
-            font-size:60px;
+            font-size:48px;
             margin-bottom:10px;
         }
         .TikTok{
-            font-size:54px;
+            font-size:50px;
        
         }
     
