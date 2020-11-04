@@ -12,22 +12,28 @@ const HeartSvg = () => (
 const HeartIcon = props => <Icon component={HeartSvg} {...props} />;
 
 
-function RedBellP({ className, ...props }) {
+function RedBellP({
+    className
+    , count
+    , handleCount,
+    ...props }) {
     const [clock, setRedBell] = useState(new Date())
     useEffect(() => {
         const timer = setInterval(() => setRedBell(new Date()), 1000)
         return () => clearInterval(timer)
     })
     return (
-        <Wrapper className={className}>
+        <Wrapper className={className} red={count >= 3}>
             <div className="container">
                 <div className="innerContainer">
-                    <div className="item button centerC">
+                    <div className="item button centerC" onClick={() => { handleCount(); }}>
                         <HeartIcon style={{ color: 'hotpink' }} />
                         <div className="title red">비상벨</div>
+                        <div>{count} </div>
+                        <div>{count >= 3 ? "신고접수" : ""}</div>
                     </div>
                     <div className="item">
-                        <div className="subTitle">위급상황 발생시 <span className="red">비상벨</span>을 누르시오
+                        <div className="subTitle">위급상황 발생시 <span className="red">비상벨</span>을 3번 누르시오
                         관제센터와 연결됩니다.
                         </div>
                     </div>
@@ -42,6 +48,7 @@ export default RedBellP
 const Wrapper = styled.div`
     /* min-width:100px; */
     /* max-width:50%; */
+   
     .red{
         color:red;
     }
@@ -53,7 +60,7 @@ const Wrapper = styled.div`
         justify-content:center;
         padding:10px;
         font-weight: 700;
-        background-color:#FED709;
+        background-color : ${props => props.red ? "red" : "#FED709"};
 
         .innerContainer{
             border:3px solid black;  
