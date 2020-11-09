@@ -7,7 +7,7 @@ import ClockC from "components/camosks/Clock/ClockC"
 import NewsC from "components/camosks/News/NewsC"
 import WeatherC from "components/camosks/Weather/WeatherC"
 import QRCodeC from "components/camosks/QRCode/QRCodeC"
-import SampleAds from "components/camosks/SampleAds/SampleAds";
+import SampleAds from "components/camosks/SampleAds/SampleAdsDummy";
 import RedBellC from "components/camosks/RedBell/RedBellC";
 import PeopleNoticeC from "components/camosks/PeopleNotice/PeopleNoticeC";
 
