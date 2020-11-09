@@ -12,3 +12,4 @@ yarn.lock
 
 ffmpeg
 build
+debug.log
