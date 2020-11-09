@@ -4,9 +4,9 @@ import styled from "styled-components";
 
 // setHasPerson 사람이 있는지 없는지 > 있으면 , AWS API 호출하게끔
 
-function FaceRekogCam({setHasPerson}) {
+function FaceRekogCam({ setHasPerson }) {
 
-  const [counter,setCounter] = useState(0);
+  const [counter, setCounter] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   // useScript(`${process.env.PUBLIC_URLFaceRekogCam}/face-api.min.js`);
@@ -38,7 +38,7 @@ function FaceRekogCam({setHasPerson}) {
 
     setLoading(false);
 
-    const handlePlay =  video.addEventListener("play", () => {
+    const handlePlay = video.addEventListener("play", () => {
       const canvas = faceapi.createCanvasFromMedia(video);
       // canvas.classList.add("FaceRekogCam");
       canvas.id = "FaceRekogCamCanvas";
@@ -50,18 +50,25 @@ function FaceRekogCam({setHasPerson}) {
           .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
           .withFaceLandmarks()
           .withFaceExpressions();
-          console.log(detections);
-          if(detections.length){
-              setCounter( prev => {
-                  if(prev >= 2){
-                      setHasPerson(true);
-                  }
-                  return prev+1
-              });
-          }else{
-              setCounter(0);
+        // console.log(detections);
+        if (detections.length) {
+          // 얼굴인식 2초뒤에 반응
+          setCounter(prev => {
+            if (prev >= 2) {
+              setHasPerson(true);
+            }
+            return prev + 1
+          });
+        } else {
+          setCounter(prev => {
+            if (prev > 0) {
+              return prev - 1
+            } else if (prev <= 0) {
               setHasPerson(false);
-          }
+              return prev
+            }
+          });
+        }
         const resizedDetections = faceapi.resizeResults(
           detections,
           displaySize
@@ -74,24 +81,24 @@ function FaceRekogCam({setHasPerson}) {
     });
 
     return () => {
-      video.removeEventListener("play",handlePlay);
+      video.removeEventListener("play", handlePlay);
     };
   }, []);
 
 
-    return (
-        <>
-            {loading ? "loading..." : `${error ? "Cam Device is not founded" : ""}`}
-            <video
-            className="webcam"
-            id="FaceRekogCamVideo"
-            width="250"
-            height="200"
-            autoPlay
-            muted
-            ></video>
-        </>
-    )
+  return (
+    <>
+      {loading ? "loading..." : `${error ? "Cam Device is not founded" : ""}`}
+      <video
+        className="webcam"
+        id="FaceRekogCamVideo"
+        width="250"
+        height="200"
+        autoPlay
+        muted
+      ></video>
+    </>
+  )
 }
 
 export default FaceRekogCam
