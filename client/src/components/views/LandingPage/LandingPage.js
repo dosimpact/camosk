@@ -40,7 +40,7 @@ const LandingPage = () => {
           res();
         }, 1000)
       })
-    })(); // 3초 후 스크린샷 및 얼굴 감지 시작, async await 그리고 IIFE 활용
+    })(); // 1초 후 스크린샷 및 얼굴 감지 시작, async await 그리고 IIFE 활용
 
     const based = webcam.current.getScreenshot();
     if (!based) {
@@ -51,8 +51,10 @@ const LandingPage = () => {
     detectFace(buf, client, setAds, setContent); // 감지 및 분석 시작. 매개변수로 setAds와 setContent를 넘겨서 state 변경토록 함
   }
 
-  // 사람이 존재하는지 유무
+  // 사람이 존재하는지 유무 - 독립된 face 인식 피드백 캠임
   const [hasPerson, setHasPerson] = useState(false);
+
+  //
   const [isShoping, setIsShoping] = useState(false);
   const AdVideo = useRef(null);
   const PurchasePage = useRef(null);
@@ -68,71 +70,9 @@ const LandingPage = () => {
     }
   }
   useEffect(() => {
-    // const manage = setInterval(() => {
     UXMananger();
-    // }, 450);
-    // return () => {
-    //   clearInterval(manage)
-    // }
   }, [UXMananger, hasPerson, isShoping])
 
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(false);
-  // // useScript(`${process.env.PUBLIC_URL}/face-api.min.js`);
-  // useEffect(() => {
-  //   const video = document.getElementById("video");
-
-  //   const startVideo = async () => {
-  //     let stream = null;
-  //     try {
-  //       stream = await navigator.mediaDevices.getUserMedia({ video: true });
-  //       video.srcObject = stream;
-  //     } catch (err) {
-  //       setError(true);
-  //       console.error(err);
-  //     }
-  //     // navigator.mediaDevices.getUserMedia(
-  //     // { video: {} },
-  //     // (stream) => (video.srcObject = stream),
-  //     // (err) => console.error(err)
-  //     // );
-  //   };
-  //   const MODELS_URL = `${process.env.PUBLIC_URL}/models`;
-  //   Promise.all([
-  //     faceapi.nets.tinyFaceDetector.loadFromUri(MODELS_URL),
-  //     faceapi.nets.faceLandmark68Net.loadFromUri(MODELS_URL),
-  //     faceapi.nets.faceRecognitionNet.loadFromUri(MODELS_URL),
-  //     faceapi.nets.faceExpressionNet.loadFromUri(MODELS_URL),
-  //   ]).then(startVideo);
-
-  //   setLoading(false);
-
-  //   const handlePlay =  video.addEventListener("play", () => {
-  //     const canvas = faceapi.createCanvasFromMedia(video);
-  //     canvas.classList.add("faceCanvas");
-  //     document.body.append(canvas);
-  //     const displaySize = { width: video.width, height: video.height };
-  //     faceapi.matchDimensions(canvas, displaySize);
-  //     setInterval(async () => {
-  //       const detections = await faceapi
-  //         .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
-  //         .withFaceLandmarks()
-  //         .withFaceExpressions();
-  //       const resizedDetections = faceapi.resizeResults(
-  //         detections,
-  //         displaySize
-  //       );
-  //       canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-  //       faceapi.draw.drawDetections(canvas, resizedDetections);
-  //       faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
-  //       faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
-  //     }, 100);
-  //   });
-
-  //   return () => {
-  //     video.removeEventListener("play",handlePlay);
-  //   };
-  // }, []);
   return (
     <>
       <AdPage setIsShoping={setIsShoping} PurchasePageRef={PurchasePage} />
