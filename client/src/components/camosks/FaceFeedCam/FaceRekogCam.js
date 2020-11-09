@@ -9,9 +9,9 @@ function FaceRekogCam({setHasPerson}) {
   const [counter,setCounter] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  // useScript(`${process.env.PUBLIC_URL}/face-api.min.js`);
+  // useScript(`${process.env.PUBLIC_URLFaceRekogCam}/face-api.min.js`);
   useEffect(() => {
-    const video = document.getElementById("video");
+    const video = document.getElementById("FaceRekogCamVideo");
 
     const startVideo = async () => {
       let stream = null;
@@ -40,7 +40,8 @@ function FaceRekogCam({setHasPerson}) {
 
     const handlePlay =  video.addEventListener("play", () => {
       const canvas = faceapi.createCanvasFromMedia(video);
-      canvas.classList.add("faceCanvas");
+      // canvas.classList.add("FaceRekogCam");
+      canvas.id = "FaceRekogCamCanvas";
       document.body.append(canvas);
       const displaySize = { width: video.width, height: video.height };
       faceapi.matchDimensions(canvas, displaySize);
@@ -83,7 +84,7 @@ function FaceRekogCam({setHasPerson}) {
             {loading ? "loading..." : `${error ? "Cam Device is not founded" : ""}`}
             <video
             className="webcam"
-            id="video"
+            id="FaceRekogCamVideo"
             width="250"
             height="200"
             autoPlay
