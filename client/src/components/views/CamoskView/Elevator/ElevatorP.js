@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from "styled-components"
 import Order from "components/camosks/Order"
 
@@ -7,20 +7,26 @@ import NewsC from "components/camosks/News/NewsC"
 import WeatherC from "components/camosks/Weather/WeatherC"
 import QRCodeC from "components/camosks/QRCode/QRCodeC"
 import SampleAds from "components/camosks/SampleAds/SampleAds";
-
+import FaceRekogCam from "components/camosks/FaceFeedCam/FaceRekogCam"
 
 /*
     매장 안의 키오스크를 구성한다.
 */
 const ElevatorP = () => {
+
+    // 얼굴 피드 캠에서 사람이 있는지 없는지 판단
+    const [hasPerson,setHasPerson] = useState(null);
+
+    // dev mode : 네비게이션 안보이게 설정
     useEffect(() => {
         window.scrollTo(0, 70);
         return () => {
         }
     }, [])
+
     return (
         <Wrapper>
-
+            <FaceRekogCam setHasPerson={setHasPerson} />
             <div className="first">
                 <ClockC />
                 <WeatherC />
