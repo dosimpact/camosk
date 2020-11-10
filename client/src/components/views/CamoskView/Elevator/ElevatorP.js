@@ -6,10 +6,10 @@ import ClockC from "components/camosks/Clock/ClockC"
 import NewsC from "components/camosks/News/NewsC"
 import WeatherC from "components/camosks/Weather/WeatherC"
 import QRCodeC from "components/camosks/QRCode/QRCodeC"
-import SampleAds from "components/camosks/SampleAds/SampleAdsDummy";
+import AdvertisePanel from "components/camosks/SampleAds/SampleAdsDummy";
 
-import PlayAdsTop from "components/camosks/SampleAds/PlayAdsTop";
-import PlayAdsBottom from "components/camosks/SampleAds/PlayAdsBottom";
+// import PlayAdsTop from "components/camosks/SampleAds/PlayAdsTop";
+// import PlayAdsBottom from "components/camosks/SampleAds/PlayAdsBottom";
 import FaceRekogCam from "components/camosks/FaceFeedCam/FaceRekogCam"
 
 /*
@@ -60,11 +60,10 @@ const ElevatorP = () => {
             <Container>
                 {hasPerson ?
                     <>
-                        <SampleAds />
-                        {/* <PlayAdsTop src={urlTop} /> */}
-                        {/* <PlayAdsBottom src={urlBottom} /> */}
+                        <AdvertisePanel url="https://www.youtube.com/watch?v=HxhjperItvI" />
+                        <AdvertisePanel />
                     </> :
-                    <SampleAds />
+                    <AdvertisePanel />
                 }
             </Container>
 

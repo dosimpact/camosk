@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 // setHasPerson 사람이 있는지 없는지 > 있으면 , AWS API 호출하게끔
 
+const PERSON_DISAPPER_INTERVAL = 6;
+
 function FaceRekogCam({ setHasPerson }) {
 
   const [counter, setCounter] = useState(0);
@@ -50,14 +52,16 @@ function FaceRekogCam({ setHasPerson }) {
           .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
           .withFaceLandmarks()
           .withFaceExpressions();
-        // console.log(detections);
+        // console.log(detections)
         if (detections.length) {
           // 얼굴인식 2초뒤에 반응
           setCounter(prev => {
-            if (prev >= 2) {
+            if (prev >= PERSON_DISAPPER_INTERVAL) {
               setHasPerson(true);
+              return prev;
+            } else {
+              return prev + 1
             }
-            return prev + 1
           });
         } else {
           setCounter(prev => {
