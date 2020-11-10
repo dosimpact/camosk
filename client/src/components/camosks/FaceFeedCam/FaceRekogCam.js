@@ -1,16 +1,39 @@
 import React, { useEffect, useState } from "react";
 import * as faceapi from "face-api.js";
 
+import peopleCompare from "../../people/peopleCompare"
+import peopleLoad from "../../people/peopleLoad"
+import locationLoad from "../../location/locationLoad";
+
 // setHasPerson 사람이 있는지 없는지 > 있으면 , AWS API 호출하게끔
 
 const PERSON_DISAPPER_INTERVAL = 6;
 
 function FaceRekogCam({ setHasPerson }) {
+  const [testing, isTesting] = useState(false)
+  const [fetched, isFetched] = useState(false)
+  const [targets, setTargets] = useState([])
+  const [address, setAddress] = useState("")
 
   const [counter, setCounter] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   // useScript(`${process.env.PUBLIC_URLFaceRekogCam}/face-api.min.js`);
+
+  useEffect(() => {
+    peopleLoad().then(response => {
+      setTargets(response)
+      locationLoad().then(addr => {
+        setAddress(addr)
+        isFetched(true)
+      })
+    }).catch(err => {
+      console.error(err);
+      alert("정보를 불러오는데 오류가 생겼습니다!")
+      isFetched(true)
+    })
+  }, [])
+
   useEffect(() => {
     const video = document.getElementById("FaceRekogCamVideo");
 
@@ -86,7 +109,7 @@ function FaceRekogCam({ setHasPerson }) {
     return () => {
       video.removeEventListener("play", handlePlay);
     };
-  }, []);
+  }, [fetched, setHasPerson, targets, testing]);
 
   return (
     <>
