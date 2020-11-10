@@ -3,6 +3,13 @@ import Webcam from "react-webcam";
 import { detectFace } from "components/camosks/FaceInfoCam/rekognition/detect"
 import AWS from 'aws-sdk'
 
+
+
+/**
+ * trigger 변동시+참일때 > 얼굴을 인식함,
+ * onChange에 얼굴 인식결과 target 출력
+ */
+
 const FaceInfoCam = ({ className, trigger, onChange }) => {
 
     const webcam = useRef(null); // 웹캠 DOM
@@ -16,6 +23,10 @@ const FaceInfoCam = ({ className, trigger, onChange }) => {
     }) // AWS 설정
     AWS.config = config
     const client = new AWS.Rekognition(); // 클라이언트 생성
+
+    const handle_AWSFaceAPI_After = () => {
+
+    }
 
     useEffect(() => {
 
@@ -34,10 +45,8 @@ const FaceInfoCam = ({ className, trigger, onChange }) => {
                 return;
             }
             const buf = Buffer.from(based.replace("data:image/jpeg;base64,", ""), "base64") // 버퍼 형태로 변환
-            detectFace(buf, client, setAds, setContent); // 감지 및 분석 시작. 매개변수로 setAds와 setContent를 넘겨서 state 변경토록 함
-            if (onChange) {
-                onChange();
-            }
+            detectFace(buf, client, setAds, setContent, onChange); // 감지 및 분석 시작. 매개변수로 setAds와 setContent를 넘겨서 state 변경토록 함
+
         }
 
         console.log(ads, content);

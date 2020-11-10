@@ -58,7 +58,7 @@ const ElevatorP = ({
                 }
             </Container>
             <FaceRekogCam setHasPerson={setHasPerson} />
-            <FaceInfoCam trigger={hasPerson} />
+            <FaceInfoCam trigger={hasPerson} onChange={(target) => { console.log("FaceInfoCam target", target) }} />
         </Wrapper>
     )
 }

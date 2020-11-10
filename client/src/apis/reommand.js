@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const fetchApi = function (target, setAds, setContent) {
+const getRecommand = (target) => {
     const params = {
         "AgeRange00": "0",
         "AgeRange10": "0",
@@ -62,13 +62,15 @@ const fetchApi = function (target, setAds, setContent) {
     // 매개변수 작성
     // const body = qs.stringify(params)
     console.log(params);
-    axios.post("http://133.186.221.101:3000/api/recommand", { ...params }
-    ).then(resp => resp.data)
-        .then(data => {
-            console.log(data.sucess)
-            setContent(data.url) // 동영상 주소 변경하는데 성공하면 setContent로 content 상태 변경
-            setAds(true) // setAds ads 상태 변경 함수로 ads 상태를 true로 변경
-        })
+    // axios.post("http://133.186.221.101:3000/api/recommand", { ...params }
+    // ).then(resp => resp.data)
+    //     .then(data => {
+    //         console.log(data.sucess)
+    //         //setContent(data.url) // 동영상 주소 변경하는데 성공하면 setContent로 content 상태 변경
+    //         //setAds(true) // setAds ads 상태 변경 함수로 ads 상태를 true로 변경
+    //     })
+    return axios.post("http://133.186.221.101:3000/api/recommand", { ...params })
+
 }
 
-export { fetchApi }
+export { getRecommand }

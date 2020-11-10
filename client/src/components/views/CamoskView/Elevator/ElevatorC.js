@@ -8,7 +8,7 @@ const ElevatorC = () => {
     const [hasPerson, setHasPerson] = useState(false);
     // 0 : 최초의 상태
     // 1 : 사람이 없고, 광고 보여줄 준비가 됨
-    const [MState, setMState] = useState(true);//setReadyToShowNewAds
+    // const [MState, setMState] = useState(true);//setReadyToShowNewAds
 
     // 디폴트 광고 인지 - 처음에 사람이 아무도 없을때 보여주는 광고
     const [urlTop, setUrlTop] = useState(null);
