@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import * as faceapi from "face-api.js";
-import styled from "styled-components";
 
 // setHasPerson 사람이 있는지 없는지 > 있으면 , AWS API 호출하게끔
 
@@ -88,7 +87,6 @@ function FaceRekogCam({ setHasPerson }) {
       video.removeEventListener("play", handlePlay);
     };
   }, []);
-
 
   return (
     <>

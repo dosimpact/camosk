@@ -1,5 +1,5 @@
 import { compareFaces } from "./compare";
-import { fetchApi } from "../ads/adapi";
+import { fetchApi } from "./adapi";
 
 function detectFace(buf, client, setAds, setContent) {
   // 안면 감지했을 때 실행되는 함수 parseResponse
