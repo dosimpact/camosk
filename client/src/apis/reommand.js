@@ -61,7 +61,7 @@ const getRecommand = (target) => {
     // })
     // 매개변수 작성
     // const body = qs.stringify(params)
-    console.log(params);
+    // console.log(params);
     // axios.post("http://133.186.221.101:3000/api/recommand", { ...params }
     // ).then(resp => resp.data)
     //     .then(data => {
