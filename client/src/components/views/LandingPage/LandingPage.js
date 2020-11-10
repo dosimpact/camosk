@@ -14,6 +14,7 @@ import styled from "styled-components";
 
 import FaceRekogCam from "./Section/FaceRekogCam"
 import AdPage from "../AdPage/AdPage"
+import Flash from "./Section/Flash"
 
 // import QRCodeC from "../../QRCode/QRCodeC"
 
@@ -23,6 +24,7 @@ const LandingPage = () => {
   const webcam = useRef(null); // 웹캠 DOM
   const [ads, setAds] = useState(false) // 광고를 송출할지 말지 결정하는 state
   const [content, setContent] = useState(null) // 광고의 동영상, 시간 등을 담고 있는 state
+  const [flash, setFlash] = useState(null)
 
   const config = new AWS.Config({
     accessKeyId: "AKIAV7NXXUK7R2XA2K2S",
@@ -66,7 +68,7 @@ const LandingPage = () => {
     // console.log("UXMananger");
     if (hasPerson && !isShoping) {
       AdVideo.current.scrollIntoView();
-      doCapture();
+      //doCapture();
     }
   }
   useEffect(() => {
@@ -77,7 +79,8 @@ const LandingPage = () => {
     <>
       <AdPage setIsShoping={setIsShoping} PurchasePageRef={PurchasePage} />
       <Wrapper>
-        <FaceRekogCam setHasPerson={setHasPerson} />
+        <Flash flash={flash} /> 
+        <FaceRekogCam setHasPerson={setHasPerson} webcam={webcam} setFlash={setFlash}/>
         <div className="app" ref={AdVideo}>
 
           <FaCode style={{ fontSize: "4rem" }} />
@@ -94,7 +97,8 @@ const LandingPage = () => {
 
           {!ads ?
             <>
-              <button onClick={() => { doCapture() }} className="action">Action</button>
+              {/*<button onClick={() => { doCapture() }} className="action">Action</button>*/}
+              {"Camera is ready..."}
             </> :
             <>
               <h1>Target Advertisement Launching...</h1>

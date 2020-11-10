@@ -10,7 +10,7 @@ function PeopleNoticeP({ className, ...props }) {
     return (
         <Wrapper className={className}>
             <div className="container">
-                PeopleNoticeP
+                {clock.toLocaleTimeString()}
 
             </div>
         </Wrapper>
