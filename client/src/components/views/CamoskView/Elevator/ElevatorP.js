@@ -25,7 +25,10 @@ import FaceInfoCam from "components/camosks/FaceInfoCam/FaceInfoCam"
 const ElevatorP = ({
     hasPerson,
     setHasPerson,
-    handleChangeTrigger
+    handleChangeTrigger,
+    handle_onTarget,
+    urlTop,
+    urlBottom
 }) => {
 
 
@@ -44,21 +47,26 @@ const ElevatorP = ({
             </Container>
 
             <Container>
-                {!hasPerson ?
+                {hasPerson && urlTop && urlBottom ?
+                    <>
+                        {/* 사람이 있는경우 */}
+                        <AdvertisePanel url={urlTop ? urlTop : "https://www.youtube.com/watch?v=zoGg0KPa4a0"} />
+                        <AdvertisePanel url={urlBottom ? urlBottom : "https://www.youtube.com/watch?v=lJCpnTcQjbA"} />
+                    </>
+                    :
                     <>
                         {/* 사람이 없는 경우 */}
                         <AdvertisePanel url="https://www.youtube.com/watch?v=HxhjperItvI" />
                         <AdvertisePanel />
-                    </> :
-                    <>
-                        {/* 사람이 있는경우 */}
-                        <AdvertisePanel url="https://www.youtube.com/watch?v=zoGg0KPa4a0" />
-                        <AdvertisePanel url="https://www.youtube.com/watch?v=lJCpnTcQjbA" />
                     </>
+
                 }
             </Container>
             <FaceRekogCam setHasPerson={setHasPerson} />
-            <FaceInfoCam trigger={hasPerson} onChange={(target) => { console.log("FaceInfoCam target", target) }} />
+            <FaceInfoCam
+                trigger={hasPerson}
+                onChange={(target) => { console.log("FaceInfoCam target", target); handle_onTarget(target) }}
+            />
         </Wrapper>
     )
 }
