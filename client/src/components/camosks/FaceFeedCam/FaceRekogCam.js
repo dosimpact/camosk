@@ -108,8 +108,9 @@ function FaceRekogCam({ setHasPerson }) {
 
     return () => {
       video.removeEventListener("play", handlePlay);
+      document.body.removeChild(document.querySelector("#FaceRekogCamCanvas"));
     };
-  }, [fetched, setHasPerson, targets, testing]);
+  }, []);
 
   return (
     <>
