@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
+import ReactPlayer from "react-player";
+
 const PlayAdsBottom = ({ className, src, ...props }) => {
     src = src || "https://www.youtube.com/embed/3MSPHzlRXQQ?start=10&autoplay=1";
     return (
