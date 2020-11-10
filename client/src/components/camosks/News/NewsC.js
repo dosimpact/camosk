@@ -18,8 +18,8 @@ const NewsC = (props) => {
             .then(resp => resp.data)
             .then(data => data.articles)
             .then(documents => {
-                console.log(documents.length)
-                console.log(documents[0])
+                // console.log(documents.length)
+                // console.log(documents[0])
                 setMetaData(documents)
             });
     };

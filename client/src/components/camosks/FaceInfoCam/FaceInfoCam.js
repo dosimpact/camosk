@@ -49,7 +49,7 @@ const FaceInfoCam = ({ className, trigger, onChange }) => {
 
         }
 
-        console.log(ads, content);
+        // console.log(ads, content);
         if (trigger) {
             doCapture();
         }
