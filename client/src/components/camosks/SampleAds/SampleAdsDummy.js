@@ -3,12 +3,12 @@ import styled from "styled-components";
 import ReactPlayer from "react-player";
 
 
-const SampleAds = ({ className, ...props }) => {
+const SampleAds = ({ className, url, ...props }) => {
     return (
         <Wrapper className={className}>
             <div className="container">
                 <ReactPlayer
-                    url={"https://www.youtube.com/watch?v=3MSPHzlRXQQ&t=14s"}
+                    url={url || "https://www.youtube.com/watch?v=3MSPHzlRXQQ&t=14s"}
                     // onEnded={() => { setAds(false); setIsShoping(true); scrollToPurchase(); }}
                     // onPause={() => { setAds(false); setIsShoping(true); scrollToPurchase(); }}
                     width="100vw"
