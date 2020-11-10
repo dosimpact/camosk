@@ -35,7 +35,7 @@ const ElevatorP = ({
 
     return (
         <Wrapper>
-            <button onClick={() => { handleChangeTrigger() }}>GET INFO</button>
+            {/* <button onClick={() => { handleChangeTrigger() }}>GET INFO</button> */}
 
             <div className="first">
                 <ClockC />
