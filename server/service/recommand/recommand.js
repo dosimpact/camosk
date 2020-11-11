@@ -11,10 +11,11 @@ import { Getter } from './DataGetters'
 
 const DefaultV = "3MSPHzlRXQQ";
 
-const getVideoV = (confidenceObject) => {
-    const resultV = Getter.getByKey(FilterData(confidenceObject));
-    return resultV ? resultV : DefaultV
-
+export const getVideoV = (confidenceObject) => {
+    const key = FilterData(confidenceObject);
+    const resultV = Getter.getByKey(key);
+    return {
+        v: (resultV ? resultV : DefaultV),
+        key
+    };
 }
-
-export default getVideoV

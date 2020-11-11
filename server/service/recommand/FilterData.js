@@ -46,17 +46,16 @@ const keyList = [
 }
  */
 const FilterData = (confidenceObject) => {
+    console.log("FilterData confidenceObject", confidenceObject);
     const Frequency = [];
     // 해당 배열을 돌면서, 
 
     // 키이름으로 배열을 만든다음
     keyList.map((e, idx) => {
-        confidenceObject[e]?.map((confi, jdx) => {
-            // 0,10, 20 등의 데이터로 정제됌
-            const confiTenUnit = GetTenUnit(confi);
-            [...Array(confiTenUnit).keys()].map(c => {
-                Frequency.push(e);
-            })
+        const confiTenUnit = GetTenUnit(Number(confidenceObject[e]));
+        console.log("keyList", e, "confiTenUnit", confiTenUnit);
+        [...Array(confiTenUnit).keys()].forEach(c => {
+            Frequency.push(e);
         })
     })
     console.log("Frequency", Frequency)
