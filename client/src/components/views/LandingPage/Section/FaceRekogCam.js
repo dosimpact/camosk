@@ -1,42 +1,18 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import * as faceapi from "face-api.js";
-import styled from "styled-components";
 
-import peopleCompare from "../../../people/peopleCompare"
-import peopleLoad from "../../../people/peopleLoad"
-import locationLoad from "../../../location/locationLoad";
+// setHasPerson 사람이 있는지 없는지 > 있으면 , AWS API 호출하게끔
 
-function FaceRekogCam({setHasPerson, webcam, setFlash}) {
-  const [testing, isTesting] = useState(false) // 안면 비교 수행 중인지 나타내는 상태
-  const [fetched, isFetched] = useState(false) // 사람들 목록 내려받았는지 나타내는 상태 (불리언)
-  const [targets, setTargets] = useState([]) // 사람들의 목록
-  const [address, setAddress] = useState("") // 주소 목록
+const PERSON_DISAPPER_INTERVAL = 6;
 
-  const [counter,setCounter] = useState(0);
+function FaceRekogCam({ setHasPerson }) {
+  const [counter, setCounter] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  // useScript(`${process.env.PUBLIC_URLFaceRekogCam}/face-api.min.js`);
 
   useEffect(() => {
-    peopleLoad().then(response => {
-      setTargets(response)
-      console.log(targets)
-      locationLoad().then(addr => {
-        setAddress(addr)
-        isFetched(true)
-      })
-    }).catch(err => {
-      console.error(err);
-      alert("정보를 불러오는데 오류가 생겼습니다!")
-      isFetched(true)
-    })
-  }, [targets])
-  // peopleLoad 함수로 실종인물의 목록을 받으면 setTargets로 target 상태 업데이트
-  // 이후 locationLoad 함수로 address 상태 업데이트
-  // 전부 업데이트에 성공하면 fetched 값 true로 변경
-
-  // useScript(`${process.env.PUBLIC_URL}/face-api.min.js`);
-  useEffect(() => {
-    const video = document.getElementById("video");
+    const video = document.getElementById("FaceRekogCamVideo");
 
     const startVideo = async () => {
       let stream = null;
@@ -63,9 +39,10 @@ function FaceRekogCam({setHasPerson, webcam, setFlash}) {
 
     setLoading(false);
 
-    const handlePlay =  video.addEventListener("play", () => {
+    const handlePlay = video.addEventListener("play", () => {
       const canvas = faceapi.createCanvasFromMedia(video);
-      canvas.classList.add("faceCanvas");
+      // canvas.classList.add("FaceRekogCam");
+      canvas.id = "FaceRekogCamCanvas";
       document.body.append(canvas);
       const displaySize = { width: video.width, height: video.height };
       faceapi.matchDimensions(canvas, displaySize);
@@ -74,25 +51,27 @@ function FaceRekogCam({setHasPerson, webcam, setFlash}) {
           .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
           .withFaceLandmarks()
           .withFaceExpressions();
-          if(detections.length){
-              console.log(detections);
-              setCounter( prev => {
-                  if(prev >= 2){ // 분명 prev가 2가 넘어가면 == 3번 연속 얼굴이 찍히면
-                      setHasPerson(true); /// hasPerson 함수는 참이 됨
-                      if(!testing && fetched) { // 안면 비교 수행 중이지 않고 동시에 상태가 전부 업데이트 되었다면
-                        const based = webcam.current.getScreenshot(); // 웹 캠 스크린 샷
-                        const buf = Buffer.from(based.replace("data:image/jpeg;base64,", ""), "base64") // 버퍼 형태로 변경
-                        console.log(address)
-                        peopleCompare(targets, buf, isTesting, setFlash, address)
-                        // 인물 목록, 스크린샷 버퍼, testing 상태 setState, 플래시 메시지 setState, 주소를 매개변수로
-                      }
-                  }
-                  return prev+1
-              });
-          }else{
-              setCounter(0);
+        console.log(detections)
+        if (detections.length) {
+          // 얼굴인식 2초뒤에 반응
+          setCounter(prev => {
+            if (prev >= PERSON_DISAPPER_INTERVAL) {
+              setHasPerson(true);
+              return prev;
+            } else {
+              return prev + 1
+            }
+          });
+        } else {
+          setCounter(prev => {
+            if (prev > 0) {
+              return prev - 1
+            } else if (prev <= 0) {
               setHasPerson(false);
-          }
+              return prev
+            }
+          });
+        }
         const resizedDetections = faceapi.resizeResults(
           detections,
           displaySize
@@ -105,24 +84,24 @@ function FaceRekogCam({setHasPerson, webcam, setFlash}) {
     });
 
     return () => {
-      video.removeEventListener("play",handlePlay);
+      video.removeEventListener("play", handlePlay);
+      document.body.removeChild(document.querySelector("#FaceRekogCamCanvas"));
     };
-  }, [address, fetched, setFlash, setHasPerson, targets, testing, webcam]);
+  }, [setHasPerson]);
 
-
-    return (
-        <>
-            {loading ? "loading..." : `${error ? "Cam Device is not founded" : ""}`}
-            <video
-            className="webcam"
-            id="video"
-            width="250"
-            height="200"
-            autoPlay
-            muted
-            ></video>
-        </>
-    )
+  return (
+    <>
+      {loading ? "loading..." : `${error ? "Cam Device is not founded" : ""}`}
+      <video
+        className="webcam"
+        id="FaceRekogCamVideo"
+        width="250"
+        height="200"
+        autoPlay
+        muted
+      ></video>
+    </>
+  )
 }
 
 export default FaceRekogCam
