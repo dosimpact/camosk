@@ -27,17 +27,82 @@ export const AgeRange40 = [
     "jvqo_Ceg4m4",
     "WPOXmEGsxBQ",
 ];
-export const AgeRange50 = [];
-export const AgeRange60 = [];
-export const AgeRange70 = [];
-export const AgeRange80 = [];
-export const Male = [];
-export const Female = [];
-export const Eyeglasses = [];
-export const Mustache = [];
-export const Smile = [];
-export const Sunglasses = [];
-export const ANGRY = [];
-export const HAPPY = [];
-export const SAD = [];
-export const CALM = [];
+export const AgeRange50 = [
+    "3-lwEiQ_o2c",
+    "t79thiX40go",
+    "RWtbUJ5cIkU",
+];
+export const AgeRange60 = [
+    "Yvr46lJcIeU",
+    "Gu22EC2Q7To",
+    "v4szeuEjLAw",
+];
+export const AgeRange70 = [
+    "KFiXvoOVbfQ",
+    "r_8vxwdoytA",
+    "tYV6b4ThmXo",
+    "3P1CnWI62Ik",
+];
+export const AgeRange80 = [
+    "BRPC-nvf8T4",
+    "gS1EMfg8nOc",
+    "Ca8wfKaA15Q",
+];
+export const Male = [
+    "6nxz-x4VsAU",
+    "OSzLEscspuU",
+    "M0snlWiGPDI",
+    "AhCawvHrrtk",
+];
+export const Female = [
+    "nfNb29zEvbI",
+    "_BZq7-n5X8w",
+    "Pl_c4hiYaog",
+    "8VvSNdrMmaE",
+    "EuKY83ZhkL0",
+];
+export const Eyeglasses = [
+    "tEZNK8zBAEk",
+    "_58IwzyEjYE",
+    "xsaiOg2nMqE",
+    "KSwZW9DddNk",
+    "_HbfUcuNuIA",
+];
+export const Mustache = [
+    "HYozI_eLAV4",
+    "lvmkHjOlH-k",
+    "P2oVDP7b6fI",
+    "RloQhUwjvLU",
+];
+export const Smile = [
+    "rRDGx05fRzc",
+    "LhKaGl0BhFc",
+    "NqLRyPMSYTg",
+];
+export const Sunglasses = [
+    "KSwZW9DddNk",
+    "8A2Wg0eJhuA",
+    "FyfdaOPbOwQ",
+    "xhg8UTwyHfw",
+    "kgyqdC_nHMQ",
+];
+export const ANGRY = [
+    "9NQyBg6nqbk",
+    "d8zTQvtUl8Y",
+    "uBkq0tZ-Tm8",
+];
+export const HAPPY = [
+    "7_HYO6IaiEY",
+    "fp5m0Xz755Y",
+    "gZGBEnV0fsU",
+];
+export const SAD = [
+    "RE1q3-mRLoA",
+    "1fI-dkCmAqE",
+    "xD0Nt3M22jQ",
+    "3nwkbBhLSiQ",
+];
+export const CALM = [
+    "1H7vnXa-Fog",
+    "8YWVPvf44Cc",
+];
