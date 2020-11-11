@@ -53,11 +53,6 @@ export default async (targets, captured, isTesting, setFlash, address) => {
                 setTimeout(() => res(), 3000)
               })
             })()
-            // 3초간 기다려주기
-            setFlash(null)
-            isTesting(false)
-            // flash 상태 null로 만들어서 비어있는 컴포넌트로 업데이트
-            // testing 상태 false로 만들어서 다시 인물 비교 수행 가능하게끔
             res()
           });
         })
