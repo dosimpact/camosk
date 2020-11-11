@@ -25,15 +25,15 @@ import {
 
 const RandomeIdx = (arr) => Math.floor(Math.random() * arr.length);
 
-const getRandomeAgeRange00 = () => { return AgeRange00[RandomeIdx[AgeRange00]]; }
-const getRandomeAgeRange10 = () => { return AgeRange10[RandomeIdx[AgeRange10]]; }
-const getRandomeAgeRange20 = () => { return AgeRange20[RandomeIdx[AgeRange20]]; }
-const getRandomeAgeRange30 = () => { return AgeRange30[RandomeIdx[AgeRange30]]; }
-const getRandomeAgeRange40 = () => { return AgeRange40[RandomeIdx[AgeRange40]]; }
-const getRandomeAgeRange50 = () => { return AgeRange50[RandomeIdx[AgeRange50]]; }
-const getRandomeAgeRange60 = () => { return AgeRange60[RandomeIdx[AgeRange60]]; }
-const getRandomeAgeRange70 = () => { return AgeRange70[RandomeIdx[AgeRange70]]; }
-const getRandomeAgeRange80 = () => { return AgeRange80[RandomeIdx[AgeRange80]]; }
+const getRandomeAgeRange00 = () => { return AgeRange00[RandomeIdx(AgeRange00)]; }
+const getRandomeAgeRange10 = () => { return AgeRange10[RandomeIdx(AgeRange10)]; }
+const getRandomeAgeRange20 = () => { return AgeRange20[RandomeIdx(AgeRange20)]; }
+const getRandomeAgeRange30 = () => { return AgeRange30[RandomeIdx(AgeRange30)]; }
+const getRandomeAgeRange40 = () => { return AgeRange40[RandomeIdx(AgeRange40)]; }
+const getRandomeAgeRange50 = () => { return AgeRange50[RandomeIdx(AgeRange50)]; }
+const getRandomeAgeRange60 = () => { return AgeRange60[RandomeIdx(AgeRange60)]; }
+const getRandomeAgeRange70 = () => { return AgeRange70[RandomeIdx(AgeRange70)]; }
+const getRandomeAgeRange80 = () => { return AgeRange80[RandomeIdx(AgeRange80)]; }
 
 const getRandomeMale = () => { return CALM[RandomeIdx[CALM]]; }
 const getRandomeFemale = () => { return Eyeglasses[RandomeIdx[Eyeglasses]]; }
@@ -51,6 +51,7 @@ const getRandomeCALM = () => { return Sunglasses[RandomeIdx[Sunglasses]]; }
 
 const getByKey = (key) => {
     let v = null;
+    console.log("getByKey", key)
     switch (key) {
         case "AgeRange00":
             v = getRandomeAgeRange00();
@@ -60,6 +61,7 @@ const getByKey = (key) => {
             break;
         case "AgeRange20":
             v = getRandomeAgeRange20();
+            console.log("v", v)
             break;
         case "AgeRange30":
             v = getRandomeAgeRange30();
