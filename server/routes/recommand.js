@@ -120,12 +120,13 @@ router.post("/v2/", (req, res) => {
     CALM,
   } = req.body;
 
-  let v = "3MSPHzlRXQQ";
-  let key = null;
+
 
   try {
     const { key, v } = getVideoV(req.body);
     const YOUTUBE_URL = `https://www.youtube.com/watch?v=${v}`;
+    console.log("YOUTUBE_URL", YOUTUBE_URL);
+    console.log("key", key);
     return res.status(200).json({
       sucess: true,
       v,
@@ -137,7 +138,7 @@ router.post("/v2/", (req, res) => {
     const YOUTUBE_URL = `https://www.youtube.com/watch?v=${v}`;
     return res.status(400).json({
       sucess: false,
-      v,
+      v: "3MSPHzlRXQQ",
       url: YOUTUBE_URL,
     });
   }
