@@ -1,15 +1,20 @@
 import AWS from 'aws-sdk';
 
-export default (person, address) => {
+export default (person=null, address) => {
     // Set region
     AWS.config.update({region: 'ap-northeast-1'});
 
     // Create publish parameters
+    let msg = ""
+    if(person == null){
+        msg = `${address}에서 ${person} 발견`
+    } else {
+        msg = `${address}에서 긴급/구조 요청`
+    }
     const params = {
-    Message: `${address}에서 ${person} 발견`, /* required */
-    PhoneNumber: '+821022141322',
+        Message: msg, /* required */
+        PhoneNumber: '+821022141322',
     };
-
     // Create promise and SNS service object
     const publishTextPromise = new AWS.SNS({apiVersion: 'latest'}).publish(params).promise();
 

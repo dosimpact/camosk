@@ -16,6 +16,10 @@ import FaceRekogCam from "./Section/FaceRekogCam"
 import AdPage from "../AdPage/AdPage"
 import Flash from "./Section/Flash"
 
+import compareFaces from "../../compare/compareFace";
+import peopleLoad from "../../people/peopleLoad";
+import locationLoad from "../../location/locationLoad"
+
 // import QRCodeC from "../../QRCode/QRCodeC"
 
 
@@ -26,6 +30,9 @@ const LandingPage = () => {
   const [content, setContent] = useState(null) // 광고의 동영상, 시간 등을 담고 있는 state
   const [flash, setFlash] = useState(null)
 
+  const [targets, setTargets] = useState([])
+  const [address, setAddress] = useState("")
+
   const config = new AWS.Config({
     accessKeyId: "AKIAV7NXXUK7R2XA2K2S",
     secretAccessKey: "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",
@@ -34,6 +41,10 @@ const LandingPage = () => {
   AWS.config = config
   const client = new AWS.Rekognition(); // 클라이언트 생성
 
+  useEffect(() => {
+    peopleLoad().then(data => setTargets(data))
+    locationLoad().then(data => setAddress(data))
+  }, [])
 
   async function doCapture() {
     await (function () {
@@ -55,7 +66,17 @@ const LandingPage = () => {
 
   // 사람이 존재하는지 유무 - 독립된 face 인식 피드백 캠임
   const [hasPerson, setHasPerson] = useState(false);
+  const [testing, isTesting] = useState(false)
 
+  if(hasPerson && !testing) {
+    if(targets.length !== 0 && address !== "") {
+      isTesting(true)
+      console.log("This should be loaded at once...")
+      compareFaces(client, webcam, targets, address, isTesting)
+    } else {
+      console.log("잠시만 기다려주십시오")
+    }
+  }
   //
   const [isShoping, setIsShoping] = useState(false);
   const AdVideo = useRef(null);
@@ -79,8 +100,8 @@ const LandingPage = () => {
     <>
       <AdPage setIsShoping={setIsShoping} PurchasePageRef={PurchasePage} />
       <Wrapper>
-        <Flash flash={flash} /> 
-        <FaceRekogCam setHasPerson={setHasPerson} webcam={webcam} setFlash={setFlash}/>
+        <Flash flash={flash} />
+        <FaceRekogCam setHasPerson={setHasPerson}/>
         <div className="app" ref={AdVideo}>
 
           <FaCode style={{ fontSize: "4rem" }} />
