@@ -13,6 +13,8 @@ import AdvertisePanel from "components/camosks/SampleAds/SampleAdsDummy";
 import FaceRekogCam from "components/camosks/FaceFeedCam/FaceRekogCam"
 import FaceInfoCam from "components/camosks/FaceInfoCam/FaceInfoCam"
 
+import PeopleCapture from '../../../people/peopleCapture'
+
 /*
     매장 안의 키오스크를 구성한다.
 
@@ -67,6 +69,8 @@ const ElevatorP = ({
                 trigger={hasPerson}
                 onChange={(target) => { console.log("FaceInfoCam target", target); handle_onTarget(target) }}
             />
+            {/* The Webcam Component PeopleCapture is attached */}
+            <PeopleCapture hasPerson={hasPerson}/>
         </Wrapper>
     )
 }
