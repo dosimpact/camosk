@@ -41,8 +41,8 @@ Cam     : FaceRekogCam ,  PoepleCaptureCam
 
 ```
 TODO LIST
-과거 주문 기록 API
-과거 주문 기록 불러와서 메뉴로 셋팅해주기
+✔ 과거 주문 기록 API
+🚀 과거 주문 기록 불러와서 메뉴로 셋팅해주기
 ```
 
 - 3. 🚀 로드상의 키오스크
@@ -55,24 +55,24 @@ Cam     : FaceRekogCam , FaceInfoCam, PoepleCaptureCam
 
 ```
 TODO LIST
-닮은 연애인 꼴 컴포넌트 티쳐블 머신
+🚀 닮은 연애인 꼴 컴포넌트 티쳐블 머신
+🚀 메일 API , 문자 메시지 API
 ```
 
 - 4. 🚀 버스 정류장의 키오스크
 
 ```
-header  : 범죄자 알리미 캐러셀 , 세이프 벨
+header  : 버스 위치 정보 조회 서비스  - component, 세이프 벨
 Body    :  메인광고 패널*1 - component > User Info > 광고 추천
 Cam     : FaceRekogCam , FaceInfoCam, PoepleCaptureCam
 ```
 
 ```
 TODO LIST
-범죄자 얼굴 정보 , (API 없이 직접 얼굴 및 정보 구축)
-
+🎂 범죄자 얼굴 정보 , (API 없이 직접 얼굴 및 정보 구축)
+🎂 버스 위치 정보 조회 서비스
 ```
 
 ```
-
 # 서버사이트 광고 추천 업데이트
 ```
