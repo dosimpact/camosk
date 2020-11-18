@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Order } = require("../models/Order");
+const { User } = require("../models/User");
 
 router.get("/", (req, res) => {
   Order.find()
@@ -20,6 +21,17 @@ router.post("/create", (req, res) => {
   order.save((err, orderInfo) => {
     if (err) return res.json({ success: false, err });
     return res.status(200).json({ success: true, orderInfo });
+  });
+});
+
+router.get("/getorderwithname/:name", (req, res) => {
+  User.findOne({ name: req.params?.name }, (err, user) => {
+    if (err) return res.json({ success: false, err });
+
+    Order.findOne({ user: user._id }, (err, order) => {
+      if (err) return res.json({ success: false, err });
+      return res.status(200).json({ success: true, order });
+    });
   });
 });
 
