@@ -1,5 +1,5 @@
 import express from "express";
-import { getVideoV } from "../service/recommand/recommand"
+import { getVideoV } from "../service/recommand/recommand";
 const router = express.Router();
 
 //=================================
@@ -119,9 +119,6 @@ router.post("/v2/", (req, res) => {
     SAD,
     CALM,
   } = req.body;
-
-
-
   try {
     const { key, v } = getVideoV(req.body);
     const YOUTUBE_URL = `https://www.youtube.com/watch?v=${v}`;
@@ -130,9 +127,9 @@ router.post("/v2/", (req, res) => {
     return res.status(200).json({
       sucess: true,
       v,
-      url: YOUTUBE_URL, key
+      url: YOUTUBE_URL,
+      key,
     });
-
   } catch (error) {
     console.log(error);
     const YOUTUBE_URL = `https://www.youtube.com/watch?v=${v}`;

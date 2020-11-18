@@ -68,4 +68,14 @@ router.get("/logout", auth, (req, res) => {
   );
 });
 
+router.get("/getusers", (req, res) => {
+  User.find((err, users) => {
+    if (err) return res.json({ success: false, err });
+    return res.status(200).send({
+      success: true,
+      users,
+    });
+  });
+});
+
 module.exports = router;
