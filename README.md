@@ -20,26 +20,21 @@ process.env.FFMPEG_PATH = path.normalize("C:/ffmpeg/bin/ffmpeg.exe");
 
 # 범용 키오스크 구성하기
 
-- 1. 앨리베이터 키오스크
-
-- ElevatorPage
+- 1. 앨리베이터 키오스크 (ElevatorPage)
 
 ```
-header : Clock , Weather, News > 광고에 대한 메타정보 , QR , Homepage 썸네일?
-Body :  메인광고 패널 > 광고 추천
+header  : Clock-component , Weather-component, News-component
+Body    :  메인광고 패널*2 - component > User Info > 광고 추천
+Cam     : FaceRekogCam , FaceInfoCam, PoepleCaptureCam
 ```
 
-- 1.1 ✅ 얼굴인식 피드백
-- 1.2 얼굴 인식 후 > 광고 패널 2개 > 각각 추천 받아온 영상 url로 체인지
+![camosk1.png](./docs/camosk1.png)
 
 - 2. 매장내 키오스크
-- 2.1 
+- 2.1
 
 - 3. 로드상의 키오스크
 
 - 4. 버스 정류장의 키오스크
 
-
-# 서버사이트 광고 추천 업데이트 
-
-- 
+# 서버사이트 광고 추천 업데이트
