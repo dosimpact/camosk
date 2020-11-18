@@ -6,7 +6,7 @@
     "@ant-design/icons": "^4.2.2",
     "antd": "^3.24.1",
     "aws-sdk": "^2.771.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.0",
     "face-api.js": "^0.22.2",
     "formik": "^1.5.8",
     "fs": "^0.0.1-security",

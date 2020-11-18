@@ -1,6 +1,7 @@
 import peopleMessage from "../people/peopleMessage"
 
 export default async (client, webcam, targets, address, isTesting) => {
+    console.log("Captured")
     const captured = webcam.current.getScreenshot();
     const buf = Buffer.from(captured.replace("data:image/jpeg;base64,", ""), "base64")
     for(let i = 0; i < targets.length; i++){
@@ -43,7 +44,8 @@ export default async (client, webcam, targets, address, isTesting) => {
         console.log(address)
         if(isFound){
             //peopleMessage(targets[i], address)
-            console.log(...targets[i])
+            const {key, name, gender, age, clothes} = targets[i]
+            alert(`${key} : ${name}, ${gender}, ${age}, ${clothes}`)
         } else {
             console.log("No People Found")
         }

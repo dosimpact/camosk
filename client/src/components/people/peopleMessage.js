@@ -16,7 +16,8 @@ export default (person=null, address) => {
         PhoneNumber: '+821022141322',
     };
     // Create promise and SNS service object
-    const publishTextPromise = new AWS.SNS({apiVersion: 'latest'}).publish(params).promise();
+    const publishTextPromise = new AWS.SNS({apiVersion: 'latest'})
+    .publish(params).promise();
 
     // Handle promise's fulfilled/rejected states
     publishTextPromise.then(

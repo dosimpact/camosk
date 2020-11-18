@@ -42,6 +42,11 @@ function App() {
           {/* 4Route Page 1. 승강기 2. 매장 광고 및 주문 3. 길거리(지하철/도로)  4. BUS STOP */}
           <Route
             exact
+            path={process.env.PUBLIC_URL + "/test_2"}
+            component={Auth(null, null)}
+          />
+          <Route
+            exact
             path={process.env.PUBLIC_URL + "/camosk01"}
             component={Auth(Elevator, null)}
           />
