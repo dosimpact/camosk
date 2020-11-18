@@ -1,6 +1,13 @@
 import peopleMessage from "../people/peopleMessage";
 
-export default async (client, webcam, targets, address, isTesting) => {
+export default async (
+  client,
+  webcam,
+  targets,
+  address,
+  isTesting,
+  onChange
+) => {
   console.log("Captured");
   const captured = webcam.current.getScreenshot();
   const buf = Buffer.from(
@@ -46,12 +53,23 @@ export default async (client, webcam, targets, address, isTesting) => {
         });
       });
     })();
-    console.log(address);
+    // console.log(address);
     if (isFound) {
       //peopleMessage(targets[i], address)
       const { key, name, gender, age, clothes } = targets[i];
       //   alert(`${key} : ${name}, ${gender}, ${age}, ${clothes}`);
-      console.log(`${key} : ${name}, ${gender}, ${age}, ${clothes}`);
+      // console.log(`${key} : ${name}, ${gender}, ${age}, ${clothes}`);
+      onChange({
+        data: {
+          address,
+          key,
+          name,
+          gender,
+          age,
+          clothes,
+        },
+        isFound,
+      });
     } else {
       console.log("No People Found");
     }
