@@ -78,4 +78,14 @@ router.get("/getusers", (req, res) => {
   });
 });
 
+router.get("/getuser/:name", (req, res) => {
+  User.findOne({ name: req.params?.name }, (err, users) => {
+    if (err) return res.json({ success: false, err });
+    return res.status(200).send({
+      success: true,
+      users,
+    });
+  });
+});
+
 module.exports = router;
