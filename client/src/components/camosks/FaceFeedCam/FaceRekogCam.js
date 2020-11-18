@@ -1,42 +1,15 @@
 import React, { useEffect, useState } from "react";
 import * as faceapi from "face-api.js";
 
-import peopleCompare from "../../people/peopleCompare"
-import peopleLoad from "../../people/peopleLoad"
-import locationLoad from "../../location/locationLoad";
-
-// setHasPerson 사람이 있는지 없는지 > 있으면 , AWS API 호출하게끔
-
 const PERSON_DISAPPER_INTERVAL = 6;
-
-function FaceRekogCam({ setHasPerson }) {
-  const [testing, isTesting] = useState(false)
-  const [fetched, isFetched] = useState(false)
-  const [targets, setTargets] = useState([])
-  const [address, setAddress] = useState("")
-
-  const [counter, setCounter] = useState(0);
+// onChange - 사람이 있냐 없냐 true, flase로 리턴함.
+function FaceRekogCam({ onChange }) {
+  const [, setCounter] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  // useScript(`${process.env.PUBLIC_URLFaceRekogCam}/face-api.min.js`);
-
-  useEffect(() => {
-    peopleLoad().then(response => {
-      setTargets(response)
-      locationLoad().then(addr => {
-        setAddress(addr)
-        isFetched(true)
-      })
-    }).catch(err => {
-      console.error(err);
-      alert("정보를 불러오는데 오류가 생겼습니다!")
-      isFetched(true)
-    })
-  }, [])
 
   useEffect(() => {
     const video = document.getElementById("FaceRekogCamVideo");
-
     const startVideo = async () => {
       let stream = null;
       try {
@@ -46,11 +19,6 @@ function FaceRekogCam({ setHasPerson }) {
         setError(true);
         console.error(err);
       }
-      // navigator.mediaDevices.getUserMedia(
-      // { video: {} },
-      // (stream) => (video.srcObject = stream),
-      // (err) => console.error(err)
-      // );
     };
     const MODELS_URL = `${process.env.PUBLIC_URL}/models`;
     Promise.all([
@@ -77,21 +45,23 @@ function FaceRekogCam({ setHasPerson }) {
         // console.log(detections)
         if (detections.length) {
           // 얼굴인식 2초뒤에 반응
-          setCounter(prev => {
+          setCounter((prev) => {
             if (prev >= PERSON_DISAPPER_INTERVAL) {
-              setHasPerson(true);
+              // setHasPerson(true);
+              onChange(true);
               return prev;
             } else {
-              return prev + 1
+              return prev + 1;
             }
           });
         } else {
-          setCounter(prev => {
+          setCounter((prev) => {
             if (prev > 0) {
-              return prev - 1
+              return prev - 1;
             } else if (prev <= 0) {
-              setHasPerson(false);
-              return prev
+              // setHasPerson(false);
+              onChange(false);
+              return prev;
             }
           });
         }
@@ -124,7 +94,7 @@ function FaceRekogCam({ setHasPerson }) {
         muted
       ></video>
     </>
-  )
+  );
 }
 
-export default FaceRekogCam
+export default FaceRekogCam;
