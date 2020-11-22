@@ -55,7 +55,7 @@ Cam     : FaceRekogCam , FaceInfoCam, PoepleCaptureCam
 
 ```
 TODO LIST
-🚀 닮은 연애인 꼴 컴포넌트 티쳐블 머신
+💥 닮은 연애인 꼴 컴포넌트 티쳐블 머신 ( 실패 라이브러리 문제 .. )
 🚀 메일 API , 문자 메시지 API
 ```
 

@@ -48,6 +48,7 @@ app.use("/api/blog/", require("./routes/blog"));
 app.use("/api/video/", require("./routes/video"));
 app.use("/api/recommand/", require("./routes/recommand"));
 app.use("/api/test/", require("./routes/test"));
+app.use("/api/notification/", require("./routes/notification"));
 app.use("/api/movie/", require("./routes/movie"));
 app.use("/api/py/hello/", require("./routes/py/hello"));
 
