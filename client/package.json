@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
+    "@teachablemachine/image": "^0.8.4",
+    "@tensorflow/tfjs": "^2.7.0",
     "antd": "^3.24.1",
     "aws-sdk": "^2.771.0",
     "axios": "^0.21.0",
