@@ -16,10 +16,11 @@ import BlogPage from "./views/BlogPage/BlogPage";
 import CreateBlogPage from "./views/BlogPage/Section.js/CreatePage";
 
 // CAMOSK View
-import BusStop from "./views/CamoskView/BusStop"
-import Elevator from "./views/CamoskView/Elevator"
-import Restaurant from "./views/CamoskView/Restaurant"
-import Road from "./views/CamoskView/Road"
+import BusStop from "./views/CamoskView/BusStop";
+import Elevator from "./views/CamoskView/Elevator";
+import Restaurant from "./views/CamoskView/Restaurant";
+import Road from "./views/CamoskView/Road";
+import TeachableMC from "./camosks/TeachableM/TeachableMC";
 
 function App() {
   return (

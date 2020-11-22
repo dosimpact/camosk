@@ -28,9 +28,10 @@ const ElevatorC = () => {
 
   // 사람이 보일때, 로직  > 광고 가져오기, 얼굴 비교하기
   useEffect(() => {
-    console.log("사람이 변화가 감지 되었습니다. change hasPerson", hasPerson);
-    // console.log("hasPerson 변화 > FaceInfoCam 익명정보 얻어오기");
-    // console.log("hasPerson 변화 > FaceInfoCam 얼굴비교 정보 얻어오기");
+    console.log(
+      "[ElevatorC] 사람이 변화가 감지 되었습니다. change hasPerson",
+      hasPerson
+    );
     return () => {};
   }, [hasPerson]);
 
