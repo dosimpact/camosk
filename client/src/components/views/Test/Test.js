@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import Order from "components/camosks/Order";
@@ -14,9 +14,26 @@ import PeopleNoticeC from "components/camosks/PeopleNotice/PeopleNoticeC";
 import TeachableMC from "components/camosks/TeachableM/TeachableMC";
 
 function Test() {
+  const model_URL = "https://teachablemachine.withgoogle.com/models/NJVFBTQ5W/";
+  const [trigger, onTrigger] = useState();
+  const handleOnChange = (e) => {
+    console.log(e);
+  };
   return (
     <Wrapper>
-      <TeachableMC />
+      <TeachableMC
+        model_URL={model_URL}
+        ImageSRC={process.env.PUBLIC_URL + "sample/sample1.jpg"}
+        trigger={trigger}
+        onChange={handleOnChange}
+      />
+      <button
+        onClick={() => {
+          onTrigger((prev) => !prev);
+        }}
+      >
+        Trigger
+      </button>
       {/* 
       <Container>
         <RedBellC />
