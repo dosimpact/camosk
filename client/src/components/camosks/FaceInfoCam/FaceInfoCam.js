@@ -3,12 +3,16 @@ import Webcam from "react-webcam";
 import { detectFace } from "components/camosks/FaceInfoCam/rekognition/detect";
 import AWS from "aws-sdk";
 
+import { useDispatch } from "react-redux";
+import { setOrderFace } from "_actions/order_actions";
+
 /**
  * trigger 변동시+참일때 > 얼굴을 인식함,
  * onChange에 얼굴 인식결과 target 출력
  */
 
 const FaceInfoCam = ({ className, trigger, onChange }) => {
+  const dispatch = useDispatch();
   const webcam = useRef(null); // 웹캠 DOM
   // const [ads, setAds] = useState(false) // 광고를 송출할지 말지 결정하는 state
   // const [content, setContent] = useState(null) // 광고의 동영상, 시간 등을 담고 있는 state
@@ -32,6 +36,7 @@ const FaceInfoCam = ({ className, trigger, onChange }) => {
       })(); // 1초 후 스크린샷 및 얼굴 감지 시작, async await 그리고 IIFE 활용
 
       const based = webcam.current.getScreenshot();
+      dispatch(setOrderFace(based));
       if (!based) {
         console.log("cannot get jpg from webcam");
         return;
