@@ -1,11 +1,10 @@
-// import { TeachableMobileNet } from "@teachablemachine/image";
 import React, { useState, useEffect, useRef } from "react";
 import TeachableMP from "./TeachableMP";
-// import * as tf from "@tensorflow/tfjs";
-// import * as tmImage from "@teachablemachine/image";
-// window.tf = tf;
 
-const TeachableMC = () => {
+// model URL
+// predict
+// onChange
+const TeachableMC = ({ model_URL, ImageSRC, trigger, onChange }) => {
   // More API functions here:
   // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
@@ -15,7 +14,7 @@ const TeachableMC = () => {
     maxPredictions: null,
   });
   const ImageRef = useRef();
-  const URL = "https://teachablemachine.withgoogle.com/models/DPefErDrX/";
+  const URL = model_URL; //"https://teachablemachine.withgoogle.com/models/DPefErDrX/";
 
   async function init() {
     const modelURL = URL + "model.json";
@@ -26,18 +25,27 @@ const TeachableMC = () => {
     setState((prev) => ({ model, maxPredictions }));
   }
 
-  // run the webcam image through the image model
-  async function predict() {
-    const { model } = state;
-    console.log("predict");
-    const prediction = await model.predict(ImageRef.current);
-    console.log(prediction);
-  }
   useEffect(() => {
     init();
-    return () => {};
   }, []);
-  return <TeachableMP ImageRef={ImageRef} predict={predict} />;
+
+  useEffect(() => {
+    // run the webcam image through the image model
+    async function predict() {
+      const { model } = state;
+      console.log("predict");
+      const prediction = await model.predict(ImageRef.current);
+      console.log(prediction);
+      if (onChange) {
+        onChange(prediction);
+      }
+    }
+    if (trigger) {
+      predict();
+    }
+    return () => {};
+  }, [trigger, onChange, state]);
+  return <TeachableMP ImageRef={ImageRef} ImageSRC={ImageSRC} />;
 };
 
 export default TeachableMC;
