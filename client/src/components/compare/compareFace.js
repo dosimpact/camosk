@@ -59,17 +59,19 @@ export default async (
       const { key, name, gender, age, clothes } = targets[i];
       //   alert(`${key} : ${name}, ${gender}, ${age}, ${clothes}`);
       // console.log(`${key} : ${name}, ${gender}, ${age}, ${clothes}`);
-      onChange({
-        data: {
-          address,
-          key,
-          name,
-          gender,
-          age,
-          clothes,
-        },
-        isFound,
-      });
+      if(onChange){
+        onChange({
+          data: {
+            address,
+            key,
+            name,
+            gender,
+            age,
+            clothes,
+          },
+          isFound,
+        });
+      }
     } else {
       console.log("No People Found");
     }
