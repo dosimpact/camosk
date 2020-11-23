@@ -44,7 +44,7 @@ export default async (client, webcam, targets, address, isTesting) => {
             //criminalMessage(targets[i], address)
             //바로 이 부분이 peopleCompare와 차이가 있음
             const {id, name, cause, term} = targets[i]
-            alert(`${id} : ${name}, ${cause}, ${term}\n${address}`)
+            console.log(`${id} : ${name}, ${cause}, ${term}\n${address}`)
         } else {
             console.log("No People Found")
         }

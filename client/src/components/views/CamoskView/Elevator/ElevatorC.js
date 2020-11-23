@@ -39,6 +39,7 @@ const ElevatorC = () => {
     const handle_onTarget = async (target) => {
         const { data: data1 } = await getRecommand(target);
         const { data: data2 } = await getRecommand(target);
+        console.log(data1,data2);
         setUrlTop(data1?.url);
         setUrlBottom(data2?.url);
     }

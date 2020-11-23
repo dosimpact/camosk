@@ -9,6 +9,7 @@ import QRCodeC from "components/camosks/QRCode/QRCodeC"
 import SampleAds from "components/camosks/SampleAds/SampleAdsDummy";
 
 import busWaitList from 'components/camosks/Bus/BusWaitList'
+import RedBellButton from '../../../camosks/RedBell/RedBellC'
 
 
 /*
@@ -23,6 +24,12 @@ const BusStopP = () => {
     }, [])
     useEffect(() => {
         busWaitList().then(resp => setWaitList(resp))
+        /*
+        const busLoop = setInterval(() => {
+            busWaitList().then(resp => setWaitList(resp))
+        }, 3 * 60 * 1000)
+        return () => clearInterval(busLoop)
+        */
     }, [])
     return (
         <Wrapper>
@@ -46,17 +53,16 @@ const BusStopP = () => {
             <div style={{display: 'inline-flex', flexDirection: 'column'}}>
                 {!waitList ? <h1>{'준비중입니다'}</h1> : waitList.map(el => {
                     return (
-                        <div style={{backgroundColor: 'white'}}>
-                            <h3>{el.busName}</h3>
+                        <div style={{backgroundColor: 'white'}} className={'BusContainer'}>
+                            <h3>{el.busName}<h5>{'현재 위치 : '}{el.location}</h5></h3>
                             <small style={{color: 'black'}}>{el.flag === "PASS" ? "운행 중" : "운행 종료"}</small>
-                            <h5>{el.destination}</h5>
-                            <h5>{el.time}</h5>
-                            <h5>{el.location}</h5>
+                            <h5>{el.destination} {el.time}{'분 전'}</h5>
+                            <hr />
                         </div>
                     )
                 })}
             </div>
-
+            <RedBellButton style={{position: 'fixed', top: '10', right: '10'}} />
         </Wrapper>
     )
 }
