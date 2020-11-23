@@ -9,7 +9,7 @@ import AWS from "aws-sdk";
 
 import styled from "styled-components";
 
-import FaceRekogCam from "./Section/FaceRekogCam";
+import FaceRekogCam from "components/camosks/FaceFeedCam/FaceRekogCam";
 import AdPage from "../AdPage/AdPage";
 import Flash from "./Section/Flash";
 
