@@ -35,18 +35,17 @@ const getRandomeAgeRange60 = () => { return AgeRange60[RandomeIdx(AgeRange60)]; 
 const getRandomeAgeRange70 = () => { return AgeRange70[RandomeIdx(AgeRange70)]; }
 const getRandomeAgeRange80 = () => { return AgeRange80[RandomeIdx(AgeRange80)]; }
 
-const getRandomeMale = () => { return CALM[RandomeIdx[CALM]]; }
-const getRandomeFemale = () => { return Eyeglasses[RandomeIdx[Eyeglasses]]; }
+const getRandomeMale = () => { return Male[RandomeIdx(Male)] } //CALM[RandomeIdx[CALM]]; }
+const getRandomeFemale = () => { return Female[RandomeIdx(Female)]; }
 
-const getRandomeEyeglasses = () => { return Female[RandomeIdx[Female]]; }
-const getRandomeMustache = () => { return ANGRY[RandomeIdx[ANGRY]]; }
-
-const getRandomeSmile = () => { return HAPPY[RandomeIdx[HAPPY]]; }
-const getRandomeSunglasses = () => { return Male[RandomeIdx[Male]]; }
-const getRandomeANGRY = () => { return Mustache[RandomeIdx[Mustache]]; }
-const getRandomeHAPPY = () => { return SAD[RandomeIdx[SAD]]; }
-const getRandomeSAD = () => { return Smile[RandomeIdx[Smile]]; }
-const getRandomeCALM = () => { return Sunglasses[RandomeIdx[Sunglasses]]; }
+const getRandomeEyeglasses = () => { return Eyeglasses[RandomeIdx(Eyeglasses)]; }
+const getRandomeMustache = () => { return Mustache[RandomeIdx(Mustache)]; }
+const getRandomeSmile = () => { return Smile[RandomeIdx(Smile)]; }
+const getRandomeSunglasses = () => { return Sunglasses[RandomeIdx(Sunglasses)]; }
+const getRandomeANGRY = () => { return ANGRY[RandomeIdx(ANGRY)]; }
+const getRandomeHAPPY = () => { return HAPPY[RandomeIdx(HAPPY)]; }
+const getRandomeSAD = () => { return SAD[RandomeIdx(SAD)]; }
+const getRandomeCALM = () => { return CALM[RandomeIdx(CALM)]; }
 
 
 const getByKey = (key) => {
