@@ -1,6 +1,6 @@
 import express from "express";
 import { sendSecretMail } from "../utils/SendGrid";
-import { sendSNS } from "../utils/SNS";
+import { sendSMS } from "../utils/SMS";
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.post("/sns", async (req, res) => {
   const { Message, PhoneNumber } = req.body;
-  await sendSNS(Message, PhoneNumber);
+  await sendSMS(Message, PhoneNumber);
   res.status(200).json({
     success: true,
   });
