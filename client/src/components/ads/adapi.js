@@ -1,5 +1,4 @@
 import axios from "axios";
-import qs from "querystring";
 
 const fetchApi = function (target, setAds, setContent) {
   const params = {
