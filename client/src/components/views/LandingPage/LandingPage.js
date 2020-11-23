@@ -17,8 +17,8 @@ import AdPage from "../AdPage/AdPage"
 import Flash from "./Section/Flash"
 
 import compareFaces from "../../compare/compareFace";
-import peopleLoad from "../../people/peopleLoad";
-import locationLoad from "../../location/locationLoad"
+import peopleLoad from "../../camosks/People/PeopleLoad";
+import locationLoad from "../../camosks/Location/LocationLoad"
 
 // import QRCodeC from "../../QRCode/QRCodeC"
 
