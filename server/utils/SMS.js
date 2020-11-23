@@ -10,7 +10,7 @@ AWS.config.update({
 });
 
 // Handle promise's fulfilled/rejected states
-export const sendSNS = async (Message, PhoneNumber) => {
+export const sendSMS = async (Message, PhoneNumber) => {
   const params = { Message, PhoneNumber };
   // Create promise and SNS service object
   const publishTextPromise = new AWS.SNS({ apiVersion: "latest" })
