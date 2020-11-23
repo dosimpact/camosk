@@ -1,5 +1,24 @@
 import axios from "axios"
-
+import { BASE_SERVER_URL } from "apis/config"
+/*
+FaceInfoCam target 
+{BoundingBox: {…}, AgeRange: {…}, Smile: {…}, Eyeglasses: {…}, Sunglasses: {…}, …}
+AgeRange: {Low: 12, High: 22}
+Beard: {Value: false, Confidence: 91.94966888427734}
+BoundingBox: {Width: 0.34092336893081665, Height: 0.5104877948760986, Left: 0.34339460730552673, Top: 0.17223891615867615}
+Confidence: 99.995849609375
+Emotions: (8) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+Eyeglasses: {Value: true, Confidence: 99.59851837158203}
+EyesOpen: {Value: true, Confidence: 99.95895385742188}
+Gender: {Value: "Male", Confidence: 96.36856842041016}
+Landmarks: (30) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+MouthOpen: {Value: false, Confidence: 92.85320281982422}
+Mustache: {Value: false, Confidence: 97.7725601196289}
+Pose: {Roll: -2.7022464275360107, Yaw: -16.649295806884766, Pitch: -12.724002838134766}
+Quality: {Brightness: 78.08302307128906, Sharpness: 92.22801208496094}
+Smile: {Value: false, Confidence: 97.17372131347656}
+Sunglasses: {Value: false, Confidence: 98.87083435058594}
+*/
 const getRecommand = (target) => {
     const params = {
         "AgeRange00": "0",
@@ -25,41 +44,41 @@ const getRecommand = (target) => {
     const age1 = target.AgeRange.High
     const age2 = target.AgeRange.Low
     const ageAvg = Math.round(((age1 + age2) / 2) / 10) * 10;
-    console.log("ageAvg", ageAvg);
-    params[`AgeRange${ageAvg === 0 ? "00" : ageAvg}`] = "100"
-    //params[`AgeRange${(age2 / 10) * 10}`] = "1"
+    const ageLow = Math.round(((age2 + age2) / 2) / 10) * 10;
+    console.log("ageAvg", ageAvg, "ageLow", ageLow);
+    params[`AgeRange${ageAvg === 0 ? "00" : ageAvg}`] = "80"
     // params[`AgeRange${(age2/10) * 10}`] = 1
-    // if (target.Gender.Value === "Male") {
-    //     params.Male = 1
-    // } else {
-    //     params.Female = 1
-    // }
-    // if (target.Eyeglasses.Value === true) {
-    //     params.Eyeglasses = 1
-    // }
-    // if (target.Mustache.Value === true) {
-    //     params.Mustache = 1
-    // }
-    // if (target.Smile.Value === true) {
-    //     params.Smile = 1
-    // }
-    // if (target.Sunglasses.Value === true) {
-    //     params.Sunglasses = 1
-    // }
-    // target.Emotions.forEach(emo => {
-    //     if(emo.Type === "ANGRY" && emo.Confidence > 80) {
-    //         params.ANGRY = 1
-    //     }
-    //     if(emo.Type === "HAPPY" && emo.Confidence > 80) {
-    //         params.HAPPY = 1
-    //     }
-    //     if(emo.Type === "SAD" && emo.Confidence > 80) {
-    //         params.SAD = 1
-    //     }
-    //     if(emo.Type === "ANGRY" && emo.Confidence > 80) {
-    //         params.CALM = 1
-    //     }
-    // })
+    if (target.Gender.Value === "Male") {
+        params.Male = String(parseInt(target.Gender.Confidence));
+    } else {
+        params.Female = String(parseInt(target.Gender.Confidence));
+    }
+    if (target.Eyeglasses.Value === true) {
+        params.Eyeglasses = String(parseInt(target.Eyeglasses.Confidence));
+    }
+    if (target.Mustache.Value === true) {
+        params.Mustache = String(parseInt(target.Mustache.Confidence));
+    }
+    if (target.Smile.Value === true) {
+        params.Smile = String(parseInt(target.Smile.Confidence));
+    }
+    if (target.Sunglasses.Value === true) {
+        params.Sunglasses = String(parseInt(target.Sunglasses.Confidence));
+    }
+    target.Emotions.forEach(emo => {
+        if (emo.Type === "ANGRY") {
+            params.ANGRY = String(parseInt(emo.Confidence));
+        }
+        if (emo.Type === "HAPPY") {
+            params.HAPPY = String(parseInt(emo.Confidence));
+        }
+        if (emo.Type === "SAD") {
+            params.SAD = String(parseInt(emo.Confidence));
+        }
+        if (emo.Type === "ANGRY") {
+            params.CALM = String(parseInt(emo.Confidence));
+        }
+    })
     // 매개변수 작성
     // const body = qs.stringify(params)
     // console.log(params);
@@ -70,7 +89,8 @@ const getRecommand = (target) => {
     //         //setContent(data.url) // 동영상 주소 변경하는데 성공하면 setContent로 content 상태 변경
     //         //setAds(true) // setAds ads 상태 변경 함수로 ads 상태를 true로 변경
     //     })
-    return axios.post("http://133.186.221.101:5000/api/recommand/v2", { ...params })
+    console.log("api params", params);
+    return axios.post(`${BASE_SERVER_URL}api/recommand/v2`, { ...params })
 
 }
 
