@@ -12,16 +12,20 @@ import {
   CloseOutlined,
 } from "@ant-design/icons";
 
-function OrderC({ icons, coffees, coffeesSelected, className }) {
+function OrderC({
+  icons,
+  coffees,
+  coffeesSelected,
+  className }) {
   return (
-    <Container className={className}>
+    <Container className={className} >
       <Wrapper>
         <div className="row header">
           <div className="headerItem">
             <HomeOutlined className="icon" />
           </div>
           <div className="headerItem">
-            CAMOSK FOOD <VideoCameraAddOutlined />
+            CAMOSK <VideoCameraAddOutlined />
           </div>
           <div className="headerItem">
             <ShoppingCartOutlined />
@@ -41,10 +45,7 @@ function OrderC({ icons, coffees, coffeesSelected, className }) {
             );
           })}
         </div>
-        <div
-          className="temp"
-          style={{ display: "flex", justifyContent: "space-around" }}
-        >
+        <div className="temp" style={{ display: "flex", justifyContent: "space-around" }}>
           {/* <WeatherC />
           <ClockC />
           <NewsC /> */}
@@ -81,7 +82,7 @@ function OrderC({ icons, coffees, coffeesSelected, className }) {
               })}
             </div>
           </div>
-          <div className="column" onClick={() => {}}>
+          <div className="column" onClick={() => { }}>
             <div className="center confirm">
               <CheckOutlined />
               <span>주문확인</span>
@@ -117,10 +118,10 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     font-size: 27px;
-    & .headerItem {
-      cursor: pointer;
-      &:hover {
-        opacity: 0.7;
+    & .headerItem{
+      cursor:pointer;
+      &:hover{
+        opacity:0.7;
       }
     }
   }
@@ -136,9 +137,9 @@ const Wrapper = styled.div`
       flex-flow: column nowrap;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
-      &:hover {
-        opacity: 0.7;
+      cursor:pointer;
+      &:hover{
+          opacity:0.7;
       }
     }
     & .icon {
@@ -153,16 +154,16 @@ const Wrapper = styled.div`
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
-
+    
     & .SelectMenuItem {
       display: flex;
       flex-flow: column wrap;
       justify-content: center;
       align-items: center;
       margin: 25px 0px;
-      cursor: pointer;
-      &:hover {
-        opacity: 0.6;
+      cursor:pointer;
+      &:hover{
+          opacity:0.6;
       }
     }
     & .icon {
@@ -218,9 +219,9 @@ const Wrapper = styled.div`
         text-align: center;
         font-size: 32px;
         background-color: #00b894;
-        cursor: pointer;
-        &:hover {
-          opacity: 0.7;
+        cursor:pointer;
+        &:hover{
+          opacity:0.7;
         }
       }
       & .cancel {
@@ -228,9 +229,9 @@ const Wrapper = styled.div`
         text-align: center;
         font-size: 36px;
         background-color: #b2bec3;
-        cursor: pointer;
-        &:hover {
-          opacity: 0.7;
+        cursor:pointer;
+        &:hover{
+          opacity:0.7;
         }
       }
     }
