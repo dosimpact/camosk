@@ -45,10 +45,10 @@ export default async (client, webcam, targets, address, isTesting, config) => {
         if(isFound){
             //peopleMessage(targets[i], address, config)
             const {key, name, gender, age, clothes} = targets[i]
-            alert(`${key} : ${name}, ${gender}, ${age}, ${clothes}\n${address}`)
+            console.log(`${key} : ${name}, ${gender}, ${age}, ${clothes}\n${address}`)
         } else {
             console.log("No People Found")
         }
     }
-    isTesting(false)
+    //isTesting(false)
 }

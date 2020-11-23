@@ -26,7 +26,8 @@ const getRecommand = (target) => {
     const age2 = target.AgeRange.Low
     const ageAvg = Math.round(((age1 + age2) / 2) / 10) * 10;
     console.log("ageAvg", ageAvg);
-    params[`AgeRange${ageAvg === 0 ? "00" : ageAvg}`] = "1"
+    params[`AgeRange${ageAvg === 0 ? "00" : ageAvg}`] = "100"
+    //params[`AgeRange${(age2 / 10) * 10}`] = "1"
     // params[`AgeRange${(age2/10) * 10}`] = 1
     // if (target.Gender.Value === "Male") {
     //     params.Male = 1
@@ -69,7 +70,7 @@ const getRecommand = (target) => {
     //         //setContent(data.url) // 동영상 주소 변경하는데 성공하면 setContent로 content 상태 변경
     //         //setAds(true) // setAds ads 상태 변경 함수로 ads 상태를 true로 변경
     //     })
-    return axios.post("http://133.186.221.101:3000/api/recommand", { ...params })
+    return axios.post("http://133.186.221.101:5000/api/recommand/v2", { ...params })
 
 }
 
