@@ -15,9 +15,6 @@ import promiseMiddleware from "redux-promise";
 import ReduxThunk from "redux-thunk";
 import GlobalStyles from "Styles/GlobalStyles";
 
-// import * as tmImage from "@teachablemachine/image";
-// window.tmImage = tmImage;
-
 // import * as katex from "katex";
 // window.katex = katex;
 // console.log(window.katex);
@@ -32,7 +29,7 @@ ReactDOM.render(
     store={createStoreWithMiddleware(
       Reducer,
       window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__()
+      window.__REDUX_DEVTOOLS_EXTENSION__()
     )}
   >
     <BrowserRouter>
