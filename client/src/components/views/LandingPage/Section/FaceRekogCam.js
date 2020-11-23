@@ -6,7 +6,7 @@ import * as faceapi from "face-api.js";
 const PERSON_DISAPPER_INTERVAL = 6;
 
 function FaceRekogCam({ setHasPerson }) {
-  const [counter, setCounter] = useState(0);
+  const [, setCounter] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   // useScript(`${process.env.PUBLIC_URLFaceRekogCam}/face-api.min.js`);
@@ -51,24 +51,24 @@ function FaceRekogCam({ setHasPerson }) {
           .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
           .withFaceLandmarks()
           .withFaceExpressions();
-        console.log(detections)
+        console.log(detections);
         if (detections.length) {
           // 얼굴인식 2초뒤에 반응
-          setCounter(prev => {
+          setCounter((prev) => {
             if (prev >= PERSON_DISAPPER_INTERVAL) {
               setHasPerson(true);
               return prev;
             } else {
-              return prev + 1
+              return prev + 1;
             }
           });
         } else {
-          setCounter(prev => {
+          setCounter((prev) => {
             if (prev > 0) {
-              return prev - 1
+              return prev - 1;
             } else if (prev <= 0) {
               setHasPerson(false);
-              return prev
+              return prev;
             }
           });
         }
@@ -101,7 +101,7 @@ function FaceRekogCam({ setHasPerson }) {
         muted
       ></video>
     </>
-  )
+  );
 }
 
-export default FaceRekogCam
+export default FaceRekogCam;
