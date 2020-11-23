@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Auth from "../hoc/auth";
 // pages for this product
@@ -16,14 +16,15 @@ import BlogPage from "./views/BlogPage/BlogPage";
 import CreateBlogPage from "./views/BlogPage/Section.js/CreatePage";
 
 // CAMOSK View
-import BusStop from "./views/CamoskView/BusStop"
-import Elevator from "./views/CamoskView/Elevator"
-import Restaurant from "./views/CamoskView/Restaurant"
-import Road from "./views/CamoskView/Road"
+import BusStop from "./views/CamoskView/BusStop";
+import Elevator from "./views/CamoskView/Elevator";
+import Restaurant from "./views/CamoskView/Restaurant";
+import Road from "./views/CamoskView/Road";
 
 function App() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    // <Suspense fallback={<div>Loading...</div>}>
+    <>
       <NavBar />
       <div>
         <Switch>
@@ -48,22 +49,26 @@ function App() {
           <Route
             exact
             path={process.env.PUBLIC_URL + "/camosk01"}
-            component={Auth(Elevator, null)}
+            component={Elevator}
+            // component={Auth(, null)}
           />
           <Route
             exact
             path={process.env.PUBLIC_URL + "/camosk02"}
-            component={Auth(Restaurant, null)}
+            component={Restaurant}
+            // component={Auth(Restaurant, null)}
           />
           <Route
             exact
             path={process.env.PUBLIC_URL + "/camosk03"}
-            component={Auth(Road, null)}
+            component={Road}
+            // component={Auth(Road, null)}
           />
           <Route
             exact
             path={process.env.PUBLIC_URL + "/camosk04"}
-            component={Auth(BusStop, null)}
+            component={BusStop}
+            // component={Auth(BusStop, null)}
           />
           <Route
             exact
@@ -98,7 +103,7 @@ function App() {
         </Switch>
       </div>
       <Footer />
-    </Suspense>
+    </>
   );
 }
 
