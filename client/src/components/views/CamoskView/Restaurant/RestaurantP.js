@@ -1,30 +1,28 @@
-import React, { useEffect } from 'react'
-import styled from "styled-components"
-import Order from "components/camosks/Order"
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import Order from "components/camosks/Order";
 
-import ClockC from "components/camosks/Clock/ClockC"
-import NewsC from "components/camosks/News/NewsC"
-import WeatherC from "components/camosks/Weather/WeatherC"
-import QRCodeC from "components/camosks/QRCode/QRCodeC"
+// import ClockC from "components/camosks/Clock/ClockC"
+// import NewsC from "components/camosks/News/NewsC"
+// import WeatherC from "components/camosks/Weather/WeatherC"
+// import QRCodeC from "components/camosks/QRCode/QRCodeC"
 import SampleAds from "components/camosks/SampleAds/SampleAdsDummy";
-
 
 /*
     매장 안의 키오스크를 구성한다.
 */
 const RestaurantP = () => {
-    useEffect(() => {
-        window.scrollTo(0, 70);
-        return () => {
-        }
-    }, [])
-    return (
-        <Wrapper>
-            <Container>
-                <Order />
-            </Container>
+  useEffect(() => {
+    window.scrollTo(0, 70);
+    return () => {};
+  }, []);
+  return (
+    <Wrapper>
+      <Container>
+        <Order />
+      </Container>
 
-            {/* 
+      {/* 
             <div className="first">
                 <ClockC />
                 <WeatherC />
@@ -34,32 +32,28 @@ const RestaurantP = () => {
                 <NewsC />
             </Container> */}
 
-            <Container>
-                <SampleAds />
-            </Container>
+      <Container>
+        <SampleAds />
+      </Container>
+    </Wrapper>
+  );
+};
 
-        </Wrapper>
-    )
-}
-
-export default RestaurantP
+export default RestaurantP;
 
 const Wrapper = styled.div`
-  width:100%;
+  width: 100%;
   /* background-color:black; */
   /* color:whitesmoke; */
-  & .first{    
-    padding-top:50px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
+  & .first {
+    padding-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
-  & .second{
+  & .second {
     margin-top: 50px;
   }
 `;
 
-const Container = styled.div`
-
-
-`;
+const Container = styled.div``;
