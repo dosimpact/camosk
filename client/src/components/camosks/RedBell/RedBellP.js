@@ -34,6 +34,7 @@ function RedBellP({ className, count, handleCount, ...props }) {
           <div className="item">
             <div className="subTitle">
               위급상황 발생시 <span className="red">비상벨</span>을 3번 누르시오
+              <br />
               관제센터와 연결됩니다.
             </div>
           </div>
@@ -53,16 +54,20 @@ const Wrapper = styled.div`
     color: red;
   }
   .container {
-    max-width: 50%;
-
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     padding: 10px;
     font-weight: 700;
+    font-size: 32px;
     background-color: ${(props) => (props.red ? "red" : "#FED709")};
 
     .innerContainer {
+      width: 100%;
+      height: 100%;
+
       border: 3px solid black;
       padding: 10px;
       display: grid;
@@ -70,10 +75,21 @@ const Wrapper = styled.div`
       gap: 2px;
       & .item:nth-child(1) {
         border-radius: 10px;
-        transition: all 5s ease-in-out;
+        transition: all 0.5s ease-in-out;
         :hover {
           background-color: red;
-          opacity: 0.5;
+          /* opacity: 0.5; */
+          .title {
+            color: black;
+          }
+        }
+      }
+      & .item:nth-child(2) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .subTitle {
+          color: black;
         }
       }
     }
