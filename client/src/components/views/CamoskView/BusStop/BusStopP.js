@@ -10,7 +10,6 @@ import SampleAds from "components/camosks/SampleAds/SampleAdsDummy";
 import busWaitList from 'components/camosks/Bus/BusWaitList'
 import RedBellButton from '../../../camosks/RedBell/RedBellC'
 
-
 /*
     매장 안의 키오스크를 구성한다.
 */
@@ -49,14 +48,14 @@ const BusStopP = () => {
             /* 버스 정류장 P에 버스 도착 알리미 기능 부여 
             현재 위치 근처 정류장 탐지 기능 */
             }
-            <div style={{display: 'inline-flex', flexDirection: 'column'}}>
+            <div style={{width: '100%', display: 'grid', gridTemplateColumns: 'repeat(3, 240px)',justifyContent: 'center' ,rowGap: '30px', columnGap: '30px'}}>
                 {!waitList ? <h1>{'준비중입니다'}</h1> : waitList.map(el => {
                     return (
-                        <div style={{backgroundColor: 'white'}} className={'BusContainer'}>
-                            <h3>{el.busName}<h5>{'현재 위치 : '}{el.location}</h5></h3>
-                            <small style={{color: 'black'}}>{el.flag === "PASS" ? "운행 중" : "운행 종료"}</small>
-                            <h5>{el.destination} {el.time}{'분 전'}</h5>
-                            <hr />
+                        <div className={'BusContainer'}>
+                            <h2 style={{color: 'white'}}>{el.busName}<h5 style={{color: 'white'}}>{'현재 위치 : '}{el.location}{"정거장 전"}</h5></h2>
+                            <h5 style={{color: 'white'}}>{el.time}</h5>
+                            <small style={{color: 'white'}}>{el.flag === "PASS" ? "운행 중" : "운행 종료"}</small>
+                            <h5 style={{color: 'white'}}>종착지점: {el.destination}</h5>
                         </div>
                     )
                 })}
