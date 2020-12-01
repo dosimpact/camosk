@@ -1,10 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const NameExist = () => {
+import { getOrderWithUserName } from "apis/orders";
+
+const NameExist = ({ name }) => {
   const [loading, setLoading] = useState(false);
 
-  return <div>구매 이력</div>;
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+
+      const res = await getOrderWithUserName(name);
+      setData(res);
+      console.log("res", res);
+      setLoading(false);
+    };
+    fetchData();
+    return () => {};
+  }, [name, setLoading]);
+
+  return (
+    <div className="logContainer">
+      <div className="header">구매 이력</div>
+      {loading && <div>로딩중</div>}
+      {!loading && <div>{data}</div>}
+    </div>
+  );
 };
 
 const NameNonExist = () => {

@@ -25,13 +25,17 @@ router.post("/create", (req, res) => {
 });
 
 router.get("/getorderwithname/:name", (req, res) => {
+  if (!req.params?.name) {
+    return res.status(200).json({ success: false, message: "no name" });
+  }
   User.findOne({ name: req.params?.name }, (err, user) => {
-    if (err) return res.json({ success: false, err });
+    if (err || !user?._id)
+      return res.json({ success: false, message: "cannot find user" });
 
-    Order.findOne({ user: user._id })
+    Order.findOne({ user: user?._id })
       .populate("user")
       .exec((err, order) => {
-        if (err) return res.json({ success: false, err });
+        if (err) return res.json({ success: false, message: err });
         return res.status(200).json({ success: true, order });
       });
   });
