@@ -56,8 +56,8 @@ const OrderNameExistP = ({ order, handle_setCoffe, personInfo }) => {
                 return (
                   <>
                     <img
+                      alt={`${coffees_dummy[e]?.name}`}
                       src={"https://ediya.com" + coffees_dummy[e]?.path}
-                      alt={coffees_dummy[e]?.name}
                       className="icon"
                     ></img>
                     <span class="content">{coffees_dummy[e]?.name}</span>

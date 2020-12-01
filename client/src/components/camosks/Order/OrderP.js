@@ -4,13 +4,7 @@ import React from "react";
 // import NewsC from '../../News/NewsC';
 
 import styled from "styled-components";
-import {
-  VideoCameraAddOutlined,
-  HomeOutlined,
-  ShoppingCartOutlined,
-  CheckOutlined,
-  CloseOutlined,
-} from "@ant-design/icons";
+import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 
 function OrderP({
   icons,

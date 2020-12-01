@@ -40,6 +40,7 @@ export default function PeopleCapture({ hasPerson, onChange }) {
       }
     }
     return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasPerson]);
 
   return (
