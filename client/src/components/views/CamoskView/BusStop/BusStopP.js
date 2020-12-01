@@ -45,6 +45,7 @@ const BusStopP = () => {
           rowGap: "30px",
           columnGap: "30px",
           padding: "20px 0px",
+          fontSize: "24px",
         }}
       >
         {!waitList ? (
@@ -54,7 +55,16 @@ const BusStopP = () => {
             return (
               <div className={"BusContainer"}>
                 <h2 style={{ color: "white" }}>
-                  {el.busName}
+                  <div
+                    style={{
+                      color: "white",
+                      fontSize: "32px",
+                      fontWeight: "bold",
+                      marginBottom: "5px",
+                    }}
+                  >
+                    {el.busName}
+                  </div>
                   <h5 style={{ color: "white" }}>
                     {"현재 위치 : "}
                     {el.location}
