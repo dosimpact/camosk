@@ -11,9 +11,6 @@ function FaceRekogCam({ onChange, className }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const canvasRef = useRef();
-  const canvasEl = React.createElement("canvas", { ref: canvasRef }, "");
-
   const videoRef = useRef();
   const videoEl = React.createElement(
     "video",
@@ -54,8 +51,12 @@ function FaceRekogCam({ onChange, className }) {
     setLoading(false);
 
     const handlePlay = video.addEventListener("play", () => {
+      if (document.getElementById("FaceRekogCamCanvas")) {
+        return;
+      }
       const canvas = faceapi.createCanvasFromMedia(video);
       canvas.id = "FaceRekogCamCanvas";
+      console.log("#FaceRekogCamCanvas 추가");
       document.getElementById("FaceRekogCamContainer").appendChild(canvas);
 
       const displaySize = { width: video.width, height: video.height };
@@ -71,7 +72,7 @@ function FaceRekogCam({ onChange, className }) {
           // 얼굴인식 2초뒤에 반응
           setCounter((prev) => {
             if (prev >= PERSON_DISAPPER_INTERVAL) {
-              onChange(true);
+              if (onChange) onChange(true);
               return prev;
             } else {
               return prev + 1;
@@ -82,7 +83,7 @@ function FaceRekogCam({ onChange, className }) {
             if (prev > 0) {
               return prev - 1;
             } else if (prev <= 0) {
-              onChange(false);
+              if (onChange) onChange(false);
               return prev;
             }
           });
@@ -99,6 +100,7 @@ function FaceRekogCam({ onChange, className }) {
     });
 
     return () => {
+      console.log("#FaceRekogCamCanvas 제거");
       video.removeEventListener("play", handlePlay);
       document
         .getElementById("FaceRekogCamContainer")

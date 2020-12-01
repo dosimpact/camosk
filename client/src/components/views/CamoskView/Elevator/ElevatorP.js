@@ -10,7 +10,7 @@ import AdvertisePanel from "components/camosks/SampleAds/SampleAdsDummy";
 
 // import PlayAdsTop from "components/camosks/SampleAds/PlayAdsTop";
 // import PlayAdsBottom from "components/camosks/SampleAds/PlayAdsBottom";
-import FaceRekogCam from "components/camosks/FaceFeedCam/FaceRekogCam";
+import FaceRekogCam from "components/camosks/FaceFeedCam/v2/FaceRekogCam";
 import FaceInfoCam from "components/camosks/FaceInfoCam/FaceInfoCam";
 
 // import PeopleCapture from "../../../camosks/People/PeopleCapture";
@@ -71,7 +71,7 @@ const ElevatorP = ({
           </>
         )}
       </Container>
-      <FaceRekogCam setHasPerson={setHasPerson} />
+      <FaceRekogCam className="FaceRekogCam" onChange={setHasPerson} />
       <FaceInfoCam
         trigger={hasPerson}
         onChange={(target) => {
