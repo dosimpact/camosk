@@ -1,4 +1,11 @@
-export default async (client, webcam, targets, address, isTesting) => {
+export default async (
+  client,
+  webcam,
+  targets,
+  address,
+  isTesting,
+  onChange
+) => {
   console.log("Captured");
   const captured = webcam.current.getScreenshot();
   const buf = Buffer.from(
@@ -51,6 +58,7 @@ export default async (client, webcam, targets, address, isTesting) => {
       const { id, name, cause, term } = targets[i];
       // alert(`${id} : ${name}, ${cause}, ${term}\n${address}`)
       console.log(`${id} : ${name}, ${cause}, ${term}\n${address}`);
+      if (onChange) onChange({ id, name, cause, term, address });
     } else {
       console.log("No People Found");
     }

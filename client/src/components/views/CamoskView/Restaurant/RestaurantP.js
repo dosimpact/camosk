@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Order from "components/camosks/Order";
-import OrderLog from "components/camosks/Order/Section/OrderLog";
 
 // import ClockC from "components/camosks/Clock/ClockC"
 // import NewsC from "components/camosks/News/NewsC"
@@ -22,6 +21,8 @@ const RestaurantP = ({
   handle_onTarget,
   urlTop,
   urlBottom,
+  name,
+  handle_setPersonName,
 }) => {
   useEffect(() => {
     window.scrollTo(0, 70);
@@ -73,11 +74,7 @@ const RestaurantP = ({
       </Container>
 
       <Container>
-        <OrderLog />
-      </Container>
-
-      <Container>
-        <Order />
+        <Order name={name} />
       </Container>
 
       {/* invisible area */}
@@ -90,7 +87,15 @@ const RestaurantP = ({
       />
       {/* The Webcam Component PeopleCapture is attached */}
       {/*<PeopleCapture hasPerson={hasPerson}/>*/}
-      {<CriminalCapture hasPerson={hasPerson} />}
+      {
+        <CriminalCapture
+          hasPerson={hasPerson}
+          onChange={(e) => {
+            console.log("CriminalCapture", e);
+            handle_setPersonName(e?.name);
+          }}
+        />
+      }
       {/*우선 엘레베이터에 범죄자 찾기 기능 구현*/}
     </Wrapper>
   );

@@ -20,6 +20,16 @@ const RestaurantC = () => {
     setUrlBottom(data2?.url);
   };
 
+  const [name, setName] = useState(null);
+  const handle_setPersonName = (name) => {
+    if (name === "김도영") {
+      setName("kimdoyoung");
+    }
+    if (name === "이노원") {
+      setName("leenoone");
+    }
+  };
+
   return (
     <>
       <RestaurantP
@@ -28,6 +38,8 @@ const RestaurantC = () => {
         setHasPerson={setHasPerson}
         urlTop={urlTop}
         urlBottom={urlBottom}
+        name={name}
+        handle_setPersonName={handle_setPersonName}
       />
     </>
   );

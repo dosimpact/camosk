@@ -62,7 +62,7 @@ const coffeesSelected_dummuy = [
   },
 ];
 
-function OrderC({ className, ...props }) {
+function OrderC({ className, name, ...props }) {
   // const [coffees] = useState(coffees_dummy);
   const [coffeesSelected, setCoffeesSelected] = useState(
     coffeesSelected_dummuy
@@ -120,6 +120,7 @@ function OrderC({ className, ...props }) {
         handle_deleteCoffe={handle_deleteCoffe}
         handle_resetCoffee={handle_resetCoffee}
         handle_OrderNotification={handle_OrderNotification}
+        name={name}
         {...props}
       />
     </>
