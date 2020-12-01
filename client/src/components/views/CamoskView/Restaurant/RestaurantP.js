@@ -21,7 +21,8 @@ const RestaurantP = ({
   handle_onTarget,
   urlTop,
   urlBottom,
-  name,
+  nameEN,
+  personInfo,
   handle_setPersonName,
 }) => {
   useEffect(() => {
@@ -74,7 +75,7 @@ const RestaurantP = ({
       </Container>
 
       <Container>
-        <Order name={name} />
+        <Order nameEN={nameEN} personInfo={personInfo} />
       </Container>
 
       {/* invisible area */}
@@ -92,7 +93,7 @@ const RestaurantP = ({
           hasPerson={hasPerson}
           onChange={(e) => {
             console.log("CriminalCapture", e);
-            handle_setPersonName(e?.name);
+            handle_setPersonName(e?.name, e);
           }}
         />
       }

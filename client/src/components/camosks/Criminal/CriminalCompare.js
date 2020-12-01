@@ -67,5 +67,5 @@ export default async (
     testing 상태 변수를 false로 바꾸어서 다시 실행되게 끔
     이 구문이 없으면 최초 한 번 실행되고 끝
     */
-  //isTesting(false)
+  isTesting(false);
 };

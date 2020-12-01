@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RestaurantP from "./RestaurantP";
 import { getRecommand } from "apis/reommand";
 
@@ -20,8 +20,17 @@ const RestaurantC = () => {
     setUrlBottom(data2?.url);
   };
 
-  const [name, setName] = useState(null);
-  const handle_setPersonName = (name) => {
+  const [personInfo, setPersonInfo] = useState({
+    address: "대한민국 경기도 용인시 수지구 동천동 13",
+    cause: "불명",
+    id: "101",
+    name: "김도영",
+    term: "2020-07-01~2020-12-31",
+  });
+  const [nameEN, setName] = useState(null);
+
+  const handle_setPersonName = (name, e) => {
+    setPersonInfo(e);
     if (name === "김도영") {
       setName("kimdoyoung");
     }
@@ -29,6 +38,14 @@ const RestaurantC = () => {
       setName("leenoone");
     }
   };
+  useEffect(() => {
+    window.scrollTo(0, 70);
+    return () => {};
+  }, []);
+
+  useEffect(() => {
+    console.log("change hasPerson", hasPerson);
+  }, [hasPerson]);
 
   return (
     <>
@@ -38,7 +55,8 @@ const RestaurantC = () => {
         setHasPerson={setHasPerson}
         urlTop={urlTop}
         urlBottom={urlBottom}
-        name={name}
+        nameEN={nameEN}
+        personInfo={personInfo}
         handle_setPersonName={handle_setPersonName}
       />
     </>

@@ -3,29 +3,28 @@ import styled from "styled-components";
 
 import { getOrderWithUserName } from "apis/orders";
 
-const NameExist = ({ name }) => {
+const NameExist = ({ nameEN }) => {
   const [loading, setLoading] = useState(false);
 
-  const [data, setData] = useState(null);
+  const [order, setOrder] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
 
-      const res = await getOrderWithUserName(name);
-      setData(res);
-      console.log("res", res);
+      const result = await getOrderWithUserName(nameEN);
+      setOrder(result?.data?.order);
       setLoading(false);
     };
     fetchData();
     return () => {};
-  }, [name, setLoading]);
+  }, [nameEN, setLoading]);
 
   return (
     <div className="logContainer">
       <div className="header">구매 이력</div>
       {loading && <div>로딩중</div>}
-      {!loading && <div>{data}</div>}
+      {!loading && <div>{JSON.stringify(order)}</div>}
     </div>
   );
 };
@@ -34,11 +33,13 @@ const NameNonExist = () => {
   return <div>얼굴을 인식시켜 주세요 구매 정보가 나옵니다.</div>;
 };
 
-const OrderLog = ({ name, onChange }) => {
-  console.log("OrderLog", name);
+const OrderLog = ({ nameEN, onChange }) => {
+  console.log("OrderLog", nameEN);
 
   return (
-    <Container>{name ? <NameExist name={name} /> : <NameNonExist />}</Container>
+    <Container>
+      {nameEN ? <NameExist nameEN={nameEN} /> : <NameNonExist />}
+    </Container>
   );
 };
 
