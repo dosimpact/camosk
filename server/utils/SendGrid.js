@@ -8,7 +8,7 @@ export const sendEmail = (email) => {
 export const sendSecretMail = (adress, content) => {
   const email = {
     to: adress,
-    from: "ypd03008@gmail.com",
+    from: "ypd03008@naver.com",
     subject: "Camosk 알리미",
     text: `Camosk 입니다.  :  ${content} 감사합니다.`,
     html: `Camosk 입니다.<br/>  :  <strong>${content}</strong><br/> 감사합니다.`,
