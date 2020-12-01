@@ -6,62 +6,11 @@ import { ADMIN_PH } from "apis/config";
 import { SMS } from "apis/notification";
 import OrderLog from "components/camosks/Order/Section/OrderLog";
 
-const icons = [
-  { name: "Burger", path: "svg/002-burger.svg" },
-  { name: "hot dog", path: "svg/003-hot dog.svg" },
-  { name: "fries", path: "svg/004-french fries.svg" },
-  { name: "chicken", path: "svg/005-roast chicken.svg" },
-  { name: "pizza", path: "svg/009-pizza.svg" },
-  { name: "steak", path: "svg/020-steak.svg" },
-  { name: "Desert", path: "svg/032-avocado.svg" },
-  { name: "Beverage", path: "svg/036-mineral water.svg" },
-];
-
-const coffees_dummy = [
-  {
-    name: "아인슈페너 HOT",
-    path: "/files/menu/IMG_1600305773256.png",
-  },
-  {
-    name: "콜드브루 아인슈페너",
-    path: "/files/menu/IMG_1600310535229.png",
-  },
-  {
-    name: "골든바닐라슈페너",
-    path: "/files/menu/IMG_1600316010129.png",
-  },
-  {
-    name: "골든바닐라슈페너 ICED",
-    path: "/files/menu/IMG_1600316075704.png",
-  },
-  {
-    name: "이디야 사과 & 당근 주스",
-    path: "/files/menu/IMG_1594686206508.jpg",
-  },
-  {
-    name: "이디야 비트 & 오렌지 주스",
-    path: "/files/menu/IMG_1594686391619.jpg",
-  },
-  {
-    name: "블루코코 후룻치노",
-    path: "/files/menu/IMG_1591605395331.png",
-  },
-  {
-    name: "망고샤베트 빙수",
-    path: "/files/menu/IMG_1589170672473.png",
-  },
-];
-
-const coffeesSelected_dummuy = [
-  {
-    name: "아인슈페너 HOT",
-    path: "/files/menu/IMG_1600305773256.png",
-  },
-  {
-    name: "콜드브루 아인슈페너",
-    path: "/files/menu/IMG_1600310535229.png",
-  },
-];
+import {
+  coffeesSelected_dummuy,
+  coffees_dummy,
+  icons,
+} from "./Section/OrderData";
 
 function OrderC({ className, nameEN, personInfo, ...props }) {
   // const [coffees] = useState(coffees_dummy);
@@ -91,6 +40,7 @@ function OrderC({ className, nameEN, personInfo, ...props }) {
       return [...prev];
     });
   };
+  const handle_setCoffe = (arr) => {};
 
   const handle_OrderNotification = async () => {
     console.log("setCoffeesSelected", coffeesSelected);
@@ -112,7 +62,11 @@ function OrderC({ className, nameEN, personInfo, ...props }) {
 
   return (
     <>
-      <OrderLog nameEN={nameEN} personInfo={personInfo} />
+      <OrderLog
+        handle_setCoffe={handle_setCoffe}
+        nameEN={nameEN}
+        personInfo={personInfo}
+      />
       <OrderP
         icons={icons}
         coffees={coffees_dummy}
