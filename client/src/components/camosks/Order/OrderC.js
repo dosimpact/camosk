@@ -4,6 +4,7 @@ import OrderP from "./OrderP";
 
 import { ADMIN_PH } from "apis/config";
 import { SMS } from "apis/notification";
+import OrderLog from "components/camosks/Order/Section/OrderLog";
 
 const icons = [
   { name: "Burger", path: "svg/002-burger.svg" },
@@ -62,7 +63,7 @@ const coffeesSelected_dummuy = [
   },
 ];
 
-function OrderC({ className, name, ...props }) {
+function OrderC({ className, nameEN, personInfo, ...props }) {
   // const [coffees] = useState(coffees_dummy);
   const [coffeesSelected, setCoffeesSelected] = useState(
     coffeesSelected_dummuy
@@ -111,6 +112,7 @@ function OrderC({ className, name, ...props }) {
 
   return (
     <>
+      <OrderLog nameEN={nameEN} personInfo={personInfo} />
       <OrderP
         icons={icons}
         coffees={coffees_dummy}
@@ -120,7 +122,6 @@ function OrderC({ className, name, ...props }) {
         handle_deleteCoffe={handle_deleteCoffe}
         handle_resetCoffee={handle_resetCoffee}
         handle_OrderNotification={handle_OrderNotification}
-        name={name}
         {...props}
       />
     </>

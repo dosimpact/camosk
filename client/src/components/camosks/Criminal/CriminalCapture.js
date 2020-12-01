@@ -28,16 +28,19 @@ export default function PeopleCapture({ hasPerson, onChange }) {
     locationLoad().then((data) => setAddress(data));
   }, []);
 
-  if (hasPerson && !testing) {
-    // 인물 비교 중에는 testing이 true가 되어 중복 실행 방지
-    if (targets.length !== 0 && address !== "") {
-      isTesting(true);
-      console.log("This should be loaded at once..."); // Warning Sign
-      criminalCompare(client, webcam, targets, address, isTesting, onChange); // Async Function
-    } else {
-      console.log("잠시만 기다려주십시오");
+  useEffect(() => {
+    if (hasPerson && !testing) {
+      // 인물 비교 중에는 testing이 true가 되어 중복 실행 방지
+      if (targets.length !== 0 && address !== "") {
+        isTesting(true);
+        console.log("This should be loaded at once..."); // Warning Sign
+        criminalCompare(client, webcam, targets, address, isTesting, onChange); // Async Function
+      } else {
+        console.log("잠시만 기다려주십시오");
+      }
     }
-  }
+    return () => {};
+  }, [hasPerson]);
 
   return (
     <div>
