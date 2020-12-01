@@ -63,7 +63,7 @@ const fetchApi = function (target, setAds, setContent) {
   // const body = qs.stringify(params)
   console.log(params);
   axios
-    .post("http://133.186.221.101:3000/api/recommand/v2", { ...params })
+    .post("http://133.186.221.101:5000/api/recommand/v2", { ...params })
     .then((resp) => resp.data)
     .then((data) => {
       console.log(data.sucess);
