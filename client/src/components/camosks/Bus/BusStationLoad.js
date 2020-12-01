@@ -11,8 +11,8 @@ export default async () => {
             })
         })
     })()
-    const x = position.lon
-    const y = position.lat
+    const x = 127.11238794518175 //position.lon
+    const y = 37.32036519228536 //position.lat
     const apiKey = 'F958WxqdcNBa6Hgw%2BxwNxBr2NseHWX1M5p%2F%2F3ptj4GuJvJuTk%2FoAgwlDIEiGmbKqG8C%2BJ8RKUH0bTcZ5jyvKEg%3D%3D'
 
     const fullUrl = `${apiUrl}?serviceKey=${apiKey}&x=${x}&y=${y}`
