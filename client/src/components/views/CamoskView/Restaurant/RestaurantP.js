@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Order from "components/camosks/Order";
+import OrderLog from "components/camosks/Order/Section/OrderLog";
 
 // import ClockC from "components/camosks/Clock/ClockC"
 // import NewsC from "components/camosks/News/NewsC"
@@ -69,6 +70,10 @@ const RestaurantP = ({
             )}
           </div>
         </div>
+      </Container>
+
+      <Container>
+        <OrderLog />
       </Container>
 
       <Container>
