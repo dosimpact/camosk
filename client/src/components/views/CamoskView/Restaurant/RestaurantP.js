@@ -7,7 +7,7 @@ import Order from "components/camosks/Order";
 // import WeatherC from "components/camosks/Weather/WeatherC"
 // import QRCodeC from "components/camosks/QRCode/QRCodeC"
 import AdvertisePanel from "components/camosks/SampleAds/SampleAdsDummy";
-import FaceRekogCam from "components/camosks/FaceFeedCam/FaceRekogCam";
+import FaceRekogCam from "components/camosks/FaceFeedCam/v2/FaceRekogCam";
 import FaceInfoCam from "components/camosks/FaceInfoCam/FaceInfoCam";
 
 // import PeopleCapture from "../../../camosks/People/PeopleCapture";
@@ -26,6 +26,7 @@ const RestaurantP = ({
     window.scrollTo(0, 70);
     return () => {};
   }, []);
+
   return (
     <Wrapper>
       <Container>
@@ -48,7 +49,7 @@ const RestaurantP = ({
           </>
         )}
       </Container>
-      <FaceRekogCam setHasPerson={setHasPerson} />
+      <FaceRekogCam onChange={setHasPerson} />
       <FaceInfoCam
         trigger={hasPerson}
         onChange={(target) => {
