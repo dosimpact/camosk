@@ -6,6 +6,14 @@ import OrderNameExistP from "./OrderNameExistP";
 
 import { coffeesSelected_dummuy, coffees_dummy } from "./OrderData";
 
+import {
+  VideoCameraAddOutlined,
+  HomeOutlined,
+  ShoppingCartOutlined,
+  CheckOutlined,
+  CloseOutlined,
+} from "@ant-design/icons";
+
 const NameExist = ({ nameEN, handle_setCoffe, personInfo }) => {
   const [loading, setLoading] = useState(false);
 
@@ -24,8 +32,7 @@ const NameExist = ({ nameEN, handle_setCoffe, personInfo }) => {
   }, [nameEN, setLoading]);
 
   return (
-    <div className="logContainer">
-      <div className="header">구매 이력</div>
+    <>
       {loading && <div>로딩중</div>}
       {!loading && (
         <OrderNameExistP
@@ -34,12 +41,24 @@ const NameExist = ({ nameEN, handle_setCoffe, personInfo }) => {
           personInfo={personInfo}
         />
       )}
-    </div>
+    </>
   );
 };
 
 const NameNonExist = () => {
-  return <div>얼굴을 인식시켜 주세요 구매 정보가 나옵니다.</div>;
+  return (
+    <div className="row header">
+      <div className="headerItem">
+        얼굴을 인식시켜 주세요 구매 정보가 나옵니다.
+      </div>
+      <div className="headerItem">
+        CAMOSK <VideoCameraAddOutlined />
+      </div>
+      <div className="headerItem">
+        <ShoppingCartOutlined />
+      </div>
+    </div>
+  );
 };
 
 const OrderLog = ({ handle_setCoffe, nameEN, personInfo }) => {
@@ -62,4 +81,26 @@ const OrderLog = ({ handle_setCoffe, nameEN, personInfo }) => {
 
 export default OrderLog;
 
-const Container = styled.div``;
+const Container = styled.div`
+  min-height: 400px;
+  & .row {
+    min-height: 400px;
+    height: 100%;
+    border-bottom: 1px solid #e6e6e6;
+  }
+
+  & .header {
+    padding: 20px;
+    display: flex;
+    flex-grow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 27px;
+    & .headerItem {
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+`;
