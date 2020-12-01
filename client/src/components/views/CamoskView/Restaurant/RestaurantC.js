@@ -27,6 +27,7 @@ const RestaurantC = () => {
         hasPerson={hasPerson}
         setHasPerson={setHasPerson}
         urlTop={urlTop}
+        urlBottom={urlBottom}
       />
     </>
   );

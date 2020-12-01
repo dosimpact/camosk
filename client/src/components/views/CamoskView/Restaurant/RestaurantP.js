@@ -15,7 +15,13 @@ import CriminalCapture from "../../../camosks/Criminal/CriminalCapture";
 /*
     매장 안의 키오스크를 구성한다.
 */
-const RestaurantP = ({ hasPerson, setHasPerson, handle_onTarget, urlTop }) => {
+const RestaurantP = ({
+  hasPerson,
+  setHasPerson,
+  handle_onTarget,
+  urlTop,
+  urlBottom,
+}) => {
   useEffect(() => {
     window.scrollTo(0, 70);
     return () => {};
@@ -25,13 +31,13 @@ const RestaurantP = ({ hasPerson, setHasPerson, handle_onTarget, urlTop }) => {
     <Wrapper>
       <Container>
         <div className="headerPart">
-          <FaceRekogCam
-            className="column FaceRekogCam"
-            onChange={setHasPerson}
-          />
+          <div className="column">
+            <FaceRekogCam className=" FaceRekogCam" onChange={setHasPerson} />
+          </div>
           <div className="column">
             {hasPerson && urlTop ? (
               <AdvertisePanel
+                className="AdvertisePanel"
                 url={
                   urlTop
                     ? urlTop
@@ -39,7 +45,27 @@ const RestaurantP = ({ hasPerson, setHasPerson, handle_onTarget, urlTop }) => {
                 }
               />
             ) : (
-              <AdvertisePanel url="https://www.youtube.com/watch?v=HxhjperItvI" />
+              <AdvertisePanel
+                className="AdvertisePanel"
+                url="https://www.youtube.com/watch?v=HxhjperItvI"
+              />
+            )}
+          </div>
+          <div className="column">
+            {hasPerson && urlBottom ? (
+              <AdvertisePanel
+                className="AdvertisePanel"
+                url={
+                  urlBottom
+                    ? urlBottom
+                    : "https://www.youtube.com/watch?v=zoGg0KPa4a0"
+                }
+              />
+            ) : (
+              <AdvertisePanel
+                className="AdvertisePanel"
+                url="https://www.youtube.com/watch?v=HxhjperItvI"
+              />
             )}
           </div>
         </div>
@@ -73,10 +99,17 @@ const Wrapper = styled.div`
     display: flex;
     flex-flow: row nowrap;
     & .column {
-    }
-
-    & .FaceRekogCam {
       height: 180px;
+      flex: 1;
+    }
+    & .column:nth-child(1) {
+      min-width: 250px;
+      max-width: 250px;
+      flex: 1 1auto;
+    }
+    & .FaceRekogCam {
+      height: 100%;
+      width: 100%;
     }
   }
   & .first {
@@ -87,6 +120,11 @@ const Wrapper = styled.div`
 
   & .second {
     margin-top: 50px;
+  }
+
+  & .AdvertisePanel {
+    /* width: 80vw; */
+    height: 100%;
   }
 `;
 
