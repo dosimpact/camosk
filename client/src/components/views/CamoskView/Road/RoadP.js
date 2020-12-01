@@ -16,6 +16,29 @@ import CriminalCapture from "../../../camosks/Criminal/CriminalCapture";
 /*
     매장 안의 키오스크를 구성한다.
 */
+
+import ClockC from "components/camosks/Clock/ClockC";
+import NewsC from "components/camosks/News/NewsC";
+import WeatherC from "components/camosks/Weather/WeatherC";
+
+const AdPart = ({ hasPerson, url }) => {
+  return (
+    <>
+      {hasPerson && url ? (
+        <AdvertisePanel
+          className="AdvertisePanel"
+          url={url ? url : "https://www.youtube.com/watch?v=zoGg0KPa4a0"}
+        />
+      ) : (
+        <AdvertisePanel
+          className="AdvertisePanel"
+          url="https://www.youtube.com/watch?v=HxhjperItvI"
+        />
+      )}
+    </>
+  );
+};
+
 const RoadP = ({
   hasPerson,
   setHasPerson,
@@ -31,33 +54,45 @@ const RoadP = ({
   return (
     <Wrapper>
       <Container>
-        <div className="headerPart">
-          <div className="column">
-            <FaceRekogCam className=" FaceRekogCam" onChange={setHasPerson} />
-          </div>
-          <div className="column">
-            <QRCode
-              className="QRCode"
-              url="https://www.youtube.com/watch?v=HxhjperItvI"
-            />
-          </div>
-          <div className="column">
-            {hasPerson && urlBottom ? (
-              <AdvertisePanel
-                className="AdvertisePanel"
-                url={
-                  urlBottom
-                    ? urlBottom
-                    : "https://www.youtube.com/watch?v=zoGg0KPa4a0"
-                }
-              />
-            ) : (
-              <AdvertisePanel
-                className="AdvertisePanel"
-                url="https://www.youtube.com/watch?v=HxhjperItvI"
-              />
-            )}
-          </div>
+        <div className="area1">
+          <AdPart hasPerson={hasPerson} url={urlBottom} />
+        </div>
+        <div className="area2">
+          <FaceRekogCam className="FaceRekogCam" onChange={setHasPerson} />
+        </div>
+        <div className="area3">
+          <ClockC />
+          <WeatherC />
+        </div>
+
+        <div className="area4">
+          <AdPart hasPerson={hasPerson} url={urlBottom} />
+        </div>
+        <div className="area5">
+          <AdPart hasPerson={hasPerson} url={urlBottom} />
+        </div>
+        <div className="area6">
+          <AdPart hasPerson={hasPerson} url={urlBottom} />
+        </div>
+
+        <div className="area7">
+          <FaceRekogCam className="FaceRekogCam" onChange={setHasPerson} />
+        </div>
+        <div className="area8">
+          <AdPart hasPerson={hasPerson} url={urlBottom} />
+        </div>
+        <div className="area9">
+          <AdPart hasPerson={hasPerson} url={urlBottom} />
+        </div>
+
+        <div className="area10">
+          <QRCode
+            className="QRCode"
+            url="https://www.youtube.com/watch?v=HxhjperItvI"
+          />
+        </div>
+        <div className="area11">
+          <AdPart hasPerson={hasPerson} url={urlBottom} />
         </div>
       </Container>
 
@@ -78,43 +113,57 @@ export default RoadP;
 
 const Wrapper = styled.div`
   width: 100%;
-  & .headerPart {
-    display: flex;
-    flex-flow: row nowrap;
-    & .column {
-      height: 180px;
-      flex: 1;
-    }
-    & .column:nth-child(1) {
-      min-width: 250px;
-      max-width: 250px;
-      flex: 1 1auto;
-    }
-    & .FaceRekogCam {
-      height: 100%;
-      width: 100%;
-    }
-  }
-  & .first {
-    padding-top: 50px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  & .second {
-    margin-top: 50px;
+  & .FaceRekogCam {
+    height: 100%;
+    width: 100%;
   }
 
   & .AdvertisePanel {
-    /* width: 80vw; */
     height: 100%;
+    width: 100%;
   }
 
   & .QRCode {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    width: 100%;
   }
 `;
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: grid;
+  gap: 1px;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-auto-rows: 1fr 1fr 1fr; */
+  grid-auto-rows: 305px;
+  /* grid-template-areas: "" area1 area2 area3 "   " area4 area4 area6 "   " area4 area4 area7 "   " area8 area9 area9 ""; */
+
+  & .area1 {
+    grid-area: span 2 / span 2;
+  }
+  & .area2 {
+  }
+  & .area3 {
+  }
+  & .area4 {
+  }
+  & .area5 {
+    grid-area: span 2 / span 1;
+  }
+  & .area6 {
+  }
+  & .area7 {
+  }
+  & .area8 {
+  }
+  & .area9 {
+  }
+  & .area10 {
+  }
+  & .area11 {
+  }
+  & .area12 {
+  }
+`;

@@ -4,14 +4,9 @@ import styled from "styled-components";
 import { getOrderWithUserName } from "apis/orders";
 import OrderNameExistP from "./OrderNameExistP";
 
-import { coffeesSelected_dummuy, coffees_dummy } from "./OrderData";
-
 import {
   VideoCameraAddOutlined,
-  HomeOutlined,
   ShoppingCartOutlined,
-  CheckOutlined,
-  CloseOutlined,
 } from "@ant-design/icons";
 
 const NameExist = ({ nameEN, handle_setCoffe, personInfo }) => {

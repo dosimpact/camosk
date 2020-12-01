@@ -22,7 +22,7 @@ function QRCodeP({ url, sizeable = false, className }) {
         <img
           src={code}
           alt="ad-qrcode"
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "60%", height: "75%" }}
           onMouseOver={(event) => handleHover(event, 1)}
           onMouseLeave={(event) => handleHover(event, 0)}
         />
