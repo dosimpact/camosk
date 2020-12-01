@@ -109,31 +109,44 @@ function FaceRekogCam({ onChange, className }) {
   }, [onChange]);
 
   return (
-    <Container className={className} id="FaceRekogCamContainer">
-      {loading ? "loading..." : `${error ? "Cam Device is not founded" : ""}`}
-      {videoEl}
-    </Container>
+    <OutterContainer className={className}>
+      <Container id="FaceRekogCamContainer">
+        {loading ? "loading..." : `${error ? "Cam Device is not founded" : ""}`}
+        {videoEl}
+      </Container>
+    </OutterContainer>
   );
 }
 
 export default FaceRekogCam;
 
+const OutterContainer = styled.div``;
+
 const Container = styled.div`
   position: relative;
   min-width: 250px;
-  min-height: 200px;
+  min-height: 180px;
+  width: 100%;
+  height: 100%;
   #FaceRekogCamVideo {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 250px;
-    height: 200px;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+    /* width: 250px; */
+    /* height: 200px; */
   }
   #FaceRekogCamCanvas {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 250px;
-    height: 200px;
+    left: 0;
+    top: 0;
+    /* bottom: 0;
+    right: 0; */
+    /* width: 250px; */
+    /* height: 200px; */
+    width: 100%;
+    height: 100%;
   }
 `;

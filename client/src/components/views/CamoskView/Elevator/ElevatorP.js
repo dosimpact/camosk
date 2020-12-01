@@ -102,6 +102,15 @@ const Wrapper = styled.div`
   & .second {
     margin-top: 50px;
   }
+
+  & .FaceRekogCam {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+
+    width: 250px;
+    height: 200px;
+  }
 `;
 
 const Container = styled.div``;
