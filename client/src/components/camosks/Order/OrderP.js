@@ -12,6 +12,8 @@ import {
   CloseOutlined,
 } from "@ant-design/icons";
 
+import OrderLog from "components/camosks/Order/Section/OrderLog";
+
 function OrderP({
   icons,
   coffees,
@@ -21,10 +23,12 @@ function OrderP({
   handle_deleteCoffe,
   handle_resetCoffee,
   handle_OrderNotification,
+  name,
 }) {
   return (
     <Container className={className}>
       <Wrapper>
+        <OrderLog name={name} />
         <div className="row header">
           <div className="headerItem">
             <HomeOutlined className="icon" />

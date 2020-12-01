@@ -3,7 +3,7 @@ import QRcode from "qrcode";
 
 function QRCodeP({ url, sizeable = false, className }) {
   const [code, setCode] = useState("");
-  const [width, setWidth] = useState(200);
+  const [, setWidth] = useState(200);
 
   const handleHover = (e, param) => {
     e.preventDefault();
