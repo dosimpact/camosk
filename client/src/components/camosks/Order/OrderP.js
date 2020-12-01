@@ -25,7 +25,7 @@ function OrderP({
   return (
     <Container className={className}>
       <Wrapper>
-        <div className="row header">
+        {/* <div className="row header">
           <div className="headerItem">
             <HomeOutlined className="icon" />
           </div>
@@ -35,7 +35,8 @@ function OrderP({
           <div className="headerItem">
             <ShoppingCartOutlined />
           </div>
-        </div>
+        </div> */}
+
         <div className="row category">
           {icons.map((e, idx) => {
             return (

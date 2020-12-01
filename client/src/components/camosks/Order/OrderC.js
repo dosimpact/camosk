@@ -40,7 +40,14 @@ function OrderC({ className, nameEN, personInfo, ...props }) {
       return [...prev];
     });
   };
-  const handle_setCoffe = (arr) => {};
+  const handle_setCoffe = (arr) => {
+    console.log("handle_setCoffe", arr);
+    const parsedCoffee = arr
+      ?.map((e) => parseInt(e))
+      .map((index) => ({ ...coffees_dummy[index] }));
+    console.log(parsedCoffee);
+    setCoffeesSelected(parsedCoffee);
+  };
 
   const handle_OrderNotification = async () => {
     console.log("setCoffeesSelected", coffeesSelected);
