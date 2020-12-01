@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
   ]);
 
   process.stdout.on("data", function (data) {
-    res.send(data.toString());
+    res.send(JSON.parse(String(data).toString()));
   });
 
   process.stderr.on("data", function (data) {
@@ -48,7 +48,7 @@ router.get("/hello", (req, res) => {
   ]);
 
   process.stdout.on("data", function (data) {
-    res.send(data.toString());
+    res.send(data.toString()).status(200).end();
   });
 
   process.stderr.on("data", function (data) {

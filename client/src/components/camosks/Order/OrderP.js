@@ -12,13 +12,18 @@ import {
   CloseOutlined,
 } from "@ant-design/icons";
 
-function OrderC({
+function OrderP({
   icons,
   coffees,
   coffeesSelected,
-  className }) {
+  className,
+  handle_addCoffee,
+  handle_deleteCoffe,
+  handle_resetCoffee,
+  handle_OrderNotification,
+}) {
   return (
-    <Container className={className} >
+    <Container className={className}>
       <Wrapper>
         <div className="row header">
           <div className="headerItem">
@@ -45,7 +50,10 @@ function OrderC({
             );
           })}
         </div>
-        <div className="temp" style={{ display: "flex", justifyContent: "space-around" }}>
+        <div
+          className="temp"
+          style={{ display: "flex", justifyContent: "space-around" }}
+        >
           {/* <WeatherC />
           <ClockC />
           <NewsC /> */}
@@ -53,7 +61,13 @@ function OrderC({
         <div className="row SelectMenu">
           {coffees.map((e, idx) => {
             return (
-              <div key={idx} className="SelectMenuItem">
+              <div
+                onClick={() => {
+                  handle_addCoffee(idx);
+                }}
+                key={idx}
+                className="SelectMenuItem"
+              >
                 <img
                   className="icon"
                   src={"https://ediya.com" + e.path}
@@ -70,7 +84,13 @@ function OrderC({
             <div className="ChoiceList">
               {coffeesSelected.map((e, idx) => {
                 return (
-                  <div key={idx} className="ChoiceItem">
+                  <div
+                    key={idx}
+                    className="ChoiceItem"
+                    onClick={() => {
+                      handle_deleteCoffe(idx);
+                    }}
+                  >
                     <img
                       className="icon"
                       src={"https://ediya.com" + e.path}
@@ -82,12 +102,12 @@ function OrderC({
               })}
             </div>
           </div>
-          <div className="column" onClick={() => { }}>
-            <div className="center confirm">
+          <div className="column" onClick={() => {}}>
+            <div className="center confirm" onClick={handle_OrderNotification}>
               <CheckOutlined />
-              <span>주문확인</span>
+              <span>주문하기</span>
             </div>
-            <div className="center cancel">
+            <div className="center cancel" onClick={handle_resetCoffee}>
               <CloseOutlined />
               <sapn>주문취소</sapn>
             </div>
@@ -98,7 +118,7 @@ function OrderC({
   );
 }
 
-export default OrderC;
+export default OrderP;
 
 const Container = styled.div`
   width: 100%;
@@ -118,10 +138,10 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     font-size: 27px;
-    & .headerItem{
-      cursor:pointer;
-      &:hover{
-        opacity:0.7;
+    & .headerItem {
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
       }
     }
   }
@@ -137,9 +157,9 @@ const Wrapper = styled.div`
       flex-flow: column nowrap;
       justify-content: center;
       align-items: center;
-      cursor:pointer;
-      &:hover{
-          opacity:0.7;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
       }
     }
     & .icon {
@@ -154,16 +174,16 @@ const Wrapper = styled.div`
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
-    
+
     & .SelectMenuItem {
       display: flex;
       flex-flow: column wrap;
       justify-content: center;
       align-items: center;
       margin: 25px 0px;
-      cursor:pointer;
-      &:hover{
-          opacity:0.6;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.6;
       }
     }
     & .icon {
@@ -187,7 +207,7 @@ const Wrapper = styled.div`
       padding-left: 30px;
 
       & .Choice {
-        padding-top: 10px;
+        padding: 10px 0px;
         font-size: 25px;
         font-weight: 600;
       }
@@ -195,11 +215,16 @@ const Wrapper = styled.div`
         display: flex;
         flex-flow: row nowrap;
         & .ChoiceItem {
+          cursor: pointer;
           display: flex;
           flex-flow: column nowrap;
           justify-content: center;
           align-items: center;
           margin-left: 10px;
+          & .content {
+            text-align: center;
+            max-width: 90px;
+          }
         }
         & .icon {
           width: 90px;
@@ -219,9 +244,9 @@ const Wrapper = styled.div`
         text-align: center;
         font-size: 32px;
         background-color: #00b894;
-        cursor:pointer;
-        &:hover{
-          opacity:0.7;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.7;
         }
       }
       & .cancel {
@@ -229,9 +254,9 @@ const Wrapper = styled.div`
         text-align: center;
         font-size: 36px;
         background-color: #b2bec3;
-        cursor:pointer;
-        &:hover{
-          opacity:0.7;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.7;
         }
       }
     }
