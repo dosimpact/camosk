@@ -28,10 +28,12 @@ router.get("/getorderwithname/:name", (req, res) => {
   User.findOne({ name: req.params?.name }, (err, user) => {
     if (err) return res.json({ success: false, err });
 
-    Order.findOne({ user: user._id }, (err, order) => {
-      if (err) return res.json({ success: false, err });
-      return res.status(200).json({ success: true, order });
-    });
+    Order.findOne({ user: user._id })
+      .populate("user")
+      .exec((err, order) => {
+        if (err) return res.json({ success: false, err });
+        return res.status(200).json({ success: true, order });
+      });
   });
 });
 

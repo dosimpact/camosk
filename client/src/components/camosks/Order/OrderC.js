@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
-import OrderP from "./OrderP"
+import OrderP from "./OrderP";
+
+import { ADMIN_PH } from "apis/config";
+import { SMS } from "apis/notification";
 
 const icons = [
   { name: "Burger", path: "svg/002-burger.svg" },
@@ -13,7 +16,7 @@ const icons = [
   { name: "Beverage", path: "svg/036-mineral water.svg" },
 ];
 
-const coffees = [
+const coffees_dummy = [
   {
     name: "아인슈페너 HOT",
     path: "/files/menu/IMG_1600305773256.png",
@@ -48,7 +51,7 @@ const coffees = [
   },
 ];
 
-const coffeesSelected = [
+const coffeesSelected_dummuy = [
   {
     name: "아인슈페너 HOT",
     path: "/files/menu/IMG_1600305773256.png",
@@ -60,20 +63,67 @@ const coffeesSelected = [
 ];
 
 function OrderC({ className, ...props }) {
+  // const [coffees] = useState(coffees_dummy);
+  const [coffeesSelected, setCoffeesSelected] = useState(
+    coffeesSelected_dummuy
+  );
+
+  const handle_resetCoffee = () => {
+    setCoffeesSelected([]);
+  };
+
+  const handle_addCoffee = (index) => {
+    console.log("handle_addCoffee");
+    setCoffeesSelected((prev) => {
+      if (coffeesSelected.length <= 3) {
+        prev.push({ ...coffees_dummy[index] });
+      }
+      console.log(prev);
+      return [...prev];
+    });
+  };
+  const handle_deleteCoffe = (index) => {
+    console.log("handle_deleteCoffe");
+    setCoffeesSelected((prev) => {
+      prev.splice(index, 1);
+      console.log(prev);
+      return [...prev];
+    });
+  };
+
+  const handle_OrderNotification = async () => {
+    console.log("setCoffeesSelected", coffeesSelected);
+    let makeOrderList = `CAMOKS PAY 주문내역\n`;
+
+    const listed = Array.from(coffeesSelected).reduce((store, e) => {
+      console.log(e);
+      store.push(e?.name);
+      return store;
+    }, []);
+    makeOrderList += listed.join("\n");
+    console.log("makeOrderList", makeOrderList);
+    try {
+      await SMS(makeOrderList, ADMIN_PH);
+    } catch (error) {
+      console.log("SMS 보내기 오류!", error);
+    }
+  };
 
   return (
     <>
       <OrderP
         icons={icons}
-        coffees={coffees}
+        coffees={coffees_dummy}
         coffeesSelected={coffeesSelected}
         className={className}
+        handle_addCoffee={handle_addCoffee}
+        handle_deleteCoffe={handle_deleteCoffe}
+        handle_resetCoffee={handle_resetCoffee}
+        handle_OrderNotification={handle_OrderNotification}
         {...props}
       />
-
     </>
   );
 }
 
 export default OrderC;
-
