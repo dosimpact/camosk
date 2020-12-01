@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ReactPlayer from "react-player";
 
-const SampleAds = ({ className, url, ...props }) => {
+const CustomAds = ({ className, url, ...props }) => {
   return (
     <Wrapper className={className}>
       <div className="container">
@@ -10,8 +10,8 @@ const SampleAds = ({ className, url, ...props }) => {
           url={url || "https://www.youtube.com/watch?v=3MSPHzlRXQQ&t=14s"}
           // onEnded={() => { setAds(false); setIsShoping(true); scrollToPurchase(); }}
           // onPause={() => { setAds(false); setIsShoping(true); scrollToPurchase(); }}
-          width="100vw"
-          height="60vw"
+          width="auto"
+          height="100%"
           className="ads"
           muted={true}
           playing={true}
@@ -23,21 +23,15 @@ const SampleAds = ({ className, url, ...props }) => {
   );
 };
 
-export default SampleAds;
+export default CustomAds;
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 80vw;
   & .container {
-    width: 100vw;
+    width: auto;
+    height: 180px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-
-    & .ads {
-      width: 100vw;
-      height: 60vw;
-      min-width: 560px;
-      min-height: 315px;
-    }
   }
 `;

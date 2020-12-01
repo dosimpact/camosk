@@ -6,7 +6,7 @@ import Order from "components/camosks/Order";
 // import NewsC from "components/camosks/News/NewsC"
 // import WeatherC from "components/camosks/Weather/WeatherC"
 // import QRCodeC from "components/camosks/QRCode/QRCodeC"
-import AdvertisePanel from "components/camosks/SampleAds/SampleAdsDummy";
+import AdvertisePanel from "components/camosks/SampleAds/CustomAds";
 import FaceRekogCam from "components/camosks/FaceFeedCam/v2/FaceRekogCam";
 import FaceInfoCam from "components/camosks/FaceInfoCam/FaceInfoCam";
 
@@ -15,13 +15,7 @@ import CriminalCapture from "../../../camosks/Criminal/CriminalCapture";
 /*
     매장 안의 키오스크를 구성한다.
 */
-const RestaurantP = ({
-  hasPerson,
-  setHasPerson,
-  handle_onTarget,
-  urlTop,
-  urlBottom,
-}) => {
+const RestaurantP = ({ hasPerson, setHasPerson, handle_onTarget, urlTop }) => {
   useEffect(() => {
     window.scrollTo(0, 70);
     return () => {};
@@ -30,26 +24,32 @@ const RestaurantP = ({
   return (
     <Wrapper>
       <Container>
+        <div className="headerPart">
+          <FaceRekogCam
+            className="column FaceRekogCam"
+            onChange={setHasPerson}
+          />
+          <div className="column">
+            {hasPerson && urlTop ? (
+              <AdvertisePanel
+                url={
+                  urlTop
+                    ? urlTop
+                    : "https://www.youtube.com/watch?v=zoGg0KPa4a0"
+                }
+              />
+            ) : (
+              <AdvertisePanel url="https://www.youtube.com/watch?v=HxhjperItvI" />
+            )}
+          </div>
+        </div>
+      </Container>
+
+      <Container>
         <Order />
       </Container>
-      <Container>
-        {hasPerson && urlTop && urlBottom ? (
-          <>
-            {/* 사람이 있는경우 */}
-            <AdvertisePanel
-              url={
-                urlTop ? urlTop : "https://www.youtube.com/watch?v=zoGg0KPa4a0"
-              }
-            />
-          </>
-        ) : (
-          <>
-            {/* 사람이 없는 경우 */}
-            <AdvertisePanel url="https://www.youtube.com/watch?v=HxhjperItvI" />
-          </>
-        )}
-      </Container>
-      <FaceRekogCam onChange={setHasPerson} />
+
+      {/* invisible area */}
       <FaceInfoCam
         trigger={hasPerson}
         onChange={(target) => {
@@ -69,8 +69,16 @@ export default RestaurantP;
 
 const Wrapper = styled.div`
   width: 100%;
-  /* background-color:black; */
-  /* color:whitesmoke; */
+  & .headerPart {
+    display: flex;
+    flex-flow: row nowrap;
+    & .column {
+    }
+
+    & .FaceRekogCam {
+      height: 180px;
+    }
+  }
   & .first {
     padding-top: 50px;
     display: grid;
