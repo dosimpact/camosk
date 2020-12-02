@@ -50,13 +50,11 @@ const BusStopP = ({
     return () => {};
   }, []);
   useEffect(() => {
-    busWaitList().then((resp) => setWaitList(resp));
-    /*
-        const busLoop = setInterval(() => {
-            busWaitList().then(resp => setWaitList(resp))
-        }, 3 * 60 * 1000)
-        return () => clearInterval(busLoop)
-        */
+    busWaitList().then((resp) => setWaitList(resp));    
+    const busLoop = setInterval(() => {
+        busWaitList().then(resp => setWaitList(resp))
+    }, 3 * 60 * 1000)
+    return () => clearInterval(busLoop)
   }, []);
   return (
     <Wrapper>
@@ -102,7 +100,6 @@ const BusStopP = ({
                 </h2>
                 <h5 style={{ color: "white" }}>{el.time}</h5>
                 <small style={{ color: "white" }}>
-                  {el.flag === "PASS" ? "운행 중" : "운행 종료"}
                 </small>
                 <h5 style={{ color: "white" }}>종착지점: {el.destination}</h5>
               </div>
