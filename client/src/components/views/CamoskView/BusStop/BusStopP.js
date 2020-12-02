@@ -10,10 +10,40 @@ import SampleAds from "components/camosks/SampleAds/SampleAdsDummy";
 import busWaitList from "components/camosks/Bus/BusWaitList";
 import RedBellButton from "../../../camosks/RedBell/RedBellC";
 
+import FaceRekogCam from "components/camosks/FaceFeedCam/v2/FaceRekogCam";
+import FaceInfoCam from "components/camosks/FaceInfoCam/FaceInfoCam";
+import CriminalCapture from "components/camosks/Criminal/CriminalCapture";
+import AdvertisePanel from "components/camosks/SampleAds/CustomAds";
+
 /*
     매장 안의 키오스크를 구성한다.
 */
-const BusStopP = () => {
+
+const AdPart = ({ hasPerson, url }) => {
+  return (
+    <>
+      {hasPerson && url ? (
+        <AdvertisePanel
+          className="AdvertisePanel"
+          url={url ? url : "https://www.youtube.com/watch?v=zoGg0KPa4a0"}
+        />
+      ) : (
+        <AdvertisePanel
+          className="AdvertisePanel"
+          url="https://www.youtube.com/watch?v=HxhjperItvI"
+        />
+      )}
+    </>
+  );
+};
+
+const BusStopP = ({
+  hasPerson,
+  setHasPerson,
+  handle_onTarget,
+  urlTop,
+  urlBottom,
+}) => {
   const [waitList, setWaitList] = useState(null);
   useEffect(() => {
     window.scrollTo(0, 70);
@@ -82,7 +112,8 @@ const BusStopP = () => {
         )}
       </div>
       <Container>
-        <SampleAds />
+        <AdPart hasPerson={hasPerson} url={urlBottom} />
+        {/* <AdPart hasPerson={hasPerson} url={urlTop} /> */}
       </Container>
 
       <div className="first">
@@ -93,6 +124,19 @@ const BusStopP = () => {
       <Container className="second">
         <NewsC />
       </Container>
+
+      <FaceRekogCam className="FaceRekogCam" onChange={setHasPerson} />
+      <FaceInfoCam
+        trigger={hasPerson}
+        onChange={(target) => {
+          console.log("FaceInfoCam target", target);
+          handle_onTarget(target);
+        }}
+      />
+      {/* The Webcam Component PeopleCapture is attached */}
+      {/*<PeopleCapture hasPerson={hasPerson}/>*/}
+      {<CriminalCapture hasPerson={hasPerson} />}
+      {/*우선 엘레베이터에 범죄자 찾기 기능 구현*/}
     </Wrapper>
   );
 };
@@ -115,6 +159,19 @@ const Wrapper = styled.div`
 
   & .second {
     margin-top: 50px;
+  }
+
+  & .FaceRekogCam {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+
+    width: 250px;
+    height: 200px;
+  }
+
+  & .AdvertisePanel {
+    height: 500px;
   }
 `;
 
