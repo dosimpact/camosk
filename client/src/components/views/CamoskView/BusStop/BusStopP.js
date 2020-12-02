@@ -5,7 +5,7 @@ import ClockC from "components/camosks/Clock/ClockC";
 import NewsC from "components/camosks/News/NewsC";
 import WeatherC from "components/camosks/Weather/WeatherC";
 // import QRCodeC from "components/camosks/QRCode/QRCodeC"
-import SampleAds from "components/camosks/SampleAds/SampleAdsDummy";
+// import SampleAds from "components/camosks/SampleAds/SampleAdsDummy";
 
 import busWaitList from "components/camosks/Bus/BusWaitList";
 import RedBellButton from "../../../camosks/RedBell/RedBellC";
