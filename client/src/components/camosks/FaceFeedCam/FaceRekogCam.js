@@ -7,7 +7,7 @@ import * as faceapi from "face-api.js";
 
 // setHasPerson 사람이 있는지 없는지 > 있으면 , AWS API 호출하게끔
 
-const PERSON_DISAPPER_INTERVAL = 4;
+const PERSON_DISAPPER_INTERVAL = 2;
 
 function FaceRekogCam({ setHasPerson }) {
   // const [testing, isTesting] = useState(false);
