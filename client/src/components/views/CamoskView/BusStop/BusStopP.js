@@ -73,7 +73,7 @@ const BusStopP = ({
           gridTemplateColumns: "repeat(3, 240px)",
           justifyContent: "center",
           rowGap: "30px",
-          columnGap: "30px",
+          columnGap: "50px",
           padding: "20px 0px",
           fontSize: "24px",
         }}
@@ -98,7 +98,6 @@ const BusStopP = ({
                   <h5 style={{ color: "white" }}>
                     {"현재 위치 : "}
                     {el.location}
-                    {"정거장 전"}
                   </h5>
                 </h2>
                 <h5 style={{ color: "white" }}>{el.time}</h5>
