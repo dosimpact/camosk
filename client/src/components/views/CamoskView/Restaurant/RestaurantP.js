@@ -12,6 +12,7 @@ import FaceInfoCam from "components/camosks/FaceInfoCam/FaceInfoCam";
 
 // import PeopleCapture from "../../../camosks/People/PeopleCapture";
 import CriminalCapture from "../../../camosks/Criminal/CriminalCapture";
+import OrderHeader from "components/camosks/Order/Section/OrderHeader";
 /*
     매장 안의 키오스크를 구성한다.
 */
@@ -33,6 +34,7 @@ const RestaurantP = ({
   return (
     <Wrapper>
       <Container>
+        <OrderHeader />
         <div className="headerPart">
           <div className="column">
             <FaceRekogCam className=" FaceRekogCam" onChange={setHasPerson} />

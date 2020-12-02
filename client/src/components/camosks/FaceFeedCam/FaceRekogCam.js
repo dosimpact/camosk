@@ -110,7 +110,11 @@ function FaceRekogCam({ setHasPerson }) {
 
     return () => {
       video.removeEventListener("play", handlePlay);
-      document.body.removeChild(document.querySelector("#FaceRekogCamCanvas"));
+      if (document.querySelector("#FaceRekogCamCanvas")) {
+        document.body.removeChild(
+          document.querySelector("#FaceRekogCamCanvas")
+        );
+      }
     };
   }, [setHasPerson]);
 
