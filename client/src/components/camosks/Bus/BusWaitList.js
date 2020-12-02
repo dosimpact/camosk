@@ -15,7 +15,7 @@ export default async () => {
             const flag = await list[i].flag
             const busName = await list[i].routeName;
             const destination = await list[i].routeDestName;
-            const time = await list[i].predictTime1.length === 0 ? "잠시 후 도착" : `${list[i].predictTime1}분 전`
+            const time = await list[i].predictTime1.length === 0 ? " - " : `${list[i].predictTime1}분 전`
             const location = await list[i].locationNo1.length === 0 ? '버스 정보가 없습니다.' : `${list[i].locationNo1} 정거장 전` 
             objects.push({flag, busName, destination, time, location})
         }
