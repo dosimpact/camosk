@@ -102,9 +102,14 @@ function FaceRekogCam({ onChange, className }) {
     return () => {
       console.log("#FaceRekogCamCanvas 제거");
       video.removeEventListener("play", handlePlay);
-      document
-        .getElementById("FaceRekogCamContainer")
-        .removeChild(document.querySelector("#FaceRekogCamCanvas"));
+      if (
+        document.getElementById("FaceRekogCamContainer") &&
+        document.querySelector("#FaceRekogCamCanvas")
+      ) {
+        document
+          .getElementById("FaceRekogCamContainer")
+          .removeChild(document.querySelector("#FaceRekogCamCanvas"));
+      }
     };
   }, [onChange]);
 
