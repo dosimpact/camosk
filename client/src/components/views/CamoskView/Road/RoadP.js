@@ -18,10 +18,16 @@ import CriminalCapture from "../../../camosks/Criminal/CriminalCapture";
 */
 
 import ClockC from "components/camosks/Clock/ClockC";
-import NewsC from "components/camosks/News/NewsC";
 import WeatherC from "components/camosks/Weather/WeatherC";
 
-const AdPart = ({ hasPerson, url }) => {
+const AdPart = ({
+  hasPerson,
+  url,
+  handle_onTarget,
+  setHasPerson,
+  urlTop,
+  urlBottom,
+}) => {
   return (
     <>
       {hasPerson && url ? (
