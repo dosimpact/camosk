@@ -20,14 +20,7 @@ import CriminalCapture from "../../../camosks/Criminal/CriminalCapture";
 import ClockC from "components/camosks/Clock/ClockC";
 import WeatherC from "components/camosks/Weather/WeatherC";
 
-const AdPart = ({
-  hasPerson,
-  url,
-  handle_onTarget,
-  setHasPerson,
-  urlTop,
-  urlBottom,
-}) => {
+const AdPart = ({ hasPerson, url }) => {
   return (
     <>
       {hasPerson && url ? (
@@ -72,13 +65,13 @@ const RoadP = ({
         </div>
 
         <div className="area4">
-          <AdPart hasPerson={hasPerson} url={urlBottom} />
+          <AdPart hasPerson={hasPerson} url={urlTop} />
         </div>
         <div className="area5">
           <AdPart hasPerson={hasPerson} url={urlBottom} />
         </div>
         <div className="area6">
-          <AdPart hasPerson={hasPerson} url={urlBottom} />
+          <AdPart hasPerson={hasPerson} url={urlTop} />
         </div>
 
         <div className="area7">
@@ -88,7 +81,7 @@ const RoadP = ({
           <AdPart hasPerson={hasPerson} url={urlBottom} />
         </div>
         <div className="area9">
-          <AdPart hasPerson={hasPerson} url={urlBottom} />
+          <AdPart hasPerson={hasPerson} url={urlTop} />
         </div>
 
         <div className="area10">

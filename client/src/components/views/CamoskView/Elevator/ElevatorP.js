@@ -14,7 +14,7 @@ import FaceRekogCam from "components/camosks/FaceFeedCam/v2/FaceRekogCam";
 import FaceInfoCam from "components/camosks/FaceInfoCam/FaceInfoCam";
 
 // import PeopleCapture from "../../../camosks/People/PeopleCapture";
-import CriminalCapture from "../../../camosks/Criminal/CriminalCapture";
+import CriminalCapture from "components/camosks/Criminal/CriminalCapture";
 
 /*
     매장 안의 키오스크를 구성한다.
