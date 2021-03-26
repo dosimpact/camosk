@@ -9,7 +9,9 @@
 - 최종 발표 PPT
 [https://drive.google.com/file/d/1UEjLPVKFIJRjEr3fKG4p6uvN5cCBMdow/view?usp=sharing](https://drive.google.com/file/d/1UEjLPVKFIJRjEr3fKG4p6uvN5cCBMdow/view?usp=sharing)
 
+## 아키텍쳐
 
+![./docs/arc.png](./docs/arc.png)
 
 
 ##  셋팅
