@@ -18,6 +18,8 @@
 - 최종 발표 PPT
 [https://drive.google.com/file/d/1UEjLPVKFIJRjEr3fKG4p6uvN5cCBMdow/view?usp=sharing](https://drive.google.com/file/d/1UEjLPVKFIJRjEr3fKG4p6uvN5cCBMdow/view?usp=sharing)
 
+![./docs/purpose.png](./docs/purpose.png)
+
 ## 아키텍쳐
 
 ![./docs/arc.png](./docs/arc.png)
@@ -60,11 +62,7 @@ Body    : Order-component > User Info > 과거 주문 셋팅
 Cam     : FaceRekogCam ,  PoepleCaptureCam
 ```
 
-```
-TODO LIST
-✔ 과거 주문 기록 API
-🚀 과거 주문 기록 불러와서 메뉴로 셋팅해주기
-```
+![./docs/camosk2.png](./docs/camosk2.png)
 
 - 3. 🚀 로드상의 키오스크
 
